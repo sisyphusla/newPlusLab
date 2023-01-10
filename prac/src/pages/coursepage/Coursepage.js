@@ -3,19 +3,12 @@ import { Link } from "react-router-dom";
 
 
 import  Couponbar  from "../../components/CoursePage/Couponbar";
-import  ForYouCourse  from "../../components/CoursePage/ForYouCourse";
-import  PopCourse  from "../../components/CoursePage/PopCourse";
-import  RecentClass  from "../../components/CoursePage/RecentClass";
-import  SelectCourse  from "../../components/CoursePage/SelectCourse";
-import  Top  from "../../components/top/Top";
-import Nav from '../../components/nav/Nav'
-import NavLogOut from '../../components/nav/NavLogOut'
-import Footer from "../../components/footer/Footer";
-import memoryUtils from '../../utils/memoryUtils'
-
+import ForYouCourse from "../../components/CoursePage/ForYouCourse";
+import PopCourse from "../../components/CoursePage/PopCourse";
+import RecentClass from "../../components/CoursePage/RecentClass";
+import SelectCourse from "../../components/CoursePage/SelectCourse";
+import Top from "../../components/top/Top";
 const Coursepage = () => {
-  const username = memoryUtils.user.username ||memoryUtils.user.displayName || '';
-
     let title = [
       {
         key: 1,
@@ -47,13 +40,16 @@ const Coursepage = () => {
   
     return (
       <Fragment>
-        {username ?<Nav />:<NavLogOut/>}
-        {/* <Couponbar /> */}
+        {/* <Helmet><title>課程列表</title> </Helmet> */}
+        <div className="headersss"></div>
+
+        <Couponbar />
         {title.map((t) => {
           return (
             <Fragment key={t.key}>
               <div className={t.clsNam.join(" ")}>
-                <span>{t.title}</span>
+                
+                  <span>{t.title}</span>
               </div>
               <t.compos />
             </Fragment>
@@ -78,7 +74,6 @@ const Coursepage = () => {
         <span>精選課程</span>
       </div>
       <SelectCourse /> */}
-      <Footer/>
       </Fragment>
     );
 };
