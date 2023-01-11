@@ -116,16 +116,17 @@ nav .profilePic .dropDown li {
 nav .profilePic .dropDown li .listbox {
   display: flex;
   align-items: center;
+  justify-content: center;
+}
+nav .profilePic .dropDown li .listbox img {
+  width: 22px;
+  margin-right: 10px;
+  margin-top: 2px;
 }
 nav .profilePic .dropDown li a {
   color: #ffffff;
   font-size: 18px;
   letter-spacing: 0.15em;
-}
-nav .profilePic .dropDown li img {
-  width: 22px;
-  padding: 0 18px 0 24px;
-  margin-top: 2px;
 }
 nav .profilePic .dropDown li:hover {
   background-color: #003dcb;

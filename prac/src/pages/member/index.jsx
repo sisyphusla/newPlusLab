@@ -45,8 +45,8 @@ export default class Member extends Component {
         title:'操作',
         render:(user)=>(
           <div>
-            <LinkButton onClick={()=>this.showUpdate(user)} style={{fontSize:20}}><Icon type="edit" />修改</LinkButton>
-            <LinkButton onClick={()=>{this.deleteUser(user)}} style={{fontSize:20,marginLeft:15}}><Icon type="delete" />刪除</LinkButton>
+            <LinkButton onClick={()=>this.showUpdate(user)} style={{fontSize:15}}><Icon type="edit" />修改</LinkButton>
+            <LinkButton onClick={()=>{this.deleteUser(user)}} style={{fontSize:15,marginLeft:15}}><Icon type="delete" />刪除</LinkButton>
           </div>
         )
       }

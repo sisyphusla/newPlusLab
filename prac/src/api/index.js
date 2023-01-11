@@ -12,7 +12,10 @@ export const reqAdduser =(user)=> ajax(BASE+'/api1/manage/user/add',user,'POST')
 //獲取商品分頁列表
 export const reqProducts = (pageNum, pageSize,username) => ajax(BASE + '/api1/manage/article/list', {pageNum, pageSize,username})
 
+//獲取商品分頁列表
+export const reqLesson = (pageNum, pageSize,username) => ajax(BASE + '/api1/manage/lesson/list', {pageNum, pageSize,username})
 
+ 
 
 /*
 搜索商品分頁列表 (根据文章標題/文章作者)
@@ -25,14 +28,19 @@ export const reqSearchArticle = ({pageNum, pageSize, searchName, searchType}) =>
   })
 
 
-  //發表/修改 文章
+  //發表/修改 文章 
   export const reqAddArticle = (article)=>ajax(BASE+'/api1/manage/article/'+(article._id?'update':'add'),article,'POST')
   
-  
+  //儲存股票股票資訊
+  export const reqAddStock = (stock)=>ajax(BASE+'/api1/manage/stock/add',stock,'POST')
+
+  //獲取股票資訊列表 
+ export const reqStock = ()=> ajax(BASE + '/api1/manage/stock/list')
+
 
  //獲取所有角色列表
  export const reqRoles = ()=> ajax(BASE + '/api1/manage/role/list')
-
+ 
  //添加角色
  export const reqAddRoles = (roleName)=> ajax(BASE + '/api1/manage/role/add',{roleName},'POST')
   
@@ -57,6 +65,7 @@ export const reqSearchArticle = ({pageNum, pageSize, searchName, searchType}) =>
 
  //刪除照片
  export const reqDeleteImg = (name)=>ajax(BASE + '/api1/manage/img/delete',{name},'POST')
+
 
 
  //天氣請求

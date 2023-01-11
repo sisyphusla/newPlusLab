@@ -12,7 +12,8 @@ import {reqWeather} from '../../api'
 import memoryUtils from '../../utils/memoryUtils'
 import storageUtils from '../../utils/storageUtils'
 import './index.css'
-import avator from '../../assets/imgs/avator.jpg'
+import profilePic from  "../../assets/imgs/profilePic.png";
+
 
 
 class Header extends Component {
@@ -79,11 +80,12 @@ class Header extends Component {
   }
 
   render() {
+    const {user_profile} = storageUtils.getUser()
     const {currentTime,locationName,temp,des} = this.state;
     const user = memoryUtils.user.username ||memoryUtils.user.displayName;
     const menu = (
-      <Menu style={{marginTop:10,textAlign:'center',marginRight:15}}>
-        <div style={{backgroundColor:'#8895ff',textAlign:'center',borderRadius:3,color:'white'}}>
+      <Menu style={{marginTop:20,textAlign:'center',marginRight:22}}>
+        <div style={{backgroundColor:'#4967ff',textAlign:'center',borderRadius:3,color:'white'}}>
           {user}
         </div>
         <Menu.Item>
@@ -106,27 +108,28 @@ class Header extends Component {
     const title = this.getTitle()
     return (
       <div className='header'>
+        
         <div className='header-top'>
           <Dropdown overlay={menu}>
             <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-                <img src={avator} alt="avator"/>
+              <img src={user_profile ? user_profile : profilePic} alt="" style={{width:40,height:40,borderRadius:'50%',objectFit:'cover'}}/>
             </a>
           </Dropdown>
         </div>
         <div className='header-bottom'>
-          <div className='header-bottom-left'>{title}</div>
+          <div className='header-bottom-left' >{title}</div>
           <div className='header-bottom-right'>
             
-            <span>
+            <span style={{color:'#4967ff'}}>
             <FontAwesomeIcon icon={faLocationDot} />&nbsp;
             {locationName}
             </span>&nbsp;
-            <span>
+            <span style={{color:'#4967ff'}}>
               <FontAwesomeIcon icon={faTemperatureLow} />&nbsp;
               {temp}°c
             </span>&nbsp;
-            <span>天氣 : {des}</span>&nbsp;
-            <span style={{fontSize:20}}>{currentTime}</span>
+            <span style={{color:'#4967ff'}}>天氣 : {des}</span>&nbsp;
+            <span style={{fontSize:20,color:'#4967ff'}}>{currentTime}</span>
 
           </div>
         </div>

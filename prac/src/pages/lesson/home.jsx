@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye } from '@fortawesome/free-solid-svg-icons'
 
 import LinkButton from '../../components/link-button'
-import {reqProducts,reqSearchArticle} from '../../api'
+import {reqLesson,reqSearchArticle} from '../../api'
 import {PAGE_SIZE}  from '../../utils/constant'
 import storageUtils from '../../utils/storageUtils'
 
@@ -14,7 +14,7 @@ const element = <FontAwesomeIcon icon={faEye} />
 const element1 = <FontAwesomeIcon icon={faEye}  style={{color:'gray',opacity:0.2}}/>
 
 const Option = Select.Option;
-export default class ArticleHome extends Component {
+export default class LessonHome extends Component {
   
   state = {
     total:0,
@@ -28,11 +28,11 @@ export default class ArticleHome extends Component {
   initColumns = () => {
     this.columns = [
       {
-        title: '文章標題',
+        title: '課程標題',
         dataIndex: 'name',
       },
       {
-        title: '文章作者',
+        title: '課程作者',
         dataIndex: 'author',
       },
       {
@@ -42,7 +42,7 @@ export default class ArticleHome extends Component {
       },
       {
         width:300,
-        title: '文章發布人',
+        title: '課程發布人',
         dataIndex: 'username',
       },
       {
@@ -55,11 +55,11 @@ export default class ArticleHome extends Component {
             <span>
               {/*把article對象使用state傳給目標路由组件*/}
               <LinkButton onClick={() => {
-                  this.props.history.push('/admin/article/detail', {article});
+                  this.props.history.push('/admin/lesson/detail', {article});
               }}>
                 {found ? element:element1}詳情
               </LinkButton>
-              <LinkButton onClick={() => this.props.history.push('/admin/article/addupdate', article)}><Icon type="edit" />修改</LinkButton>
+              <LinkButton onClick={() => this.props.history.push('/admin/lesson/addupdate', article)}><Icon type="edit" />修改</LinkButton>
             </span>
           )
         }
@@ -77,7 +77,7 @@ export default class ArticleHome extends Component {
     if(searchName){
       result = await reqSearchArticle({pageNum,pageSize:PAGE_SIZE,searchName,searchType})
     }else{ //一般分頁搜索
-      result = await reqProducts(pageNum , PAGE_SIZE);
+      result = await reqLesson(pageNum , PAGE_SIZE);
     }
     
     this.setState({loading:false})
@@ -126,7 +126,7 @@ export default class ArticleHome extends Component {
     const extra=(
       <Button type='primary' onClick={()=>{this.props.history.push('/admin/article/addupdate')}}>
         <Icon type='plus' />
-        發表文章
+        發表課程
       </Button>
     );
     return (
