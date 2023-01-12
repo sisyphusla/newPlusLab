@@ -13,7 +13,8 @@ const lessonSchema = new mongoose.Schema({
   update: {type: String},
   watch:{type:Number, default:0}, //0是未看過，1是看過
   detail: {type: String},//課程影片url
-
+  lessonvideo:{type: Array}, //課程影片檔名
+ 
 })
 
 

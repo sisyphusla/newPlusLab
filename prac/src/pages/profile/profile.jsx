@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { message} from 'antd'
+import { message,Icon} from 'antd'
 
 import storageUtils from '../../utils/storageUtils'
 import memoryUtils from '../../utils/memoryUtils'
@@ -10,6 +10,8 @@ import './profile.css'
 import {reqUpdateUser} from '../../api/index'
 import PicturesWall from './picture'
 import {BASE_IMG_URL} from '../../utils/constant'
+import profilePic from  "../../assets/imgs/profilePic.png";
+
 
 
 export default class Profile extends Component {
@@ -49,15 +51,23 @@ export default class Profile extends Component {
 
   render() {
     // const {username,auth_level} = storageUtils.getUser()
-    const username = memoryUtils.user.username ||memoryUtils.user.displayName || '';
-
+    const username1 = memoryUtils.user.username ||memoryUtils.user.displayName || '';
+    const {user_profile,auth_level,username} = storageUtils.getUser()
     return (
       <div>
-        {username ?<Nav />:<NavLogOut/>}
-        <div className='teacher'>
-          <button onClick={this.beTeacher}>我要當老師</button>
+        {username1 ?<Nav />:<NavLogOut/>}
+        <div className='profileDiv'>
+          <div className='profileDivTop'>
+            <img src={user_profile ? user_profile : profilePic} alt="" style={{width:60,height:60,borderRadius:'50%',objectFit:'cover'}}/>
+            <div className='topDiv'>
+              <Icon type="star" theme="filled" style={{color:'white',fontSize:25}}/>
+              <span className='topDivLv'>Lv.{(username==='admin')?'4':auth_level}</span>
+            </div>
+            <div className='downDiv'></div>
+          </div>
+          {/* <button onClick={this.beTeacher}>我要當老師</button>
           <PicturesWall ref={this.pw}/>
-          <button onClick={this.profilSubmit}>提交</button>
+          <button onClick={this.profilSubmit}>提交</button> */}
         </div>
         
         <Footer/>

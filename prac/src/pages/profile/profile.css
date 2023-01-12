@@ -1,8 +1,23 @@
-.teacher{
+.profileDiv{
     height: 1080px;
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     
+    position: relative;
+}
+.profileDivTop{
+    width: 70%;
+    position: absolute;
+    top:20%;
+    left: 10%;
+}
+.topDiv{
+    position: absolute;
+    top: 0;
+    left: 10%;
+}
+.topDivLv{
+    display: inline-block;
+    color: aliceblue;
+    font-size: 25px;
+    margin-left: 10px;
 }

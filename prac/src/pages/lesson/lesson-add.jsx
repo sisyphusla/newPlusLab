@@ -2,16 +2,18 @@ import React, { Component } from 'react'
 import {Form,Card,Input,Button,Icon, message} from 'antd'
 
 import LinkButton from '../../components/link-button'
-import RichTextEdit from '../article/rich-text-edit'
-import {reqAddArticle} from '../../api'
+import {reqAddLesson} from '../../api'
 import {formateDate} from '../../utils/dateUtils'
 import storageUtils from '../../utils/storageUtils'
+import PicturesLesson from './picture'
+import {BASE_IMG_URL} from '../../utils/constant'
 
 const {Item} = Form;
 
 class LessonAdd extends Component {
 
-  edit = React.createRef();
+  lv = React.createRef();
+  
   
   submit=()=>{
     this.props.form.validateFields(async(error,values)=>{
@@ -19,17 +21,18 @@ class LessonAdd extends Component {
         //蒐集數據
         const {username} = storageUtils.getUser()
         const {name,author} = values
-        const detail = this.edit.current.getDetail();
+        const lessonvideo = this.lv.current.getImg()
+        const detail = BASE_IMG_URL+lessonvideo;
         const update = formateDate(Date.now());
-        const article = {username,name,author,detail,update};
+        const article = {username,name,author,lessonvideo,detail,update};
         //如果是修改要加_id
         if(this.isUpdate){
           article._id = this.article._id
         }
-        //調用街口去發表文章
-        const result = await reqAddArticle(article);
+        //調用接口去發表課程
+        const result = await reqAddLesson(article);
         if(result.status === 0){
-          message.success(`${this.isUpdate?'修改':'發表'}文章成功`);
+          message.success(`${this.isUpdate?'修改':'發表'}課程成功`);
           this.props.history.goBack()
         }else{
           message.error(`${this.isUpdate?'修改':'發表'}文章失敗`);
@@ -45,9 +48,7 @@ class LessonAdd extends Component {
   }
   
   render() {
-
     const {isUpdate,article} = this
-    const {detail} = article
     const { getFieldDecorator } = this.props.form;
     const formItemLayout = {
       wrapperCol: { span: 12 },
@@ -58,7 +59,7 @@ class LessonAdd extends Component {
         <LinkButton  onClick={()=>{this.props.history.goBack()}}>
           <Icon type='arrow-left'/>
         </LinkButton>
-        <span>{isUpdate ? '修改商品':'添加商品'}</span>
+        <span>{isUpdate ? '修改課程':'添加課程'}</span>
       </span>
     )
 
@@ -66,11 +67,11 @@ class LessonAdd extends Component {
       <Card title={title}>
         <Form {...formItemLayout}>
           <Item>
-            <div style={{fontWeight:'bolder',fontSize:15}}>文章標題:</div>
+            <div style={{fontWeight:'bolder',fontSize:15}}>課程標題:</div>
             {getFieldDecorator('name',{
               initialValue:article.name,
               rules:[
-                {required:true,message:'必須輸入文章標題'}
+                {required:true,message:'必須輸入課程標題'}
               ]
             })(
               <Input 
@@ -94,8 +95,8 @@ class LessonAdd extends Component {
             )}
           </Item>
           <Item wrapperCol={ {span: 20} }>
-            <div style={{fontWeight:'bolder',fontSize:15}}>文章內容:</div>
-            <RichTextEdit ref={this.edit} detail={detail}/>
+            <div style={{fontWeight:'bolder',fontSize:15}}>課程影片:</div>
+              <PicturesLesson ref={this.lv} lessonvideo={article.lessonvideo}/>
           </Item>
           <Item>
             <Button type='primary' onClick={this.submit}>發表</Button>

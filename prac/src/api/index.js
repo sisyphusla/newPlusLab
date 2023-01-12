@@ -27,10 +27,19 @@ export const reqSearchArticle = ({pageNum, pageSize, searchName, searchType}) =>
     [searchType]: searchName,
   })
 
+  export const reqSearchLesson = ({pageNum, pageSize, searchName, searchType}) => ajax(BASE + '/api1/manage/lesson/search', {
+    pageNum,
+    pageSize,
+    [searchType]: searchName,
+  })
+
 
   //發表/修改 文章 
   export const reqAddArticle = (article)=>ajax(BASE+'/api1/manage/article/'+(article._id?'update':'add'),article,'POST')
   
+  export const reqAddLesson = (article)=>ajax(BASE+'/api1/manage/lesson/'+(article._id?'update':'add'),article,'POST')
+
+
   //儲存股票股票資訊
   export const reqAddStock = (stock)=>ajax(BASE+'/api1/manage/stock/add',stock,'POST')
 

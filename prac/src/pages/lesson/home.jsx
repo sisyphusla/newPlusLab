@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye } from '@fortawesome/free-solid-svg-icons'
 
 import LinkButton from '../../components/link-button'
-import {reqLesson,reqSearchArticle} from '../../api'
+import {reqLesson,reqSearchLesson} from '../../api'
 import {PAGE_SIZE}  from '../../utils/constant'
 import storageUtils from '../../utils/storageUtils'
 
@@ -18,7 +18,7 @@ export default class LessonHome extends Component {
   
   state = {
     total:0,
-    article:[],
+    lesson:[],
     loading:false,
     searchName:'',//搜索的關鍵字
     searchType:'productName',//根據什麼來搜索
@@ -75,7 +75,7 @@ export default class LessonHome extends Component {
     let result
     //如果關鍵字有值代表要搜索分頁
     if(searchName){
-      result = await reqSearchArticle({pageNum,pageSize:PAGE_SIZE,searchName,searchType})
+      result = await reqSearchLesson({pageNum,pageSize:PAGE_SIZE,searchName,searchType})
     }else{ //一般分頁搜索
       result = await reqLesson(pageNum , PAGE_SIZE);
     }
@@ -85,7 +85,7 @@ export default class LessonHome extends Component {
       const {total,list} = result.data;
       this.setState({
         total,
-        article:list
+        lesson:list
       })
     }
   }
@@ -103,8 +103,7 @@ export default class LessonHome extends Component {
   render() {
 
     
-    const {article,total,loading,searchName,searchType} = this.state;
-
+    const {lesson,total,loading,searchName,searchType} = this.state;
     const title = (
       <span>
         <Select  
@@ -124,7 +123,7 @@ export default class LessonHome extends Component {
       </span>
     )
     const extra=(
-      <Button type='primary' onClick={()=>{this.props.history.push('/admin/article/addupdate')}}>
+      <Button type='primary' onClick={()=>{this.props.history.push('/admin/lesson/addupdate')}}>
         <Icon type='plus' />
         發表課程
       </Button>
@@ -135,7 +134,7 @@ export default class LessonHome extends Component {
         bordered
         loading={loading}
         rowKey='_id'
-        dataSource={article} 
+        dataSource={lesson} 
         columns={this.columns}
         pagination={{
           current:this.pageNum,

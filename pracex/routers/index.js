@@ -6,7 +6,7 @@ const UserModel = require('../models/UserModel')
 const ProductModel = require('../models/ProductModel')
 const RoleModel = require('../models/RoleModel')
 const StockModel = require('../models/StockModel')
-// const LessonModel = require('../models/LessonModel')
+const LessonModel = require('../models/LessonModel')
 
 
 const router = express.Router()
@@ -69,31 +69,30 @@ router.get('/manage/article/list', (req, res) => {
     
   })
 
-//   // 獲取課程列表
-// router.get('/manage/lesson/list', (req, res) => {
-//   const {pageNum, pageSize,username} = req.query
-//   if(!!username){
-//     LessonModel.find({username})
-//     .then(article => {
-//       res.send({status: 0, data: pageFilter(article, pageNum, pageSize)})
-//     })
-//     .catch(error => {
-//       console.error('獲取異常', error)
-//       res.send({status: 1, msg: '獲取異常'})
-//     })
-//   }else{
-//     LessonModel.find({})
-//     .then(article => {
-//       res.send({status: 0, data: pageFilter(article, pageNum, pageSize)})
-//     })
-//     .catch(error => {
-//       console.error('獲取課程列表異常', error)
-//       res.send({status: 1, msg: '獲取課程列表異常'})
-//     })
-//   }
+  // 獲取課程列表
+router.get('/manage/lesson/list', (req, res) => {
+  const {pageNum, pageSize,username} = req.query
+  if(!!username){
+    LessonModel.find({username})
+    .then(article => {
+      res.send({status: 0, data: pageFilter(article, pageNum, pageSize)})
+    })
+    .catch(error => {
+      console.error('獲取異常', error)
+      res.send({status: 1, msg: '獲取異常'})
+    })
+  }else{
+    LessonModel.find({})
+    .then(article => {
+      res.send({status: 0, data: pageFilter(article, pageNum, pageSize)})
+    })
+    .catch(error => {
+      console.error('獲取課程列表異常', error)
+      res.send({status: 1, msg: '獲取課程列表異常'})
+    })
+  }
   
-// })
-
+})
 
 
   // 發表文章
@@ -108,10 +107,35 @@ router.post('/manage/article/add', (req, res) => {
     })
 })
 
+// 發表課程
+router.post('/manage/lesson/add', (req, res) => {
+  const product = req.body
+  LessonModel.create(product)
+    .then(product => {
+      res.send({status: 0, data: product})
+    })
+    .catch(error => {
+      res.send({status: 1, msg: '發表文章異常, 请重新嘗試'})
+    })
+})
+
 // 更新文章
 router.post('/manage/article/update', (req, res) => {
   const product = req.body
   ProductModel.findOneAndUpdate({_id: product._id}, product)
+    .then(oldProduct => {
+      res.send({status: 0})
+    })
+    .catch(error => {
+      console.error('更新商品異常', error)
+      res.send({status: 1, msg: '更新商品名稱異常, 請重新嘗試'})
+    })
+})
+
+//更新課程
+router.post('/manage/lesson/update', (req, res) => {
+  const product = req.body
+  LessonModel.findOneAndUpdate({_id: product._id}, product)
     .then(oldProduct => {
       res.send({status: 0})
     })
@@ -141,6 +165,24 @@ router.get('/manage/article/search', (req, res) => {
     })
 })
 
+// 搜索課程列表
+router.get('/manage/lesson/search', (req, res) => {
+  const {pageNum, pageSize, searchName, productName, productAuth} = req.query
+  let contition = {}
+  if (productName) {
+    contition = {name: new RegExp(`^.*${productName}.*$`)}
+  } else if (productAuth) {
+    contition = {author: new RegExp(`^.*${productAuth}.*$`)}
+  }
+  LessonModel.find(contition)
+    .then(products => {
+      res.send({status: 0, data: pageFilter(products, pageNum, pageSize)})
+    })
+    .catch(error => {
+      console.error('搜索商品列表異常', error)
+      res.send({status: 1, msg: '搜索商品列表異常'})
+    })
+})
 
 
 // 獲取角色列表

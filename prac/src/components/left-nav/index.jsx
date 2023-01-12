@@ -72,9 +72,10 @@ class LeftNav extends Component {
   render() {
 
     let path = this.props.location.pathname;
-    
-    if(path.indexOf('/article')===0){
-      path = '/article'
+    if(path.indexOf('/admin/article')===0){  // 當前請求的是文章或其子路由介面
+      path = '/admin/article'
+    }else if(path.indexOf('/admin/lesson')===0){
+      path = '/admin/lesson'
     }
     const openKey = this.openKey
     return (
