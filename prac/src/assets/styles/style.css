@@ -93,10 +93,10 @@ nav :first-child img {
 nav :last-child img {
   margin-top: 5px;
 }
-nav .profilePic {
+nav .profilePic, nav .cartList {
   cursor: pointer;
 }
-nav .profilePic .dropDown {
+nav .profilePic .dropDown, nav .cartList .dropDown {
   display: none;
   position: fixed;
   top: 80px;
@@ -105,39 +105,39 @@ nav .profilePic .dropDown {
   width: 178px;
   z-index: 2;
 }
-nav .profilePic .dropDown .backStage {
+nav .profilePic .dropDown .backStage, nav .cartList .dropDown .backStage {
   border-top: solid 2px #8895ff;
   border-bottom: solid 2px #8895ff;
 }
-nav .profilePic .dropDown li {
+nav .profilePic .dropDown li, nav .cartList .dropDown li {
   color: #ffffff;
   display: block;
   padding: 18px 0 18px 0;
 }
-nav .profilePic .dropDown li .listbox {
+nav .profilePic .dropDown li .listbox, nav .cartList .dropDown li .listbox {
   display: flex;
   align-items: center;
 }
-nav .profilePic .dropDown li a {
+nav .profilePic .dropDown li a, nav .cartList .dropDown li a {
   color: #ffffff;
   font-size: 18px;
   letter-spacing: 0.15em;
 }
-nav .profilePic .dropDown li img {
+nav .profilePic .dropDown li img, nav .cartList .dropDown li img {
   width: 22px;
   padding: 0 18px 0 24px;
   margin-top: 2px;
 }
-nav .profilePic .dropDown li:hover {
+nav .profilePic .dropDown li:hover, nav .cartList .dropDown li:hover {
   background-color: #003dcb;
 }
-nav .profilePic .dropDown :first-child li {
+nav .profilePic .dropDown :first-child li, nav .cartList .dropDown :first-child li {
   background-color: #e23965;
 }
-nav .profilePic .dropDown :first-child li:hover {
+nav .profilePic .dropDown :first-child li:hover, nav .cartList .dropDown :first-child li:hover {
   background-color: #aa003b;
 }
-nav .profilePic .mouth {
+nav .profilePic .mouth, nav .cartList .mouth {
   display: none;
   width: 16px;
   height: 16px;
@@ -150,6 +150,26 @@ nav .profilePic .mouth {
 nav .profilePic:hover .dropDown,
 nav .profilePic:hover .mouth {
   display: block;
+}
+nav .cartNumber {
+  position: absolute;
+  background-color: #e23965;
+  width: 22px;
+  height: 23px;
+  color: #ffffff;
+  border-radius: 20px;
+  font-size: 12pt;
+  text-align: center;
+  line-height: 18px;
+  top: -8px;
+  left: 2px;
+  z-index: -1;
+}
+nav a {
+  position: relative;
+}
+nav #active > div {
+  background-color: #aa003b;
 }
 
 .navLogOut {
@@ -694,6 +714,12 @@ ul li Link button:hover {
   margin: 10px;
   background: #1d1f27;
 }
+.divAllCourse label {
+  position: relative;
+  margin: 0 auto;
+  color: #ffffff;
+  margin: 2px;
+}
 .divAllCourse .ulAllCourseContainer {
   display: flex;
   flex-wrap: wrap;
@@ -749,9 +775,10 @@ ul li Link button:hover {
   letter-spacing: 0.1em;
 }
 .dCard .imgCard {
-  -o-object-fit: contain;
-     object-fit: contain;
+  -o-object-fit: cover;
+     object-fit: cover;
   position: relative;
+  height: 170px;
 }
 .dCard .shopCart {
   position: absolute;
@@ -761,8 +788,11 @@ ul li Link button:hover {
   display: flex;
   float: right;
   font-size: 25px;
-  z-index: 8;
+  z-index: 3;
   color: #e23965;
+}
+.dCard .shopCart:hover svg path {
+  fill: #aa003b;
 }
 .dCard .dCardMark {
   position: absolute;
@@ -771,7 +801,7 @@ ul li Link button:hover {
   font-size: 25px;
   padding: 5px;
   color: #e23965;
-  z-index: 300;
+  z-index: 2;
 }
 .dCard .dCardTeacher {
   color: #1d1f27;

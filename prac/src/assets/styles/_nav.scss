@@ -54,7 +54,7 @@ nav {
   :last-child img {
     margin-top: 5px;
   }
-  .profilePic {
+  .profilePic,.cartList {
     cursor: pointer;
     .dropDown {
       display: none;
@@ -114,4 +114,51 @@ nav {
   .profilePic:hover .mouth {
     display: block;
   }
+
+
+// write cart number
+  .cartNumber{
+    position:absolute;
+    background-color:$red;
+    width: 22px;
+    height: 23px;
+   
+    color: $white;
+    border-radius: 20px;
+    font-size:12pt;
+    text-align: center;
+    line-height: 18px;
+   top:-8px;
+   left:2px;
+   z-index: -1;
+  
+}
+a{
+  position: relative;
+}
+
+ #active>div{
+ 
+ background-color: $redDarker;
+
+}
+// .shoppingCart:hover ~.dropDown,
+// .shoppingCart:hover ~.mouth {
+//     display: block;
+//   }
+// .cartList{
+//   position: relative;
+//   .dropDown{
+//     position:absolute;
+//     right:-5vw;
+//     top:4vw
+//   }
+//   .mouth{
+//     width: 16px;
+//       height: 16px;
+//     position:absolute;
+//     right: -0.3vw;
+//     top:2vw
+//   }
+// }
 }

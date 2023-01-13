@@ -513,6 +513,14 @@ ul li Link button {
   margin: 10px;
 
   background: $primary;
+  label{
+    position: relative;
+    margin: 0 auto;
+    color: $white;
+    margin: 2px;
+ 
+
+  }
   .ulAllCourseContainer {
     display: flex;
     flex-wrap: wrap;
@@ -524,6 +532,7 @@ ul li Link button {
     height: calc(400 * 3);
     margin: 0 auto;
     list-style-type: none;
+    
   }
 }
 .dCard {
@@ -578,8 +587,9 @@ ul li Link button {
     letter-spacing: 0.1em;
   }
   .imgCard {
-    object-fit: contain;
+    object-fit: cover;
     position: relative;
+    height: 170px;
   }
   .shopCart {
     position: absolute;
@@ -589,8 +599,15 @@ ul li Link button {
     display: flex;
     float: right;
     font-size: 25px;
-    z-index: 8;
+    z-index: 3;
     color: $red;
+    &:hover{
+      svg{
+        path{
+          fill:$redDarker
+        }
+      }
+    }
   }
   .dCardMark {
     position: absolute;
@@ -599,7 +616,7 @@ ul li Link button {
     font-size: 25px;
     padding: 5px;
     color: $red;
-    z-index: 300;
+    z-index: 2;
   }
   .dCardTeacher {
     color: $primary;

@@ -10,7 +10,7 @@ const Coupon = () => {
         deadLine: {
           year: 2023,
           month: 1,
-          Date: 10,
+          Date: 12,
           hour: 14,
           min: 44,
           sec: 0,

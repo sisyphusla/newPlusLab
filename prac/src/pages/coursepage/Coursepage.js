@@ -47,7 +47,7 @@ const Coursepage = () => {
         {title.map((t) => {
           return (
             <Fragment key={t.key}>
-              <div className={t.clsNam.join(" ")}>
+              <div className={t.clsNam.join(" ")} id={t.compos}>
                 
                   <span>{t.title}</span>
               </div>

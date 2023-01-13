@@ -3,11 +3,11 @@ import Spinner from "react-bootstrap/Spinner";
 
 const LoadigBox = () => {
   
-  return ( 
-    <Spinner animation="border" role={status}>
+  return (
+    <Spinner animation="border" role="status">
       <span className="visually-hidden">Loading...</span>
     </Spinner>
-   );
+  );
 }
  
 export default LoadigBox;

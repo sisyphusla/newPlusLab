@@ -1,13 +1,29 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { Link } from "react-router-dom";
+import { CartState } from "./CartContext";
 
 const Checkout = () => {
+
+  const {
+    state: { cart },
+    dispatch,
+  } = CartState();
+
+  const [Total, setTotal] = useState();
+  const [Subtotal, setSubtotal] = useState();
+useEffect(() => {
+ setSubtotal(
+   cart.reduce((acc, curr) => acc + Number(curr.value.special) * curr.qty, 0)
+ );
+setTotal(cart.reduce((acc, curr) => acc + Number(curr.value.special) * curr.qty, 0));
+}, []);
+
   return (
     <div className="checkoutorder">
       <div className="dOrderTitle">訂單明細</div>
       <div>
         <span className="sSubtotaltitle">小計</span>
-        <span className="sSubtotal">NT $2,400</span>
+        <span className="sSubtotal">NT ${Subtotal}</span>
       </div>
       <div className="sDiscount">
         <input type="checkbox" />
@@ -17,7 +33,7 @@ const Checkout = () => {
         <input className="iDiscountCode" type="text" />
         <input className="iCodeSubmit" type="submit" value="確定" />
       </div>
-      <div className="dTotalPrice">NT$ 2,400</div>
+      <div className="dTotalPrice">NT$ {Total}</div>
       <input className="iorder" type="button" value="結帳" />
     </div>
   );
