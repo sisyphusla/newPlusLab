@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { createSearchParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import {Modal} from 'antd'
 
@@ -13,9 +13,11 @@ import logOut from "../../assets/imgs/logOutIcon.svg";
 import storageUtils from '../../utils/storageUtils'
 import memoryUtils from '../../utils/memoryUtils'
 import {BASE_IMG_URL} from '../../utils/constant'
-
+import { CartState } from "../../components/CartPage//CartContext";
 let n = "";
 const Nav = () => {
+  const { state: { cart }} = CartState();
+
   const [idNews, setIdNews] = useState("");
   const [idDashboard, setIdDashboard] = useState("");
   const [idCourse, setIdCourse] = useState("");
@@ -127,8 +129,6 @@ const Nav = () => {
     colorActive();
   }, []);
 
-  
-
   return (
     <nav>
       <Link to="/" onClick={colorNone}>
@@ -141,7 +141,7 @@ const Nav = () => {
       <Link to="/dashboard" onClick={colorDashboard} id={`${idDashboard}`}>
         交易模擬器
       </Link>
-      <Link to="/" onClick={colorCourse} id={`${idCourse}`}>
+      <Link to="/Coursepage" onClick={colorCourse} id={`${idCourse}`}>
         課程列表
       </Link>
       <Link to="/video" onClick={colorMycourse} id={`${idMycourse}`}>
@@ -167,7 +167,12 @@ const Nav = () => {
           />
         </svg>
       </Link>
-      <Link to="/Coursepage/Cartpage" onClick={colorShoppingCart} id={`${idShoppingCart}`}>
+      <Link
+        to="/Cartpage"
+        onClick={colorShoppingCart}
+        id={`${idShoppingCart}`}
+        className="cartList"
+      >
         <svg
           className="shoppingCart"
           width="24"
@@ -177,6 +182,12 @@ const Nav = () => {
         >
           <path d="M7.2 19.2C5.88 19.2 4.812 20.28 4.812 21.6C4.812 22.92 5.88 24 7.2 24C8.52 24 9.6 22.92 9.6 21.6C9.6 20.28 8.52 19.2 7.2 19.2ZM0 0V2.4H2.4L6.72 11.508L5.1 14.448C4.908 14.784 4.8 15.18 4.8 15.6C4.8 16.92 5.88 18 7.2 18H21.6V15.6H7.704C7.536 15.6 7.404 15.468 7.404 15.3L7.44 15.156L8.52 13.2H17.46C18.36 13.2 19.152 12.708 19.56 11.964L23.856 4.176C23.952 4.008 24 3.804 24 3.6C24 2.94 23.46 2.4 22.8 2.4H5.052L3.924 0H0ZM19.2 19.2C17.88 19.2 16.812 20.28 16.812 21.6C16.812 22.92 17.88 24 19.2 24C20.52 24 21.6 22.92 21.6 21.6C21.6 20.28 20.52 19.2 19.2 19.2Z" />
         </svg>
+        {cart.length > 0 ? <div className="cartNumber">{cart.length}</div> : ""}
+
+        {/* <div className="mouth"></div>
+          <ul className="dropDown">
+          
+          </ul> */}
       </Link>
       <Link to="/" onClick={colorNone}>
         <svg
@@ -189,8 +200,19 @@ const Nav = () => {
           <path d="M8.01143 21.7257C8.01143 22.9829 9.02857 24 10.2857 24C11.5429 24 12.56 22.9829 12.56 21.7257H8.01143ZM18.1486 16.9371V10.2857C18.1486 6.57143 15.5771 3.46286 12.1029 2.64V1.81714C12.1029 0.811428 11.2914 0 10.2857 0C9.28 0 8.46857 0.811428 8.46857 1.81714V2.64C4.99429 3.46286 2.42286 6.57143 2.42286 10.2857V16.9371L0 19.36V20.5714H20.5714V19.36L18.1486 16.9371Z" />
         </svg>
       </Link>
+
       <div className="profilePic">
-        <img src={user_profile ? user_profile : profilePic} alt="" onClick={colorNone} style={{width:50,height:50,borderRadius:'50%',objectFit:'cover'}}/>
+        <img
+          src={user_profile ? user_profile : profilePic}
+          alt=""
+          onClick={colorNone}
+          style={{
+            width: 50,
+            height: 50,
+            borderRadius: "50%",
+            objectFit: "cover",
+          }}
+        />
         <div>
           <div className="mouth"></div>
           <ul className="dropDown">
@@ -218,16 +240,18 @@ const Nav = () => {
                 </div>
               </li>
             </Link>
-            {(auth_level===1 && username !== 'admin') ? null: (<Link to="/admin" onClick={colorNone}>
-              <li className="backStage">
-                <div className="listbox">
-                  <img src={backStage} alt="" />
-                  <span>後臺資料</span>
-                </div>
-              </li>
-            </Link>)}
-            
-            <Link to='/login' onClick={colorNone}>
+            {auth_level === 1 && username !== "admin" ? null : (
+              <Link to="/admin" onClick={colorNone}>
+                <li className="backStage">
+                  <div className="listbox">
+                    <img src={backStage} alt="" />
+                    <span>後臺資料</span>
+                  </div>
+                </li>
+              </Link>
+            )}
+
+            <Link to="/login" onClick={colorNone}>
               <li onClick={memberLogOut}>
                 <div className="listbox">
                   <img src={logOut} alt="" />

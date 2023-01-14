@@ -6,6 +6,10 @@ import OrderMod from "../../components/CartPage/OrderMod";
 import Mark from "../../components/CartPage/Mark";
 import cart from "../../components/CartPage/img/cart.svg";
 import collectCourse from "../../components/CartPage/img/collectCourse.svg";
+import Nav from "../../components/nav/Nav";
+import NavLogOut from "../../components/nav/NavLogOut";
+import Footer from "../../components/footer/Footer";
+import memoryUtils from "../../utils/memoryUtils";
 
 
 const Cartpage = (props) => {
@@ -23,9 +27,11 @@ const Cartpage = (props) => {
       compos: Mark,
     },
   ];
-
+  const username =
+    memoryUtils.user.username || memoryUtils.user.displayName || "";
   return (
     <Fragment>
+      {username ? <Nav /> : <NavLogOut />}
       <div className="headerss"></div>
       {title.map((t) => {
         return (
@@ -43,6 +49,7 @@ const Cartpage = (props) => {
         );
       })}
       <Top />
+      <Footer />
     </Fragment>
   );
 };

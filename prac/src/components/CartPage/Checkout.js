@@ -11,12 +11,16 @@ const Checkout = () => {
 
   const [Total, setTotal] = useState();
   const [Subtotal, setSubtotal] = useState();
+
+
 useEffect(() => {
- setSubtotal(
-   cart.reduce((acc, curr) => acc + Number(curr.value.special) * curr.qty, 0)
- );
-setTotal(cart.reduce((acc, curr) => acc + Number(curr.value.special) * curr.qty, 0));
-}, []);
+  setSubtotal(
+    cart.reduce((acc, curr) => acc + Number(curr.value.special) * curr.qty, 0)
+  );
+  setTotal(
+    cart.reduce((acc, curr) => acc + Number(curr.value.special) * curr.qty, 0)
+  );
+}, [cart]);
 
   return (
     <div className="checkoutorder">

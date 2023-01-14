@@ -1,8 +1,7 @@
 import React, { useState, useEffect, Fragment, useReducer, useContext } from "react";
 import { Link } from "react-router-dom";
-import Coursepage from "../../pages/Coursepage";
-import { CartState } from "../CartPage/CartContext";
 
+import { CartState } from "../CartPage/CartContext";
 
 import StarScore from "./StarScore";
 // import data from "./data";
@@ -14,6 +13,9 @@ const SelectCourseChild = (props) => {
     state: { cart },
     dispatch,
   } = CartState();
+
+
+
   // const [SelectCourse, setSelectCourse] = useState([]);
 const [Saturate, setSaturate] = useState(false);
   const handleMouseOver = () => {
@@ -40,7 +42,6 @@ const [Saturate, setSaturate] = useState(false);
         <img className="imgCard" src={props.value.img} />
 
         <div className="shopCart">
-          
           {cart.some((p) => p.value.id === props.value.id) ? (
             <svg
               width="28"

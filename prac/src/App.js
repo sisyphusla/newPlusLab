@@ -11,25 +11,28 @@ import OrderHistory from './pages/orderhistory/OrderHistory'
 import Cartpage from './pages/cartpage/Cartpage'
 import Profile from './pages/profile/profile'
 import './assets/styles/style.css'
+import Context from './components/CartPage/CartContext'
 
 
 export default class App extends Component {
   render() {
     return (
-      <BrowserRouter>
-        <Switch>
-          <Route path="/dashboard" component={DashBoard} />
-          <Route path='/login' component={Login}></Route>
-          <Route path='/profile' component={Profile}></Route>
-          <Route path='/register' component={Register}/>
-          <Route path="/video" component={VideoPage} />
-          <Route path="/Coursepage" component={Coursepage } />
-          <Route path="/Coursepage/OrderHistory" component={OrderHistory } />
-          <Route path="/Coursepage/Cartpage" component={Cartpage } />
-          <Route path='/admin' component={Admin}></Route>
-          <Route path='/' component={Homepage}></Route>
-        </Switch>
-      </BrowserRouter>
-    )
+      <Context>
+        <BrowserRouter>
+          <Switch>
+            <Route path="/dashboard" component={DashBoard} />
+            <Route path="/login" component={Login}></Route>
+            <Route path="/profile" component={Profile}></Route>
+            <Route path="/register" component={Register} />
+            <Route path="/video" component={VideoPage} />
+            <Route path="/Coursepage" component={Coursepage} />
+            <Route path="/OrderHistory" component={OrderHistory} />
+            <Route path="/Cartpage" component={Cartpage} />
+            <Route path="/admin" component={Admin}></Route>
+            <Route path="/" component={Homepage}></Route>
+          </Switch>
+        </BrowserRouter>
+      </Context>
+    );
   }
 }
