@@ -147,7 +147,7 @@ const ForYouCourse = (props) => {
                   </div>
                   <div className="dClassPrice">
                     <span>限時專屬價 NT$ {t.special} </span>
-                    <button>立即購買</button>
+                    <button className="dClassPriceBtn">立即購買</button>
                   </div>
                 </div>
               </div>

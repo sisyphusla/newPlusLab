@@ -28,7 +28,7 @@ const [Saturate, setSaturate] = useState(false);
   };
 
 
-
+console.log()
   return (
     <Link to="/">
       <li
@@ -39,7 +39,7 @@ const [Saturate, setSaturate] = useState(false);
         onMouseOut={handleMouseOut}
         style={{ filter: `${Saturate ? "saturate(2)" : ""}` }}
       >
-        <img className="imgCard" src={props.value.img} />
+        <img className="imgCard"  src={props.value.img}/>
 
         <div className="shopCart">
           {cart.some((p) => p.value.id === props.value.id) ? (

@@ -17,34 +17,23 @@ import { CartState } from "../CartPage/CartContext";
 import SelectCoursemod from "./SelectCoursemod";
 // import data from "./data";
 
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "FETCH_REQUENT":
-      return { ...state, loading: true };
-    case "FETCH_SUCCESS":
-      return { ...state, SelectCourse: action.payload, loading: false };
-    case "FETCH_FAIL":
-      return { ...state, loading: false, error: action.payload };
-    default:
-      return state;
-  }
-};
+
 
 const SelectCourse = (props) => {
-  const {
-    state: { Courselist },
-  } = CartState();
 
- 
   let [list, setList ] = useState([]);    // 全部数据
   let [page, setPage ] = useState(1);  //  第一次展示 第一页的数据
-  let getData = Courselist;
-console.log(Courselist);
-console.log(list);
-  useEffect(() => {
-    //  第一次挂载的时候，请求数据
-    setList(getData);
-  }, []);
+  
+useEffect(()=>{
+  let CoursreData = () => {
+    axios
+      .get("http://localhost:5000/allCourses")
+      .then((res) => setList(res.data))
+      .catch((err) => console.log(err));
+  };
+  CoursreData();
+},[])
+ 
   const getNextPage = ()=>{
      setPage((preState)=>preState+1)
   }
@@ -53,6 +42,7 @@ console.log(list);
 
   return (
     <Fragment>
+   
       <div className="divAllCourse">
         {/* <FilterBox /> */}
         <ul className="ulAllCourseContainer">
@@ -74,7 +64,7 @@ console.log(list);
         </ul>
       </div>
 
-      {list.slice(0, page * 12).length !== Courselist.length ? (
+      {list.slice(0, page * 12).length !== list.length ? (
         <div className="dCardMore">
           <button onClick={getNextPage}>
             查看下一頁精彩課程
@@ -94,9 +84,7 @@ console.log(list);
         </div>
       ) : (
         <div className="dCardLast">
-          <button>
-            課程已達最後分頁
-          </button>
+          <button>課程已達最後分頁</button>
         </div>
       )}
     </Fragment>

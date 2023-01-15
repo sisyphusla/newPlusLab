@@ -129,6 +129,8 @@ const Nav = () => {
     colorActive();
   }, []);
 
+  
+
   return (
     <nav>
       <Link to="/" onClick={colorNone}>
@@ -200,19 +202,8 @@ const Nav = () => {
           <path d="M8.01143 21.7257C8.01143 22.9829 9.02857 24 10.2857 24C11.5429 24 12.56 22.9829 12.56 21.7257H8.01143ZM18.1486 16.9371V10.2857C18.1486 6.57143 15.5771 3.46286 12.1029 2.64V1.81714C12.1029 0.811428 11.2914 0 10.2857 0C9.28 0 8.46857 0.811428 8.46857 1.81714V2.64C4.99429 3.46286 2.42286 6.57143 2.42286 10.2857V16.9371L0 19.36V20.5714H20.5714V19.36L18.1486 16.9371Z" />
         </svg>
       </Link>
-
       <div className="profilePic">
-        <img
-          src={user_profile ? user_profile : profilePic}
-          alt=""
-          onClick={colorNone}
-          style={{
-            width: 50,
-            height: 50,
-            borderRadius: "50%",
-            objectFit: "cover",
-          }}
-        />
+        <img src={user_profile ? user_profile : profilePic} alt="" onClick={colorNone} style={{width:50,height:50,borderRadius:'50%',objectFit:'cover'}}/>
         <div>
           <div className="mouth"></div>
           <ul className="dropDown">
@@ -240,18 +231,16 @@ const Nav = () => {
                 </div>
               </li>
             </Link>
-            {auth_level === 1 && username !== "admin" ? null : (
-              <Link to="/admin" onClick={colorNone}>
-                <li className="backStage">
-                  <div className="listbox">
-                    <img src={backStage} alt="" />
-                    <span>後臺資料</span>
-                  </div>
-                </li>
-              </Link>
-            )}
-
-            <Link to="/login" onClick={colorNone}>
+            {(auth_level===1 && username !== 'admin') ? null: (<Link to="/admin" onClick={colorNone}>
+              <li className="backStage">
+                <div className="listbox">
+                  <img src={backStage} alt="" />
+                  <span>後臺資料</span>
+                </div>
+              </li>
+            </Link>)}
+            
+            <Link to='/login' onClick={colorNone}>
               <li onClick={memberLogOut}>
                 <div className="listbox">
                   <img src={logOut} alt="" />

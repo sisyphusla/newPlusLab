@@ -38,7 +38,6 @@ const OrderDetail = () => {
                           type: "REMOVE_CART",
                           payload: cart,
                         });e.preventDefault();
-                        console.log(cart);
                       }}
                     >
                       <path
