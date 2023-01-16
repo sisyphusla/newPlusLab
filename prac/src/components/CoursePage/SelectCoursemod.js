@@ -21,9 +21,7 @@ const SelectCoursemod = (props) => {
         .addEventListener("scroll", debounce(fn, 300));
 
       return () =>
-        document
-          .querySelector(".divAllCourse")
-          .removeEventListener("scroll", debounce(fn, 300));
+        document.querySelector(".divAllCourse").removeEventListener("scroll", debounce(fn, 300));
     }, [data]);
 
     function debounce(fn, wait) {
@@ -44,8 +42,6 @@ const SelectCoursemod = (props) => {
         document.querySelector(".divAllCourse").scrollHeight -
         document.querySelector(".divAllCourse").offsetHeight;
       //  滚动页面长度 - 此容器高度 =  滚动元素上面超出的距离 + 底部未出现的高度
-      console.log(currentScrollTop);
-      console.log(maxScrollTop);
       if (maxScrollTop - currentScrollTop < 12) {
         handleNextPage(); //  请求下一页
       }

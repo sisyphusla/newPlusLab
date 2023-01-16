@@ -5,6 +5,7 @@ import StarScore from "./StarScore";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import axios from "axios";
 
 const ForYouCourse = (props) => {
   const State = {
@@ -68,7 +69,7 @@ const ForYouCourse = (props) => {
   };
 
    
-
+const [ForYouData, setForYouData] = useState([]);
  
 
   const settings = {
@@ -82,11 +83,28 @@ const ForYouCourse = (props) => {
     dots: true,
   
   };
+
+
+  useEffect(() => {
+    let ForYouCoursreData = async () => {
+      try {
+        await axios
+          .get("http://localhost:5000/forYouCourse")
+          .then((res) => setForYouData(res.data));
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    ForYouCoursreData();
+  }, []);
+
+
+
   return (
     <div className="divToYou">
       <div className="dBecause">因為你曾經瀏覽了「{State.seach[0].title}」</div>
       <Slider {...settings}>
-        {State.ToYou.map((t) => {
+        {ForYouData.map((t) => {
           return (
             <Link to="/" key={t.id}>
               <div className="divItems">
@@ -117,7 +135,7 @@ const ForYouCourse = (props) => {
                           fill="#9d9faa"
                         />
                       </svg>
-                          {t.students} 人
+                      {t.students} 人
                     </span>
                     <span className="sClock">
                       <svg

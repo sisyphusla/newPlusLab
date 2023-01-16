@@ -50,7 +50,7 @@ body {
   .cartcompos {
     display: flex;
     flex-direction: column;
-  width: 1010px;
+  width: 65vw;
   margin: 0 auto;
 
     hr {
@@ -63,12 +63,12 @@ body {
       flex-direction: row;
       position: relative;
       font-size: 18px;
-      height: 20px;
-      text-align: center;
+      height: 30px;
+     text-align: center;
       padding: 5px 0;
       > div:nth-child(1) {
         position: relative;
-        width: 80px;
+        width: 100px;
       }
       > div:nth-child(2) {
          position: relative;
@@ -85,7 +85,7 @@ body {
       }
       > div:nth-child(6) {
        position: relative;
-       width: 110px;
+       width: 50px;
        
       }
     }
@@ -115,7 +115,6 @@ body {
   }
 }
 .dCartList {
-  width: 1010px;
   height:500px;
   overflow-y: auto;
  overflow-x: hidden;
@@ -380,6 +379,10 @@ body {
 .dCollectlist {
   justify-content: center;
   list-style-type: none;
+  height: 400px;
+
+
+
   .slick-dots {
     bottom: -80px;
 
@@ -425,7 +428,7 @@ body {
 
   .slick-next:before {
     content: url(../../components/CoursePage/img/toright.svg);
-    right: -10px;
+    right: -70px;
     top: -10px;
     position: absolute;
     opacity: 0.35;

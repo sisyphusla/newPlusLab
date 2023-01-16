@@ -1,10 +1,11 @@
 const express = require('express')
 const md5 = require('blueimp-md5')
-
+const fs = require("fs");
 
 const UserModel = require('../models/UserModel')
 const ProductModel = require('../models/ProductModel')
 const RoleModel = require('../models/RoleModel')
+// const CartModel = require("../models/CartModel");
 
 
 const router = express.Router()
@@ -251,4 +252,67 @@ function pageFilter(arr, pageNum, pageSize) {
 
 require('./file-upload')(router)
 
+
+
   module.exports = router
+
+
+
+
+  router.get("/allCourses", (req, res) => {
+    fs.readFile("./models/data.json", "utf-8", (err, data) => {
+      if (err) {
+        console.log(err);
+      } else {
+        let result = JSON.parse(data);
+        res.send(result);
+      }
+    });
+  });
+
+  router.get("/popCourses", (req, res) => {
+    fs.readFile("./models/popdata.json", "utf-8", (err, data) => {
+      if (err) {
+        console.log(err);
+      } else {
+        let result = JSON.parse(data);
+        res.send(result);
+      }
+    });
+  });
+
+   router.get("/recentClass", (req, res) => {
+     fs.readFile("./models/recentClass.json", "utf-8", (err, data) => {
+       if (err) {
+         console.log(err);
+       } else {
+         let result = JSON.parse(data);
+         res.send(result);
+       }
+     });
+   }); 
+
+      router.get("/forYouCourse", (req, res) => {
+        fs.readFile("./models/forYou.json", "utf-8", (err, data) => {
+          if (err) {
+            console.log(err);
+          } else {
+            let result = JSON.parse(data);
+            res.send(result);
+          }
+        });
+      }); 
+
+       router.get("/Couponbar", (req, res) => {
+         fs.readFile("./models/CouponData.json", "utf-8", (err, data) => {
+           if (err) {
+             console.log(err);
+           } else {
+             let result = JSON.parse(data);
+             res.send(result);
+           }
+         });
+       }); 
+
+
+ 

@@ -12,37 +12,39 @@ import FilterBox from "./FilterBox";
 import LoadigBox from "./LoadingBox";
 import MessegeBox from "./MessageBox";
 import SelectCourseChild from "./SelectCourseChild";
-import { getError } from "./utils";
 import { CartState } from "../CartPage/CartContext";
 import SelectCoursemod from "./SelectCoursemod";
 // import data from "./data";
 
+const SelectCourse = () => {
+  const {
+    state: { cart, Courselist },
+    dispatch,
+  } = CartState();
+  const [list, setList] = useState([]); // 全部數據
+  const [page, setPage] = useState(1); //  第一次展示 第一頁數據
 
+  useEffect(() => {
+    let CoursreData = async () => {
+      try {
+        await axios
+          .get("http://localhost:5000/allCourses")
+          .then((res) => setList(res.data));
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    CoursreData();
+  }, []);
 
-const SelectCourse = (props) => {
-
-  let [list, setList ] = useState([]);    // 全部数据
-  let [page, setPage ] = useState(1);  //  第一次展示 第一页的数据
   
-useEffect(()=>{
-  let CoursreData = () => {
-    axios
-      .get("http://localhost:5000/allCourses")
-      .then((res) => setList(res.data))
-      .catch((err) => console.log(err));
+  const getNextPage = () => {
+    setPage((preState) => preState + 1);
   };
-  CoursreData();
-},[])
- 
-  const getNextPage = ()=>{
-     setPage((preState)=>preState+1)
-  }
   // const [SelectCourse, setSelectCourse] = useState([]);
-
 
   return (
     <Fragment>
-   
       <div className="divAllCourse">
         {/* <FilterBox /> */}
         <ul className="ulAllCourseContainer">

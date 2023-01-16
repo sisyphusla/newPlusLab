@@ -17,7 +17,7 @@ const OrderDetail = () => {
               <li>
                 <label>
                   <input type="checkbox" name="orderdetial" id="20" />
-                  <img src="https://picsum.photos/250/150" alt="" />
+                  <img src={v.value.img} alt="" />
                   <div className="dCartitem">
                     <Link to="/">
                       <div className="dCartTiltle">{v.value.title}</div>
@@ -36,8 +36,9 @@ const OrderDetail = () => {
                       onClick={(e) => {
                         dispatch({
                           type: "REMOVE_CART",
-                          payload: cart,
-                        });e.preventDefault();
+                          payload: v.value,
+                        });
+                        e.preventDefault();
                       }}
                     >
                       <path

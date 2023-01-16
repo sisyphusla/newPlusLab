@@ -1,4 +1,10 @@
-import React, { useState, useEffect, Fragment, useReducer, useContext } from "react";
+import React, {
+  useState,
+  useEffect,
+  Fragment,
+  useReducer,
+  useContext,
+} from "react";
 import { Link } from "react-router-dom";
 
 import { CartState } from "../CartPage/CartContext";
@@ -6,18 +12,16 @@ import { CartState } from "../CartPage/CartContext";
 import StarScore from "./StarScore";
 // import data from "./data";
 
-
 const SelectCourseChild = (props) => {
-
   const {
-    state: { cart },
+    state: { cart, collection, },
     dispatch,
   } = CartState();
 
-
+  
 
   // const [SelectCourse, setSelectCourse] = useState([]);
-const [Saturate, setSaturate] = useState(false);
+  const [Saturate, setSaturate] = useState(false);
   const handleMouseOver = () => {
     // document.getElementById(index).style.filter = "saturate(2)";
     setSaturate(true);
@@ -27,8 +31,6 @@ const [Saturate, setSaturate] = useState(false);
     setSaturate(false);
   };
 
-
-console.log()
   return (
     <Link to="/">
       <li
@@ -39,7 +41,7 @@ console.log()
         onMouseOut={handleMouseOut}
         style={{ filter: `${Saturate ? "saturate(2)" : ""}` }}
       >
-        <img className="imgCard"  src={props.value.img}/>
+        <img className="imgCard" src={props.value.img} />
 
         <div className="shopCart">
           {cart.some((p) => p.value.id === props.value.id) ? (
@@ -54,6 +56,8 @@ console.log()
                   type: "REMOVE_FROM_CART",
                   payload: props,
                 });
+               
+
                 e.preventDefault();
               }}
             >
@@ -85,18 +89,55 @@ console.log()
           )}
         </div>
         <div className="dCardMark">
-          <svg
-            width="20"
-            height="26"
-            viewBox="0 0 20 26"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M17.1429 0H2.85714C1.28571 0 0.014286 1.3 0.014286 2.88889L0 26L10 21.6667L20 26V2.88889C20 1.3 18.7143 0 17.1429 0ZM17.1429 21.6667L10 18.5178L2.85714 21.6667V2.88889H17.1429V21.6667Z"
-              fill="#E23965"
-            />
-          </svg>
+          {collection.some((p) => p.value.id === props.value.id) ? (
+            <svg
+              width="20"
+              height="30"
+              viewBox="0 2 20 26"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              onClick={(e) => {
+                dispatch({
+                  type: "REMOVE_FROM_CollectTAG",
+                  payload: props,
+                });
+                e.preventDefault();
+              }}
+            >
+              <path
+                d="M2.85714 0H17.1429C18.7143 0 20 1.3 20 2.88889V26L10 21.6667L0 26L0.014286 2.88889C0.014286 1.3 1.28571 0 2.85714 0Z"
+                fill="#E23965"
+              />
+              <path
+                d="M17.1429 0H2.85714C1.28571 0 0.014286 1.3 0.014286 2.88889L0 26L10 21.6667L20 26V2.88889C20 1.3 18.7143 0 17.1429 0ZM17.1429 21.6667L10 18.5178L2.85714 21.6667V2.88889H17.1429V21.6667Z"
+                fill="#E23965"
+              />
+            </svg>
+          ) : (
+            <svg
+              width="20"
+              height="30"
+              viewBox="0 2 20 26"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              onClick={(e) => {
+                dispatch({
+                  type: "ADD_TO_CollectTAG",
+                  payload: props,
+                });
+                e.preventDefault();
+              }}
+            >
+              <path
+                d="M2.85714 0H17.1429C18.7143 0 20 1.3 20 2.88889V26L10 21.6667L0 26L0.014286 2.88889C0.014286 1.3 1.28571 0 2.85714 0Z"
+                fill=""
+              />
+              <path
+                d="M17.1429 0H2.85714C1.28571 0 0.014286 1.3 0.014286 2.88889L0 26L10 21.6667L20 26V2.88889C20 1.3 18.7143 0 17.1429 0ZM17.1429 21.6667L10 18.5178L2.85714 21.6667V2.88889H17.1429V21.6667Z"
+                fill="#E23965"
+              />
+            </svg>
+          )}
         </div>
         <div className="dCardtext">
           <div className="dCardScore">

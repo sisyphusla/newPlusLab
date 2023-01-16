@@ -1,13 +1,13 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useReducer, useState } from "react";
 import { cartReducer } from "./CartReducers";
-
+import { getError } from "./utils";
 
 const Cart = createContext();
 
 const Context = ({ children }) => {
   
-  
+  const [Course, setCourse] = useState([]);
   // const Courselist = [
   //   {
   //     id: 1,
@@ -345,21 +345,27 @@ const Context = ({ children }) => {
   //     teacher: "王希律",
   //   },
   // ];
- const [Courselist, setCourselist] = useState([]);
-useEffect(() => {
-  let CoursreData = () => {
-    axios
-      .get("http://localhost:5000/allCourses")
-      .then((res) => setCourselist(res.data))
-      .catch((err) => console.log(err));
-  };
-  CoursreData();
-  
-}, []);
 
+
+useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await axios.get(`http://localhost:5000/allCourses`);
+        dispatch({ type: "REFRESH_COURSE", payload: result.data });
+      } catch (err) {
+        dispatch({ type: 'FETCH_FAIL', payload: getError(err) });
+      }
+    };
+    fetchData();
+},[])
 
   const [state, dispatch] = useReducer(cartReducer, {
+    Courselist:[],
     cart: [],
+    order:[],
+    collection:[],
+    loading: true,
+    error: '',
   });
 
   return (

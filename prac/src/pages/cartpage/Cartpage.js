@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import Top from "../../components/top/Top";
 import OrderMod from "../../components/CartPage/OrderMod";
-import Mark from "../../components/CartPage/Mark";
+import MarkMod from "../../components/CartPage/MarkMod";
 import cart from "../../components/CartPage/img/cart.svg";
 import collectCourse from "../../components/CartPage/img/collectCourse.svg";
 import Nav from "../../components/nav/Nav";
@@ -24,7 +24,7 @@ const Cartpage = (props) => {
       key: 2,
       title: "我收藏的課程",
       iconPath: collectCourse,
-      compos: Mark,
+      compos: MarkMod,
     },
   ];
   const username =

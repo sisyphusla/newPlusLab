@@ -3,51 +3,11 @@ import { Link } from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import axios from "axios";
 const PopCourse = () => {
-  const State = {
-    popCourse: [
-      {
-        key: 1,
-        img: "https://picsum.photos/500/300",
-        url: "https://picsum.photos/500/300",
-        title: "SAM老師的全方位股票分析法",
-        text: " 一堂能讓各種交易風格都能更強大的衝刺課程！夠短，夠直接，能兼容在不同投資思維之中，能兼容在不同投資思維之中",
-      },
-      {
-        key: 2,
-        img: "https://picsum.photos/500/300",
-        url: "https://picsum.photos/500/300",
-        title: "SAM老師的全方位股票分析法",
-        text: " 一堂能讓各種交易風格都能更強大的衝刺課程！夠短，夠直接，能兼容在不同投資思維之中，能兼容在不同投資思維之中",
-      },
-      {
-        key: 3,
-        img: "https://picsum.photos/500/300",
-        url: "https://picsum.photos/500/300",
-        title: "SAM老師的全方位股票分析法",
-        text: " 一堂能讓各種交易風格都能更強大的衝刺課程！夠短，夠直接，能兼容在不同投資思維之中，能兼容在不同投資思維之中",
-      },
-      {
-        key: 4,
-        img: "https://picsum.photos/500/300",
-        url: "https://picsum.photos/500/300",
-        title: "SAM老師的全方位股票分析法",
-        text: " 一堂能讓各種交易風格都能更強大的衝刺課程！夠短，夠直接，能兼容在不同投資思維之中，能兼容在不同投資思維之中",
-      },
-      {
-        key: 5,
-        img: "https://picsum.photos/500/300",
-        url: "https://picsum.photos/500/300",
-        title: "SAM老師的全方位股票分析法",
-        text: " 一堂能讓各種交易風格都能更強大的衝刺課程！夠短，夠直接，能兼容在不同投資思維之中，能兼容在不同投資思維之中",
-      },
-    ],
-  };
 
+const [PopCourse, setPopCourse] = useState([]);
 
-
-
-  
   const settings = {
     className: "center",
     centerMode: true,
@@ -61,7 +21,18 @@ const PopCourse = () => {
     // autoplaySpeed: 2000,
   };
 
-
+useEffect(() => {
+  let FetchData = async () => {
+    try {
+      await axios
+        .get("http://localhost:5000/popCourses")
+        .then((res) => setPopCourse(res.data));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  FetchData();
+}, []);
 
 
 
@@ -70,10 +41,10 @@ const PopCourse = () => {
   return (
     <div className="dHotCarousel">
       <Slider {...settings}>
-        {State.popCourse.map((v) => {
+        {PopCourse.map((v) => {
           return (
-            <div key={v.key} className="slider">
-              <div className="card">
+            <div key={v.id} className="slider">
+              <div className="card" >
                 <div className="cardImg">
                   <img src={v.img} alt="" />
                 </div>
