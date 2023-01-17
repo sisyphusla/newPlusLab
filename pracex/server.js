@@ -1,8 +1,22 @@
-const mongoose = require('mongoose')
-const express = require('express')
-const app = express()
-const path = require('path')
 
+const mongoose = require("mongoose");
+const express = require("express");
+const app = express();
+const path = require("path");
+const cors = require("cors");
+app.use(cors());
+// 声明使用解析post请求的中间件
+app.use(express.urlencoded({ extended: true })); // 请求体参数是: name=tom&pwd=123
+app.use(express.json()); // 请求体参数是json结构: {name: tom, pwd: 123}
+
+// 声明使用解析cookie数据的中间件
+const cookieParser = require("cookie-parser");
+app.use(cookieParser());
+
+app.use(express.static(__dirname + "/public"));
+// 声明使用路由器中间件
+const indexRouter = require("./routers");
+app.use("/", indexRouter);
 
 // 聲明使用解析post請求的中間鍵
 app.use(express.urlencoded({extended: true})) // 請求體參數是: name=tom&pwd=123
@@ -20,9 +34,9 @@ const indexRouter = require('./routers')
 app.use('/', indexRouter)
  
 
-
-const fs = require('fs')
-
+const course = require("./routers/course");
+app.use("/",course);
+const fs = require("fs");
 
 // 通過mongoose連接數據庫
 mongoose.connect('mongodb://localhost/server_db1', {useNewUrlParser: true, useUnifiedTopology: true})
