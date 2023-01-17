@@ -4,6 +4,8 @@ import { myStockCollectionContext } from "./DashboardMain";
 import { categoryContext } from "./DashboardMain";
 import { Chart } from "react-google-charts";
 
+import {reqAddStock,reqStock} from '../../api/index'
+
 export const data = [
   ["Day", "", "", "", ""],
   ["Mon", 20, 28, 38, 45],
@@ -43,6 +45,17 @@ const MainStock = () => {
       },
     });
     let parsedData = await dataFetch.json();
+    parsedData.msgArray.map(async(item)=>{
+      const {b,c,y,h,l} = item
+      const result = await reqAddStock({b,c,y,h,l})
+      if(result.status === 0){
+        console.log('正常')
+      }else{
+        console.log(result.msg)
+      }
+    })
+    
+    // reqAddStock()
     setResults(parsedData.msgArray);
   };
 
@@ -309,6 +322,12 @@ const MainStock = () => {
 
   const [showData, setShowData] = useState(dataMap());
 
+  const stockData = async()=>{
+    const result = await reqStock();
+    console.log(result.data)
+  }
+  
+  stockData();
   return <div className="mainStock">{showData}</div>;
 };
 

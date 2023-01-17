@@ -3,9 +3,10 @@ import {Link , withRouter} from 'react-router-dom'
 import { Menu, Icon } from 'antd';
 
 import menuList from '../../config/menuConfig'
-import logo from '../../assets/imgs/logoIcon.png'
 import './index.css'
 import memoryUtils from '../../utils/memoryUtils'
+import logo from "../../assets/imgs/logo.svg";
+
 
 const { SubMenu } = Menu;
 class LeftNav extends Component {
@@ -71,20 +72,21 @@ class LeftNav extends Component {
   render() {
 
     let path = this.props.location.pathname;
-    
-    if(path.indexOf('/article')===0){
-      path = '/article'
+    if(path.indexOf('/admin/article')===0){  // 當前請求的是文章或其子路由介面
+      path = '/admin/article'
+    }else if(path.indexOf('/admin/lesson')===0){
+      path = '/admin/lesson'
     }
     const openKey = this.openKey
     return (
       <div>
         <div className='left-nav'>
             <Link to='/' className='left-nav-header'>
-              <img src={logo} alt="logo" />
-              <h1>股票實驗室</h1>
+              <img src={logo} alt="" />
             </Link> 
         </div>
       <Menu
+      style={{backgroundColor:'black'}}
       selectedKeys={[path]}
       mode="inline"
       theme="dark"

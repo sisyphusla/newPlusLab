@@ -1,9 +1,8 @@
 .header{
     height: 80px;
-    background-color: #fff;
+    background-color: black;
     .header-top{
         height: 40px;
-        border-bottom: 1px solid greenyellow;
         text-align: end;
         line-height: 40px;
         padding-right: 20px;
@@ -12,11 +11,12 @@
             }
         .ant-dropdown-link{
             img{
-                object-fit: contain;
-                width: 30px;
-                height: 30px;
-                border-radius: 50%;
+                object-fit:cover;
+                width: 40px;
+                height: 40px;
+                border-radius: 80%;
                 margin-right: 40px;
+                margin-top: 5px;
             }
         }
     }
@@ -27,6 +27,7 @@
         .header-bottom-left{
             position: relative;
             width: 25%;
+            color: #4967ff;
             text-align: center;
             font-size: 20px;
             &::after{
@@ -35,7 +36,7 @@
                 right: 50%;
                 top: 100%;
                 transform: translateX(50%);
-                border-top: 20px solid white;
+                border-top: 20px solid black;
                 border-bottom: 20px solid transparent;
                 border-right: 20px solid transparent;
                 border-left: 20px solid transparent;

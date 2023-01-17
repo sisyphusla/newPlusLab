@@ -5,6 +5,8 @@ const md5 = require('blueimp-md5')
 const UserModel = require('../models/UserModel')
 const ProductModel = require('../models/ProductModel')
 const RoleModel = require('../models/RoleModel')
+const StockModel = require('../models/StockModel')
+const LessonModel = require('../models/LessonModel')
 
 
 const router = express.Router()
@@ -12,11 +14,11 @@ const router = express.Router()
   //登入
 router.post('/login', (req, res) => {
     const {username, password} = req.body
-    // 根据username和password查询数据库users, 如果没有, 返回提示错误的信息, 如果有, 返回登陆成功信息(包含user)
+    // 根据username和password查詢數據庫users
     UserModel.findOne({username, password: md5(password)})
       .then(user => {
-        if (user) { // 登陆成功
-          // 生成一个cookie(userid: user._id), 并交给浏览器保存
+        if (user) { // 登入成功
+          // 生成一个cookie(userid: user._id), 并交给瀏覽器保存
           res.cookie('userid', user._id, {maxAge: 1000 * 60 * 60 * 24})
           // if (user.role_id) {
           //   RoleModel.findOne({_id: user.role_id})
@@ -27,7 +29,7 @@ router.post('/login', (req, res) => {
           //     })
           // } else {
             // user._doc.role = {menus: []}
-            // 返回登陆成功信息(包含user)
+            // 返回登入成功信息(包含user)
             res.send({status: 0, data: user})
           // }
   
@@ -45,16 +47,52 @@ router.post('/login', (req, res) => {
   // 獲取文章列表
 router.get('/manage/article/list', (req, res) => {
     const {pageNum, pageSize,username} = req.query
-    ProductModel.find({} || username)
+    if(!!username){
+      ProductModel.find({username})
       .then(article => {
         res.send({status: 0, data: pageFilter(article, pageNum, pageSize)})
       })
       .catch(error => {
-        console.error('获取商品列表异常', error)
-        res.send({status: 1, msg: '获取商品列表异常, 请重新尝试'})
+        console.error('獲取異常', error)
+        res.send({status: 1, msg: '獲取異常'})
       })
+    }else{
+      ProductModel.find({})
+      .then(article => {
+        res.send({status: 0, data: pageFilter(article, pageNum, pageSize)})
+      })
+      .catch(error => {
+        console.error('獲取商品列表異常', error)
+        res.send({status: 1, msg: '獲取商品列表異常'})
+      })
+    }
+    
   })
 
+  // 獲取課程列表
+router.get('/manage/lesson/list', (req, res) => {
+  const {pageNum, pageSize,username} = req.query
+  if(!!username){
+    LessonModel.find({username})
+    .then(article => {
+      res.send({status: 0, data: pageFilter(article, pageNum, pageSize)})
+    })
+    .catch(error => {
+      console.error('獲取異常', error)
+      res.send({status: 1, msg: '獲取異常'})
+    })
+  }else{
+    LessonModel.find({})
+    .then(article => {
+      res.send({status: 0, data: pageFilter(article, pageNum, pageSize)})
+    })
+    .catch(error => {
+      console.error('獲取課程列表異常', error)
+      res.send({status: 1, msg: '獲取課程列表異常'})
+    })
+  }
+  
+})
 
 
   // 發表文章
@@ -69,10 +107,35 @@ router.post('/manage/article/add', (req, res) => {
     })
 })
 
+// 發表課程
+router.post('/manage/lesson/add', (req, res) => {
+  const product = req.body
+  LessonModel.create(product)
+    .then(product => {
+      res.send({status: 0, data: product})
+    })
+    .catch(error => {
+      res.send({status: 1, msg: '發表文章異常, 请重新嘗試'})
+    })
+})
+
 // 更新文章
 router.post('/manage/article/update', (req, res) => {
   const product = req.body
   ProductModel.findOneAndUpdate({_id: product._id}, product)
+    .then(oldProduct => {
+      res.send({status: 0})
+    })
+    .catch(error => {
+      console.error('更新商品異常', error)
+      res.send({status: 1, msg: '更新商品名稱異常, 請重新嘗試'})
+    })
+})
+
+//更新課程
+router.post('/manage/lesson/update', (req, res) => {
+  const product = req.body
+  LessonModel.findOneAndUpdate({_id: product._id}, product)
     .then(oldProduct => {
       res.send({status: 0})
     })
@@ -97,11 +160,29 @@ router.get('/manage/article/search', (req, res) => {
       res.send({status: 0, data: pageFilter(products, pageNum, pageSize)})
     })
     .catch(error => {
-      console.error('搜索商品列表异常', error)
-      res.send({status: 1, msg: '搜索商品列表异常, 请重新尝试'})
+      console.error('搜索商品列表異常', error)
+      res.send({status: 1, msg: '搜索商品列表異常'})
     })
 })
 
+// 搜索課程列表
+router.get('/manage/lesson/search', (req, res) => {
+  const {pageNum, pageSize, searchName, productName, productAuth} = req.query
+  let contition = {}
+  if (productName) {
+    contition = {name: new RegExp(`^.*${productName}.*$`)}
+  } else if (productAuth) {
+    contition = {author: new RegExp(`^.*${productAuth}.*$`)}
+  }
+  LessonModel.find(contition)
+    .then(products => {
+      res.send({status: 0, data: pageFilter(products, pageNum, pageSize)})
+    })
+    .catch(error => {
+      console.error('搜索商品列表異常', error)
+      res.send({status: 1, msg: '搜索商品列表異常'})
+    })
+})
 
 
 // 獲取角色列表
@@ -111,8 +192,8 @@ router.get('/manage/role/list', (req, res) => {
       res.send({status: 0, data: roles})
     })
     .catch(error => {
-      console.error('获取角色列表异常', error)
-      res.send({status: 1, msg: '获取角色列表异常, 请重新尝试'})
+      console.error('獲取腳色列表異常', error)
+      res.send({status: 1, msg: '獲取腳色列表異常'})
     })
 })
 
@@ -125,8 +206,8 @@ router.post('/manage/role/add', (req, res) => {
       res.send({status: 0, data: role})
     })
     .catch(error => {
-      console.error('添加角色异常', error)
-      res.send({status: 1, msg: '添加角色异常, 请重新尝试'})
+      console.error('添加角色異常', error)
+      res.send({status: 1, msg: '添加角色異常'})
     })
 })
 
@@ -141,8 +222,8 @@ router.post('/manage/role/update', (req, res) => {
       res.send({status: 0, data: {...oldRole._doc, ...role}})
     })
     .catch(error => {
-      console.error('更新角色异常', error)
-      res.send({status: 1, msg: '更新角色异常, 请重新尝试'})
+      console.error('更新角色異常', error)
+      res.send({status: 1, msg: '更新角色異常'})
     })
 })
 
@@ -161,7 +242,7 @@ router.post('/manage/user/update', (req, res) => {
     })
 })
 
-// 获取所有用户列表
+// 獲取所有用戶列表
 router.get('/manage/user/list', (req, res) => {
   UserModel.find({username: {'$ne': 'admin'}})
     .then(users => {
@@ -170,8 +251,8 @@ router.get('/manage/user/list', (req, res) => {
       // })
     })
     .catch(error => {
-      console.error('获取用户列表异常', error)
-      res.send({status: 1, msg: '获取用户列表异常, 请重新尝试'})
+      console.error('獲取用戶列表異常', error)
+      res.send({status: 1, msg: '獲取用戶列表異常'})
     })
 })
 
@@ -186,30 +267,30 @@ router.post('/manage/user/delete', (req, res) => {
 
 // 添加用户
 router.post('/manage/user/add', (req, res) => {
-  // 读取请求参数数据
+  // 讀取請求參數數據
   const {username, password} = req.body
-  // 处理: 判断用户是否已经存在, 如果存在, 返回提示错误的信息, 如果不存在, 保存
-  // 查询(根据username)
+  // 判斷用戶是否存在
+  // 根據username查詢
   UserModel.findOne({username})
     .then(user => {
       // 如果user有值(已存在)
       if (user) {
-        // 返回提示错误的信息
-        res.send({status: 1, msg: '此用户已存在'})
+       
+        res.send({status: 1, msg: '此用戶已存在'})
         return new Promise(() => {
         })
       } else { // 没值(不存在)
         // 保存
-        return UserModel.create({...req.body, password: md5(password || 'atguigu')})
+        return UserModel.create({...req.body, password: md5(password || 'kevin')})
       }
     })
     .then(user => {
-      // 返回包含user的json数据
+      // 返回包含user的json數據
       res.send({status: 0, data: user})
     })
     .catch(error => {
-      console.error('注册异常', error)
-      res.send({status: 1, msg: '添加用户异常, 请重新尝试'})
+      console.error('註冊異常', error)
+      res.send({status: 1, msg: '添加用戶異常'})
     })
 })
 
@@ -223,8 +304,32 @@ router.post('/manage/user/update', (req, res) => {
       res.send({status: 0, data})
     })
     .catch(error => {
-      console.error('更新用户异常', error)
-      res.send({status: 1, msg: '更新用户异常, 请重新尝试'})
+      console.error('更新用户異常', error)
+      res.send({status: 1, msg: '更新用户異常'})
+    })
+})
+
+// 儲存股票資訊
+router.post('/manage/stock/add', (req, res) => {
+  const stock = req.body
+  StockModel.create(stock)
+    .then(product => {
+      res.send({status: 0, data: product})
+    })
+    .catch(error => {
+      res.send({status: 1, msg: '儲存股票異常'})
+    })
+})
+
+// 獲取所有股票列表
+router.get('/manage/stock/list', (req, res) => {
+  StockModel.find()
+    .then(stocks => {
+        res.send({status: 0, data: stocks})
+    })
+    .catch(error => {
+      console.error('獲取股票列表異常', error)
+      res.send({status: 1, msg: '獲取股票列表異常'})
     })
 })
 
