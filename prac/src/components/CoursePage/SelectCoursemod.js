@@ -14,38 +14,38 @@ import SelectCourseChild from "./SelectCourseChild";
 const SelectCoursemod = (props) => {
 
     let { data, handleNextPage, curPage } = props;
-  console.log(handleNextPage);
-    useEffect(() => {
-      document
-        .querySelector(".divAllCourse")
-        .addEventListener("scroll", debounce(fn, 300));
+ 
+    // useEffect(() => {
+    //   document
+    //     .querySelector(".divAllCourse")
+    //     .addEventListener("scroll", debounce(fn, 300));
 
-      return () =>
-        document.querySelector(".divAllCourse").removeEventListener("scroll", debounce(fn, 300));
-    }, [data]);
+    //   return () =>
+    //     document.querySelector(".divAllCourse").removeEventListener("scroll", debounce(fn, 300));
+    // }, [data]);
 
-    function debounce(fn, wait) {
-      //  防抖 。 非立即执行版本
-      let timer;
-      return function (...args) {
-        let context = this;
-        if (timer) clearTimeout(timer);
-        timer = setTimeout(() => fn.call(context, ...args), wait);
-      };
-    }
+    // function debounce(fn, wait) {
+    //   //  防跳動
+    //   let timer;
+    //   return function (...args) {
+    //     let context = this;
+    //     if (timer) clearTimeout(timer);
+    //     timer = setTimeout(() => fn.call(context, ...args), wait);
+    //   };
+    // }
 
-    function fn() {
+    // function fn() {
      
-      const currentScrollTop =
-        document.querySelector(".divAllCourse").scrollTop; //  滚动元素上面超出的距离
-      const maxScrollTop =
-        document.querySelector(".divAllCourse").scrollHeight -
-        document.querySelector(".divAllCourse").offsetHeight;
-      //  滚动页面长度 - 此容器高度 =  滚动元素上面超出的距离 + 底部未出现的高度
-      if (maxScrollTop - currentScrollTop < 12) {
-        handleNextPage(); //  请求下一页
-      }
-    }
+    //   const currentScrollTop =
+    //     document.querySelector(".divAllCourse").scrollTop; //  滾動元素上面的距離
+    //   const maxScrollTop =
+    //     document.querySelector(".divAllCourse").scrollHeight -
+    //     document.querySelector(".divAllCourse").offsetHeight;
+    //   //  滾動頁面長度-此容器高度=滾動元素上面超出的距離+底部未出現的高度
+    //   if (maxScrollTop - currentScrollTop < 12) {
+    //     handleNextPage(); //  請求下一頁
+    //   }
+    // }
   // const [SelectCourse, setSelectCourse] = useState([]);
   return (
     <Fragment>

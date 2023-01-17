@@ -2035,7 +2035,6 @@ body {
 
 .dashboardBottom {
   height: 1070px;
-  box-sizing: content-box !important;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2058,7 +2057,6 @@ body {
 }
 .dashboardBottom .dashboardBottomRow1,
 .dashboardBottom .dashboardBottomRow2 {
-  box-sizing: content-box !important;
   width: 81.15vw;
   display: flex;
   justify-content: space-between;
@@ -2072,11 +2070,7 @@ body {
   padding: 32px;
   width: 696px;
   height: 328px;
-  background-color: #2f3137;
-}
-.dashboardBottom .dashboardBottomRow1 .addOrder,
-.dashboardBottom .dashboardBottomRow2 .addOrder {
-  box-sizing: content-box !important;
+  background-color: #44464f;
 }
 .dashboardBottom .dashboardBottomRow1 .addOrder .pr7,
 .dashboardBottom .dashboardBottomRow2 .addOrder .pr7 {
@@ -2158,9 +2152,9 @@ body {
   /* For a circular appearance we need a border-radius. */
   border-radius: 50%;
   /* The background will be the radio dot's color. */
-  background: #2f3137;
+  background: #44464f;
   /* The border will be the spacing between the dot and the outer circle */
-  border: 3px solid #2f3137;
+  border: 3px solid #44464f;
   /* And by creating a box-shadow with no offset and no blur, we have an outer circle */
   box-shadow: 0 0 0 2px #6f717b;
 }
@@ -2296,17 +2290,13 @@ body {
 .dashboardBottom .dashboardBottomRow1 .orderHistory,
 .dashboardBottom .dashboardBottomRow2 .nowTotal,
 .dashboardBottom .dashboardBottomRow2 .orderHistory {
-  box-sizing: content-box !important;
   margin-top: 36px;
   padding: 32px;
   width: 696px;
   height: 426px;
-  background-color: #2f3137;
+  background-color: #44464f;
 }
 
-.nowOrder {
-  box-sizing: content-box !important;
-}
 .nowOrder .titleBox {
   width: 100%;
   display: flex;
@@ -2544,9 +2534,6 @@ body {
   top: -2px;
 }
 
-.orderHistory {
-  box-sizing: content-box !important;
-}
 .orderHistory .titleBox {
   width: 100%;
   display: flex;
@@ -2736,6 +2723,7 @@ body {
   position: absolute;
   bottom: 0;
   width: 100%;
+  transform: translateY(100%) translateY(-5px);
   transition: all 0.3s;
   flex-wrap: wrap;
   background: rgba(0, 0, 0, 0.1);
@@ -2757,6 +2745,18 @@ body {
 .allV .videoContainer .videoControlBar .videoBtnContainer {
   margin: 0 0.2rem;
   padding: 0.5rem;
+}
+.allV .videoContainer .videoControlBar .videoTime {
+  color: white;
+  padding: 0 0.4rem;
+  font-size: 1.3rem;
+  width: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.allV .videoContainer .videoControlBar .videoTime .currentTimeSpace {
+  width: 50px;
 }
 .allV .videoContainer .videoControlBar .voiceBtn {
   margin-right: auto;
@@ -2816,12 +2816,14 @@ body {
   background-color: #9d9faa;
 }
 .allV .videoContainer .videoControlBar .fullScreenBtn {
-  margin: 0 0 0 2rem;
+  margin: 0 1rem 0 1rem;
 }
 .allV .classListContainer {
-  display: block;
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
   background-color: #6f717b;
-  color: #9d9faa;
+  color: #ffffff;
   width: 21.8%;
   font-size: 22px;
   overflow-x: hidden;
@@ -2833,26 +2835,47 @@ body {
   align-items: center;
   margin-left: 19.22%;
 }
-.allV .classListContainer .classListChapter {
+.allV .classListContainer .classListBody {
   display: flex;
-  height: 12.5%;
+  flex-direction: column;
+  height: 87.5%;
+}
+.allV .classListContainer .classListBody .classListChapter {
   outline: 1px solid #9d9faa;
 }
-.allV .classListContainer .classListChapter .expandSvg {
+.allV .classListContainer .classListBody .classListChapter .titleContainer {
+  display: flex;
+  outline: 1px solid #9d9faa;
+  height: 89px;
+}
+.allV .classListContainer .classListBody .classListChapter .titleContainer .expandSvg {
   width: 19.22%;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 3s linear;
 }
-.allV .classListContainer .classListChapter .classListChapterTag {
+.allV .classListContainer .classListBody .classListChapter .titleContainer .title {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 3s linear;
+}
+.allV .classListContainer .classListBody ul {
+  list-style-type: none;
+}
+.allV .classListContainer .classListBody ul li {
+  height: 89px;
+  padding-left: 19.22%;
+  display: flex;
+  align-items: center;
+  outline: 1px solid #9d9faa;
 }
 
 .infoContainer {
   width: 83.33333%;
   margin: 12vh auto;
+  position: relative;
 }
 .infoContainer .infoHead {
   display: flex;
@@ -2915,10 +2938,14 @@ body {
   border-bottom: solid #6f717b;
   width: 74%;
   display: flex;
+  text-decoration: none;
 }
 .infoContainer .infoBtn div {
   display: flex;
   width: 50%;
+}
+.infoContainer .infoBtn div a {
+  text-decoration: none;
 }
 .infoContainer .infoBtn button {
   display: flex;
@@ -2932,6 +2959,212 @@ body {
 }
 .infoContainer .infoBtn button:focus {
   box-shadow: 0 3px 0 #e23965;
+}
+.infoContainer .introContainer {
+  width: 74%;
+}
+.infoContainer .introContainer div img {
+  margin: 5vh 11.3%;
+}
+.infoContainer .introContainer .introText {
+  margin: 5vh 11.3%;
+  font-size: 20px;
+  line-height: 33px;
+  color: white;
+}
+.infoContainer .introContainer .introText pre {
+  white-space: pre-wrap;
+}
+.infoContainer .noteContainer {
+  width: 74%;
+}
+.infoContainer .noteContainer .noteBox {
+  width: 76%;
+  margin: 5vh 11.3%;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+.infoContainer .noteContainer .noteBox .videoCurrentTime {
+  width: 10%;
+  font-size: 20px;
+  cursor: pointer;
+  border: none;
+  border-radius: 40px;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 20px;
+  font-weight: 600;
+}
+.infoContainer .noteContainer .noteBox .textArea {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.infoContainer .noteContainer .noteBox .textArea textarea {
+  min-height: 112px;
+  padding: 20px;
+  font-size: 20px;
+  border: 6px solid #9d9faa;
+}
+.infoContainer .noteContainer .noteBox .textArea .textAreaBtn {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-end;
+}
+.infoContainer .noteContainer .noteBox .textArea .textAreaBtn .cancelBtn {
+  cursor: pointer;
+  font-size: 16px;
+  color: white;
+  background: transparent;
+  height: 34px;
+  border: none;
+  font-weight: bold;
+  padding: 0px 16px;
+}
+.infoContainer .noteContainer .noteBox .textArea .textAreaBtn .saveBtn {
+  cursor: pointer;
+  font-size: 16px;
+  height: 34px;
+  padding: 0px 16px;
+  border: none;
+  font-weight: bold;
+}
+.infoContainer .noteContainer .noteBtn {
+  width: 76%;
+  margin: 5vh 11.3%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  height: 112px;
+  color: #9d9faa;
+  border: 6px solid #9d9faa;
+  font-size: 20px;
+  padding: 0 16px;
+}
+.infoContainer .noteContainer .noteList {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+  gap: 30px;
+}
+.infoContainer .noteContainer .noteList .noteBox {
+  margin: 5vh 11.3%;
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+  font-size: 20px;
+  color: white;
+}
+.infoContainer .noteContainer .noteList .noteBox .videoCurrentTime {
+  width: 10%;
+  font-size: 20px;
+  cursor: pointer;
+  border: none;
+  border-radius: 40px;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 20px;
+  font-weight: 600;
+}
+.infoContainer .noteContainer .noteList .noteBox .noteContent {
+  padding: 15px;
+  width: 100%;
+  background-color: #9d9faa;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.infoContainer .noteContainer .noteList .noteBox .noteContent .noteContentDel {
+  display: flex;
+  align-self: flex-end;
+  gap: 10px;
+}
+.infoContainer .noteContainer .noteList .noteBox .noteContent .noteContentDel button {
+  background-color: #9d9faa;
+  border: none;
+  cursor: pointer;
+}
+.infoContainer .commentContainer {
+  width: 74%;
+}
+.infoContainer .commentContainer .commentRating {
+  width: 76%;
+  margin: 5vh 11.3%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+.infoContainer .commentContainer .commentRating .ratingStar {
+  width: 60px;
+  height: 60px;
+}
+.infoContainer .commentContainer .commentKeyInBox {
+  width: 76%;
+  margin: 5vh 11.3%;
+  display: flex;
+  align-items: flex-start;
+}
+.infoContainer .commentContainer .commentKeyInBox .textArea {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.infoContainer .commentContainer .commentKeyInBox .textArea textarea {
+  min-height: 112px;
+  padding: 20px;
+  font-size: 20px;
+  border: 6px solid #9d9faa;
+}
+.infoContainer .commentContainer .commentKeyInBox .textArea .textAreaBtn {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-end;
+}
+.infoContainer .commentContainer .commentKeyInBox .textArea .textAreaBtn .saveBtn {
+  cursor: pointer;
+  font-size: 16px;
+  height: 34px;
+  padding: 0px 16px;
+  border: none;
+  font-weight: bold;
+}
+.infoContainer .commentContainer .commentList {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+}
+.infoContainer .commentContainer .commentList .commentBox {
+  margin: 5vh 11.3%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: flex-start;
+  font-size: 20px;
+  color: white;
+}
+.infoContainer .commentContainer .commentList .commentBox .commentContent {
+  padding: 15px;
+  width: 100%;
+  background-color: #9d9faa;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.infoContainer .commentContainer .commentList .commentBox .commentContent .commentContentDel {
+  display: flex;
+  align-self: flex-end;
+  gap: 10px;
+}
+.infoContainer .commentContainer .commentList .commentBox .commentContent .commentContentDel button {
+  background-color: #9d9faa;
+  border: none;
+  cursor: pointer;
 }
 
 .navLogOut #active {

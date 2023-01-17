@@ -42,7 +42,7 @@
         position: absolute;
         bottom: 0;
         width: 100%;
-        // transform: translateY(100%) translateY(-5px);
+        transform: translateY(100%) translateY(-5px);
         transition: all .3s;
         flex-wrap: wrap;
         background: rgba(0,0,0,0.1);
@@ -66,6 +66,18 @@
           margin: 0 0.2rem;
           padding: 0.5rem;
           // display: flex;
+        }
+        .videoTime{
+          color: white;
+          padding: 0 0.4rem;
+          font-size: 1.3rem;
+          width: 10%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          .currentTimeSpace{
+            width: 50px;
+          }
         }
         .voiceBtn{
           margin-right: auto;
@@ -128,57 +140,77 @@
               }
             }
           }
-
-          
         }  
         .fullScreenBtn{
-          margin: 0 0 0 2rem;
+          margin: 0 1rem 0 1rem;
         }
-
       }
     }
 
     .classListContainer {
-      display: block;
+      display: flex;
+      align-items: stretch;
+      flex-direction: column;
       background-color: $primaryLightest;
-      color: $primaryLightestest;
+      color: $white;
       width: 21.8%;
       font-size: 22px;
       overflow-x: hidden;
       overflow-y: auto;
-
-      
       .classListHead{
         height: 12.5%;
         display: flex;
         align-items: center;
         margin-left: 19.22%;
       }
-      .classListChapter{
+      .classListBody{
         display: flex;
-        height: 12.5%;
-        outline: 1px solid $primaryLightestest;
-        
-        
-        .expandSvg{
-          width: 19.22%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
+        flex-direction: column;
+        height: 87.5%;
+        .classListChapter{
+          outline: 1px solid $primaryLightestest;
+          // height: 100%;// //這裡會讓ul暴版
+          .titleContainer{
+            display: flex;
+            outline: 1px solid $primaryLightestest;
+            height: 89px;
+            .expandSvg{
+              width: 19.22%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              transition: transform 3s linear;
+            }
+            .title{
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              transition: transform 3s linear;
+            }
+          }
         }
-        .classListChapterTag{
-          display: flex;
-          align-items: center;
-          justify-content: center;
+        ul{
+          list-style-type: none;
+          
+          li{
+            height: 89px;
+            padding-left: 19.22%;
+            display: flex;
+            align-items: center;
+            outline: 1px solid $primaryLightestest;
+            // justify-content: center;
+          }
         }
 
       }
     }
+    
   }
 
   .infoContainer {
     width: 83.33333%;
     margin: 12vh auto;
+    position: relative;
 
     .infoHead {
       display: flex;
@@ -255,12 +287,16 @@
       border-bottom: solid $primaryLightest;
       width: 74%;
       display: flex;
-
+      text-decoration:none ;
+      
       div {
         display: flex;
         width: 50%;
+        a{
+          text-decoration: none;
+        }
       }
-
+      
       button {
         display: flex;
         color: $blueDarker;
@@ -276,6 +312,216 @@
       }
     }
 
+    .introContainer{
+      width: 74%;
+      div{
+        img{
+          margin: 5vh 11.3%;
+        }
+      }
+      .introText{
+        margin: 5vh 11.3%;
+        font-size: 20px;
+        line-height: 33px;
+        color: white;
+        pre{
+          white-space: pre-wrap;
+        }
+      }
+    }
+    .noteContainer{
+      width: 74%;
+      .noteBox{
+        width: 76%;
+        margin: 5vh 11.3%;
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+        .videoCurrentTime{
+          width: 10%;
+          font-size: 20px;
+          cursor: pointer;
+          border: none;
+          border-radius: 40px;
+          align-items: center;
+          justify-content: center;
+          padding: 5px 20px;
+          font-weight: 600;
+
+        }
+        .textArea{
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 40px;
+          textarea{
+            min-height: 112px;
+            padding: 20px;
+            font-size: 20px;
+            border:6px solid $primaryLightestest;
+          }
+          .textAreaBtn{
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: flex-end;
+            .cancelBtn{
+              cursor: pointer;
+              font-size: 16px;
+              color: white;
+              background: transparent;
+              height: 34px;
+              border: none;
+              font-weight: bold;
+              padding: 0px 16px;
+            }
+            .saveBtn{
+              cursor: pointer;
+              font-size: 16px;
+              height: 34px;
+              padding: 0px 16px;
+              border: none;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+      .noteBtn{
+        width: 76%;
+        margin: 5vh 11.3%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        height: 112px;
+        color: $primaryLightestest;
+        border: 6px solid $primaryLightestest;
+        font-size: 20px;
+        padding: 0 16px;
+      }
+      .noteList{
+        display: flex;
+        flex-direction: column;
+        margin-top: 30px;
+        gap: 30px;
+        .noteBox{
+          margin: 5vh 11.3%;
+          display: flex;
+          gap: 15px;
+          align-items: flex-start;
+          font-size: 20px;
+          color:white;
+
+          .videoCurrentTime{
+            width: 10%;
+            font-size: 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 40px;
+            align-items: center;
+            justify-content: center;
+            padding: 5px 20px;
+            font-weight: 600;
+          }
+          .noteContent{
+            padding: 15px;
+            width: 100%;
+            background-color: $primaryLightestest;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            .noteContentDel{
+              display: flex;
+              align-self: flex-end;
+              gap: 10px;
+              button{
+                background-color: $primaryLightestest;
+                border: none;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+    }
+    .commentContainer{
+      width: 74%;
+      .commentRating{
+        width: 76%;
+        margin: 5vh 11.3%;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        .ratingStar{
+          width: 60px;
+          height: 60px;
+        }
+      }
+      .commentKeyInBox{
+        width: 76%;
+        margin: 5vh 11.3%;
+        display: flex;
+        align-items: flex-start;
+        .textArea{
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 40px;
+          textarea{
+            min-height: 112px;
+            padding: 20px;
+            font-size: 20px;
+            border:6px solid $primaryLightestest;
+          }
+          .textAreaBtn{
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: flex-end;
+            .saveBtn{
+              cursor: pointer;
+              font-size: 16px;
+              height: 34px;
+              padding: 0px 16px;
+              border: none;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+      .commentList{
+        display: flex;
+        flex-direction: column;
+        margin-top: 30px;
+        .commentBox{
+          margin: 5vh 11.3%;
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+          align-items: flex-start;
+          font-size: 20px;
+          color:white;
+          .commentContent{
+            padding: 15px;
+            width: 100%;
+            background-color: $primaryLightestest;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            .commentContentDel{
+              display: flex;
+              align-self: flex-end;
+              gap: 10px;
+              button{
+                background-color: $primaryLightestest;
+                border: none;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 
 

@@ -14,6 +14,7 @@ import MessegeBox from "./MessageBox";
 import SelectCourseChild from "./SelectCourseChild";
 import { CartState } from "../CartPage/CartContext";
 import SelectCoursemod from "./SelectCoursemod";
+import  instance  from "../../api/axiosInstance";
 // import data from "./data";
 
 const SelectCourse = () => {
@@ -27,9 +28,7 @@ const SelectCourse = () => {
   useEffect(() => {
     let CoursreData = async () => {
       try {
-        await axios
-          .get("http://localhost:5000/allCourses")
-          .then((res) => setList(res.data));
+        await instance.get("/allCourses").then((res) => setList(res.data));
       } catch (error) {
         console.error(error);
       }
@@ -37,7 +36,7 @@ const SelectCourse = () => {
     CoursreData();
   }, []);
 
-  
+
   const getNextPage = () => {
     setPage((preState) => preState + 1);
   };

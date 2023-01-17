@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import axios from "axios";
+import instance from "../../api/axiosInstance";
 const PopCourse = () => {
 
 const [PopCourse, setPopCourse] = useState([]);
@@ -17,15 +18,15 @@ const [PopCourse, setPopCourse] = useState([]);
     speed: 500,
     slidesToScroll: 1,
     dots: true,
-    // autoplay: true,
-    // autoplaySpeed: 2000,
+    autoplay: true,
+    autoplaySpeed: 2000,
   };
 
 useEffect(() => {
   let FetchData = async () => {
     try {
-      await axios
-        .get("http://localhost:5000/popCourses")
+      await instance
+        .get("/popCourses")
         .then((res) => setPopCourse(res.data));
     } catch (error) {
       console.error(error);

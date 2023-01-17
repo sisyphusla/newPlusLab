@@ -1,3 +1,4 @@
+
 const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
@@ -17,6 +18,9 @@ app.use(express.static(__dirname + "/public"));
 const indexRouter = require("./routers");
 app.use("/", indexRouter);
 
+
+const course = require("./routers/course");
+app.use("/",course);
 const fs = require("fs");
 
 // 通过mongoose连接数据库
