@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema({
   auth_time: Number,//授權時間
   auth_level:{type:Number, default:1}, //初始用戶等級為1
   auth_status:{type: String,default:''}, //授權狀態
-  menus: {type: Array, default:["/admin/home","/admin/lesson","/admin/mylesson","/admin/question","/admin/article","/admin/myarticle"]} // 所有有权限操作的菜单path的数组
+  menus: {type: Array, default:["/admin/home","/admin/lesson","/admin/mylesson","/admin/question","/admin/article","/admin/myarticle"]} // 權限
 })
 
 const UserModel = mongoose.model('users', userSchema)

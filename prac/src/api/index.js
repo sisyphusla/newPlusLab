@@ -72,6 +72,10 @@ export const reqSearchArticle = ({pageNum, pageSize, searchName, searchType}) =>
  //添加用戶
  export const reqAddUser = (user)=> ajax(BASE + '/api1/manage/user/add',user,'POST')
 
+ //更新用戶
+ export const reqUpdateUserInfo = (user)=> ajax(BASE + '/api1/manage/user/update',user,'POST')
+
+
  //刪除照片
  export const reqDeleteImg = (name)=>ajax(BASE + '/api1/manage/img/delete',{name},'POST')
 

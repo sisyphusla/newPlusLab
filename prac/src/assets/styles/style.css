@@ -1227,12 +1227,12 @@ body {
   padding: 12px 10px 0px 20px;
   width: 345px;
   height: 588px;
-  background-color: #44464f;
+  background-color: #2f3137;
 }
 .dashboardMain .mainBox .collectionStock .collectionStockTitle {
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
   height: 63px;
 }
 .dashboardMain .mainBox .collectionStock .collectionStockTitle input {
@@ -1254,7 +1254,7 @@ body {
 }
 .dashboardMain .mainBox .collectionStock .collectionStockTitle .collection .collectionBackground {
   cursor: pointer;
-  fill: #44464f;
+  fill: #2f3137;
 }
 .dashboardMain .mainBox .collectionStock .collectionStockTitle .collection .collectionBackground:hover {
   fill: #e23965;
@@ -1444,6 +1444,7 @@ body {
 
 .dashboardBottom {
   height: 1070px;
+  box-sizing: content-box !important;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1466,6 +1467,7 @@ body {
 }
 .dashboardBottom .dashboardBottomRow1,
 .dashboardBottom .dashboardBottomRow2 {
+  box-sizing: content-box !important;
   width: 81.15vw;
   display: flex;
   justify-content: space-between;
@@ -1479,7 +1481,11 @@ body {
   padding: 32px;
   width: 696px;
   height: 328px;
-  background-color: #44464f;
+  background-color: #2f3137;
+}
+.dashboardBottom .dashboardBottomRow1 .addOrder,
+.dashboardBottom .dashboardBottomRow2 .addOrder {
+  box-sizing: content-box !important;
 }
 .dashboardBottom .dashboardBottomRow1 .addOrder .pr7,
 .dashboardBottom .dashboardBottomRow2 .addOrder .pr7 {
@@ -1561,9 +1567,9 @@ body {
   /* For a circular appearance we need a border-radius. */
   border-radius: 50%;
   /* The background will be the radio dot's color. */
-  background: #44464f;
+  background: #2f3137;
   /* The border will be the spacing between the dot and the outer circle */
-  border: 3px solid #44464f;
+  border: 3px solid #2f3137;
   /* And by creating a box-shadow with no offset and no blur, we have an outer circle */
   box-shadow: 0 0 0 2px #6f717b;
 }
@@ -1699,13 +1705,17 @@ body {
 .dashboardBottom .dashboardBottomRow1 .orderHistory,
 .dashboardBottom .dashboardBottomRow2 .nowTotal,
 .dashboardBottom .dashboardBottomRow2 .orderHistory {
+  box-sizing: content-box !important;
   margin-top: 36px;
   padding: 32px;
   width: 696px;
   height: 426px;
-  background-color: #44464f;
+  background-color: #2f3137;
 }
 
+.nowOrder {
+  box-sizing: content-box !important;
+}
 .nowOrder .titleBox {
   width: 100%;
   display: flex;
@@ -1943,6 +1953,9 @@ body {
   top: -2px;
 }
 
+.orderHistory {
+  box-sizing: content-box !important;
+}
 .orderHistory .titleBox {
   width: 100%;
   display: flex;
@@ -2328,6 +2341,175 @@ body {
 }
 .infoContainer .infoBtn button:focus {
   box-shadow: 0 3px 0 #e23965;
+}
+
+.profileTop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.profileTop .profileTitleBox {
+  width: 81vw;
+  padding-top: 180px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.profileTop .profileTitleBox .profileContainer {
+  display: flex;
+  align-items: center;
+}
+.profileTop .profileTitleBox .profileContainer .profilePic {
+  width: 126px;
+  height: 126px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 63px;
+}
+.profileTop .profileTitleBox .profileContainer .titleContainer {
+  padding-left: 36px;
+}
+.profileTop .profileTitleBox .profileContainer .titleContainer h1 {
+  display: inline-block;
+  color: #9d9faa;
+  font-weight: 500;
+  font-size: 40px;
+  letter-spacing: 0.15em;
+}
+.profileTop .profileTitleBox .profileContainer .titleContainer span {
+  padding-left: 16px;
+  font-weight: 700;
+  font-size: 40px;
+  color: #4967ff;
+  letter-spacing: 0.1em;
+}
+.profileTop .profileTitleBox .profileContainer .titleContainer h2 {
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 48px;
+  color: #ffffff;
+  letter-spacing: 0.15em;
+}
+.profileTop .profileTitleBox .buttonBox {
+  display: flex;
+}
+.profileTop .profileTitleBox .buttonBox .goToBackStage {
+  display: flex;
+  align-items: center;
+  background-color: #e23965;
+  border: none;
+  color: white;
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: 0.15em;
+  padding: 14px 26px 16px 26px;
+  border-radius: 32px;
+  cursor: pointer;
+}
+.profileTop .profileTitleBox .buttonBox .goToBackStage:hover {
+  background-color: #aa003b;
+}
+.profileTop .profileTitleBox .buttonBox .goToBackStage img:nth-child(1) {
+  padding: 1px 8px 0px 2px;
+}
+.profileTop .profileTitleBox .buttonBox .goToBackStage img:nth-child(2) {
+  height: 18px;
+  width: 18px;
+  padding: 1px 0px 0px 8px;
+}
+.profileTop .profileTitleBox .buttonBox .beTeacher {
+  position: absolute;
+  right: 22%;
+  display: flex;
+  align-items: center;
+  background-color: #e23965;
+  border: none;
+  color: white;
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: 0.15em;
+  padding: 14px 26px 16px 26px;
+  border-radius: 32px;
+  cursor: pointer;
+}
+.profileTop .profileTitleBox .buttonBox .beTeacher:hover {
+  background-color: #aa003b;
+}
+.profileTop .profileTitleBox .buttonBox .changeInfo {
+  margin-left: 24px;
+  display: flex;
+  align-items: center;
+  background-color: #4967ff;
+  border: none;
+  color: white;
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: 0.15em;
+  padding: 14px 26px 16px 26px;
+  border-radius: 32px;
+  cursor: pointer;
+}
+.profileTop .profileTitleBox .buttonBox .changeInfo:hover {
+  background-color: #003dcb;
+}
+
+.profileStockCollection,
+.profileOwnCourse,
+.profileCourseCollection,
+.profileArticleCollection {
+  min-height: 700px;
+}
+.profileStockCollection table,
+.profileOwnCourse table,
+.profileCourseCollection table,
+.profileArticleCollection table {
+  width: 1565px;
+  border: none;
+  border-collapse: collapse;
+  margin: 40px 9vw 0 9vw;
+}
+.profileStockCollection table tr > td:nth-child(2),
+.profileOwnCourse table tr > td:nth-child(2),
+.profileCourseCollection table tr > td:nth-child(2),
+.profileArticleCollection table tr > td:nth-child(2) {
+  width: 30px;
+}
+.profileStockCollection table tr > td:nth-child(4),
+.profileOwnCourse table tr > td:nth-child(4),
+.profileCourseCollection table tr > td:nth-child(4),
+.profileArticleCollection table tr > td:nth-child(4) {
+  width: 30px;
+}
+.profileStockCollection table tr > td:nth-child(6),
+.profileOwnCourse table tr > td:nth-child(6),
+.profileCourseCollection table tr > td:nth-child(6),
+.profileArticleCollection table tr > td:nth-child(6) {
+  width: 30px;
+}
+.profileStockCollection table tr,
+.profileOwnCourse table tr,
+.profileCourseCollection table tr,
+.profileArticleCollection table tr {
+  border-bottom: solid 2px #9d9faa;
+  height: 54px;
+}
+.profileStockCollection table tr td,
+.profileOwnCourse table tr td,
+.profileCourseCollection table tr td,
+.profileArticleCollection table tr td {
+  display: inline-block;
+}
+.profileStockCollection table h2,
+.profileOwnCourse table h2,
+.profileCourseCollection table h2,
+.profileArticleCollection table h2 {
+  font-weight: 600;
+  font-size: 32px;
+  letter-spacing: 0.1em;
+  display: inline-block;
+  color: #4967ff;
+  padding-bottom: 6px;
+  cursor: pointer;
 }
 
 .navLogOut #active {

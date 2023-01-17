@@ -276,12 +276,12 @@ router.post('/manage/user/add', (req, res) => {
       // 如果user有值(已存在)
       if (user) {
        
-        res.send({status: 1, msg: '此用户已存在'})
+        res.send({status: 1, msg: '此用戶已存在'})
         return new Promise(() => {
         })
       } else { // 没值(不存在)
         // 保存
-        return UserModel.create({...req.body, password: md5(password || 'atguigu')})
+        return UserModel.create({...req.body, password: md5(password || 'kevin')})
       }
     })
     .then(user => {
