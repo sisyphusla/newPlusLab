@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { createSearchParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import {Modal} from 'antd'
+import {Modal,Icon} from 'antd'
 
 import logo from "../../assets/imgs/logo.svg";
 import profilePic from "../../assets/imgs/profilePic.png";
@@ -210,7 +210,7 @@ const Nav = () => {
             <Link to="/" onClick={colorNone}>
               <li>
                 <div className="listbox">
-                  <img src={coupon} alt="" />
+                  <img src={coupon} />
                   <span>領折扣</span>
                 </div>
               </li>
@@ -218,7 +218,7 @@ const Nav = () => {
             <Link to="/profile" onClick={colorNone}>
               <li>
                 <div className="listbox">
-                  <img src={profile} alt="" />
+                  <img src={profile} alt=""/>
                   <span>個人資料</span>
                 </div>
               </li>

@@ -28,10 +28,12 @@ export default class MyArticleHome extends Component {
   initColumns = () => {
     this.columns = [
       {
+        width:300,
         title: '文章標題',
         dataIndex: 'name',
       },
       {
+        width:300,
         title: '文章作者',
         dataIndex: 'author',
       },
@@ -40,26 +42,7 @@ export default class MyArticleHome extends Component {
         title: '發布日期',
         dataIndex: 'update',
       },
-      
-      // {
-      //   width: 300,
-      //   title: '操作',
-      //   render: (article) => {
-      //     const ifWatch = storageUtils.getWatch();
-      //     const found = ifWatch.find((ele)=>ele === article._id) || '';
-      //     return (
-      //       <span>
-      //         {/*将article对象使用state传递给目标路由组件*/}
-      //         <LinkButton onClick={() => {
-      //             this.props.history.push('/admin/article/detail', {article});
-      //         }}>
-      //           {found ? element:element1}詳情
-      //         </LinkButton>
-      //         <LinkButton onClick={() => this.props.history.push('/admin/article/addupdate', article)}><Icon type="edit" />修改</LinkButton>
-      //       </span>
-      //     )
-      //   }
-      // },
+     
     ];
   }
 
@@ -68,14 +51,9 @@ export default class MyArticleHome extends Component {
     const {username} = storageUtils.getUser()
     this.pageNum = pageNum 
     this.setState({loading:true});
-    // const {searchName,searchType} = this.state;
-    let result
-    //如果關鍵字有值代表要搜索分頁
-    // if(searchName){
-    //   result = await reqSearchArticle({pageNum,pageSize:PAGE_SIZE,searchName,searchType})
-    // }else{ //一般分頁搜索
-      result = await reqProducts(pageNum , PAGE_SIZE,username);
-    // }
+    
+    const result = await reqProducts(pageNum , PAGE_SIZE,username);
+    console.log(result)
     
     this.setState({loading:false})
     if(result.status === 0){
@@ -97,32 +75,9 @@ export default class MyArticleHome extends Component {
 
   render() {
 
-    const {article,total,loading,searchName,searchType} = this.state;
+    const {article,total,loading} = this.state;
 
-    const title = (
-      <span>
-        <Select  
-        value={searchType} 
-        style={{width:110}}
-        onChange={value =>{this.setState({searchType:value})}}
-        >
-          <Option value='productName'>按名稱搜索</Option>
-          <Option value='productAuth'>按作者搜索</Option>
-        </Select>
-        <Input placeholder='關鍵字' 
-        style={{width:150,margin:'0 15px'}} 
-        value={searchName}
-        onChange={e =>{this.setState({searchName:e.target.value})}}
-        />
-        <Button type='primary' onClick={()=>this.getArticle(1)}>搜索</Button>
-      </span>
-    )
-    const extra=(
-      <Button type='primary' onClick={()=>{this.props.history.push('/admin/article/addupdate')}}>
-        <Icon type='plus' />
-        發表文章
-      </Button>
-    );
+    
     return (
       
         <Table 

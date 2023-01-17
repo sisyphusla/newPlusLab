@@ -18,24 +18,35 @@ app.use(express.static(__dirname + "/public"));
 const indexRouter = require("./routers");
 app.use("/", indexRouter);
 
+// 聲明使用解析post請求的中間鍵
+app.use(express.urlencoded({extended: true})) // 請求體參數是: name=tom&pwd=123
+app.use(express.json()) // 請求體參數是json結構: {name: tom, pwd: 123}
+
+
+
+// 聲明使用解析cookie數據的中間鍵
+const cookieParser = require('cookie-parser')
+app.use(cookieParser())
+
+app.use(express.static(__dirname + '/public'));
+// 聲明使用路由器中間件
+const indexRouter = require('./routers')
+app.use('/', indexRouter)
+ 
 
 const course = require("./routers/course");
 app.use("/",course);
 const fs = require("fs");
 
-// 通过mongoose连接数据库
-mongoose
-  .connect("mongodb://127.0.0.1:27017/server_db1", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+// 通過mongoose連接數據庫
+mongoose.connect('mongodb://localhost/server_db1', {useNewUrlParser: true, useUnifiedTopology: true})
   .then(() => {
-    console.log("连接数据库成功!!!");
-    // 只有当连接上数据库后才去启动服务器
-    app.listen("5000", () => {
-      console.log("服务器启动成功, 请访问: http://localhost:5000");
-    });
+    console.log('連接數據庫成功!!!')
+    // 只有當連上數據庫才去啟動服務器
+    app.listen('5000', () => {
+      console.log('服務器啟動成功, 請訪問: http://localhost:5000')
+    })
   })
-  .catch((error) => {
-    console.error("连接数据库失败", error);
-  });
+  .catch(error => {
+    console.error('連接數據庫失敗', error)
+  })

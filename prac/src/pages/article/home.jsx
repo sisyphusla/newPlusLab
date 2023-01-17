@@ -46,7 +46,7 @@ export default class ArticleHome extends Component {
         dataIndex: 'username',
       },
       {
-        width: 300,
+        width: 250,
         title: '操作',
         render: (article) => {
           const ifWatch = storageUtils.getWatch();

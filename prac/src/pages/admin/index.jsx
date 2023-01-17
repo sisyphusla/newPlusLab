@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import {Redirect,Route ,Switch} from 'react-router-dom'
+import {Redirect,Route ,Switch,Link} from 'react-router-dom'
 import memoryUtils from '../../utils/memoryUtils'
 import { Layout } from 'antd';
 import LeftNav from '../../components/left-nav';
 import Header from '../../components/header';
-
+ 
+import logo from "../../assets/imgs/logo.svg";
 import Home from '../home'
 import Lesson from '../lesson'
 import MyLesson from '../mylesson'
@@ -27,12 +28,13 @@ export default class Admin extends Component {
     
     return (
       <Layout style={{minHeight:'100%'}}>
-      <Sider>
-        <LeftNav/>
-      </Sider>
+        <Sider>
+          <LeftNav/>
+        </Sider>
+      
       <Layout>
         <Header>Header</Header>
-        <Content style={{margin:20,backgroundColor:'#fff'}}>
+        <Content style={{margin:20,backgroundColor:'white'}}>
           <Switch>
             <Route path='/admin/home' component={Home}/>
             <Route path='/admin/lesson' component={Lesson}/>
@@ -45,7 +47,7 @@ export default class Admin extends Component {
             <Redirect to='/admin/home' />
           </Switch>
         </Content>
-        <div  style={{textAlign : 'center ',color:'gray',height:100,lineHeight:'100px',fontSize:20}}>CopyRight&copy;股票實驗室</div>
+        <div  style={{textAlign : 'center ',color:'gray',height:50,lineHeight:'50px',fontSize:10}}>CopyRight&copy;股票實驗室</div>
       </Layout>
     </Layout>
     )

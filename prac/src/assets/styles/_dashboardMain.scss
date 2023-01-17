@@ -4,6 +4,26 @@
   justify-content: space-between;
   padding: 0 9vw 0 9vw;
 
+  $primaryDarker: #000000;
+$primary: #1d1f27;
+$primaryLighter: #2f3137;
+$primaryLightest: #6f717b;
+$primaryLightestest: #9d9faa;
+
+$blueDarker: #003dcb;
+$blue: #4967ff;
+$blueLighter: #8895ff;
+
+$greenDarker: #00b114;
+$green: #38e54d;
+
+$redDarker: #aa003b;
+$red: #e23965;
+
+$yellow: #e0e03b;
+
+$white: #ffffff;
+  
   .mainBox {
     width: 82vw;
     padding-top: 180px;

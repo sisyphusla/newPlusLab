@@ -9,6 +9,8 @@ import memoryUtils from '../../utils/memoryUtils';
 import storageUtils from '../../utils/storageUtils';
 import './index.css'
 import {auth} from '../../config/firebase'
+import NavLogOut from '../../components/nav/NavLogOut'
+import Footer from '../../components/footer/Footer'
 
 
 class Regiser extends Component {
@@ -82,75 +84,81 @@ class Regiser extends Component {
     const form = this.props.form;
     const { getFieldDecorator } = form;
     return (
-      <div className='login'>
-        <div className='login-header'>
-          <img src={logo} alt="logo" style={{width:'auto'}}/>
-          <h1 style={{marginBottom: 0}}>會員註冊系統</h1>
+      <div>
+        <NavLogOut/>
+        <div className='login'>
+          <div className='login-header'>
+            <img src={logo} alt="logo" style={{width:'auto'}}/>
+            <h1 style={{marginBottom: 0}}>會員註冊系統</h1>
+          </div>
+          <div className='login-background'> </div>
+          <div className='login-content'>
+            <h2 style={{textAlign:'center',fontSize:30,fontWeight:'bold'}}>註冊</h2>
+            <div style={{textAlign:'end',color:'blue',cursor:'pointer'}} onClick={()=>this.props.history.push('/login')}>返回登入</div>
+            <Form onSubmit={this.handleSubmit} className="login-form">
+              <Form.Item>
+                  {
+                    getFieldDecorator('username',{
+                      rules: [
+                        { required: true,whitespace:true, message: '請輸入用戶名' },
+                        { min: 4, message: '用戶名至少4位' },
+                        { max: 12, message: '用戶名最多12位' },
+                        { pattern: /^[a-zA-Z0-9_]+$/, message: '用戶名必須是英文，數字，或下划線' }
+                      ],
+                    })(
+                      <Input
+                        prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                        placeholder="帳號"
+                      />
+                    )
+                  }
+              </Form.Item>
+              <Form.Item>
+              {
+                    getFieldDecorator('password',{
+                      rules: [
+                        { required: true,whitespace:true, message: '請輸入密碼' },
+                        { min: 6, message: '密碼至少6位' },
+                        { max: 12, message: '密碼最多12位' },
+                        { pattern: /^[a-zA-Z0-9_]+$/, message: '密碼必須是英文，數字，或下划線' }
+                      ],
+                    })(
+                      <Input
+                        prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                        type="password"
+                        placeholder="密碼"
+                      />
+                    )
+              }
+              </Form.Item>
+              <Form.Item>
+                  {
+                    getFieldDecorator('email',{
+                      rules: [
+                        { required: true,whitespace:true, message: '請輸入信箱' },
+                        { pattern: /^[a-z0-9._-]+@[a-z]+\.[a-z]{2,4}$/, message: '信箱格式錯誤' }
+                      ],
+                    })(
+                      <Input
+                        prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                        placeholder="信箱"
+                        style={{width:'65%',marginRight:10}}
+                      />
+                    )
+                  }
+                  <span><Button style={{fontWeight:'bold'}} onClick={this.registerEmail}>發送驗證信</Button></span>
+              </Form.Item>
+              <Form.Item>
+                <Button type="primary" htmlType="submit" className="login-form-button">
+                  註冊
+                </Button>
+              </Form.Item>
+            </Form>
+          </div>
         </div>
-        <div className='login-content'>
-          <h2 style={{textAlign:'center',fontSize:30,fontWeight:'bold'}}>註冊</h2>
-          <div style={{textAlign:'end',color:'blue',cursor:'pointer'}} onClick={()=>this.props.history.push('/login')}>返回登入</div>
-          <Form onSubmit={this.handleSubmit} className="login-form">
-            <Form.Item>
-                {
-                  getFieldDecorator('username',{
-                    rules: [
-                      { required: true,whitespace:true, message: '請輸入用戶名' },
-                      { min: 4, message: '用戶名至少4位' },
-                      { max: 12, message: '用戶名最多12位' },
-                      { pattern: /^[a-zA-Z0-9_]+$/, message: '用戶名必須是英文，數字，或下划線' }
-                    ],
-                  })(
-                    <Input
-                      prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                      placeholder="帳號"
-                    />
-                  )
-                }
-            </Form.Item>
-            <Form.Item>
-            {
-                  getFieldDecorator('password',{
-                    rules: [
-                      { required: true,whitespace:true, message: '請輸入密碼' },
-                      { min: 6, message: '密碼至少6位' },
-                      { max: 12, message: '密碼最多12位' },
-                      { pattern: /^[a-zA-Z0-9_]+$/, message: '密碼必須是英文，數字，或下划線' }
-                    ],
-                  })(
-                    <Input
-                      prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                      type="password"
-                      placeholder="密碼"
-                    />
-                  )
-            }
-            </Form.Item>
-            <Form.Item>
-                {
-                  getFieldDecorator('email',{
-                    rules: [
-                      { required: true,whitespace:true, message: '請輸入信箱' },
-                      { pattern: /^[a-z0-9._-]+@[a-z]+\.[a-z]{2,4}$/, message: '信箱格式錯誤' }
-                    ],
-                  })(
-                    <Input
-                      prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                      placeholder="信箱"
-                      style={{width:'65%',marginRight:10}}
-                    />
-                  )
-                }
-                <span><Button style={{fontWeight:'bold'}} onClick={this.registerEmail}>發送驗證信</Button></span>
-            </Form.Item>
-            <Form.Item>
-              <Button type="primary" htmlType="submit" className="login-form-button">
-                註冊
-              </Button>
-            </Form.Item>
-          </Form>
-        </div>
+        {/* <Footer/> */}
       </div>
+      
     )
   }
 }

@@ -1,5 +1,25 @@
+$primaryDarker: #000000;
+$primary: #1d1f27;
+$primaryLighter: #2f3137;
+$primaryLightest: #6f717b;
+$primaryLightestest: #9d9faa;
+
+$blueDarker: #003dcb;
+$blue: #4967ff;
+$blueLighter: #8895ff;
+
+$greenDarker: #00b114;
+$green: #38e54d;
+
+$redDarker: #aa003b;
+$red: #e23965;
+
+$yellow: #e0e03b;
+
+$white: #ffffff;
 .dashboardBottom {
   height: 1070px;
+  box-sizing: content-box !important;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,6 +41,7 @@
   }
   .dashboardBottomRow1,
   .dashboardBottomRow2 {
+    box-sizing: content-box !important;
     width: 81.15vw;
     display: flex;
     justify-content: space-between;
@@ -34,6 +55,8 @@
       background-color: $primaryLighter;
     }
     .addOrder {
+      box-sizing: content-box !important;
+
       .pr7 {
         padding-right: 7.1px;
       }
@@ -222,6 +245,7 @@
     }
     .nowTotal,
     .orderHistory {
+      box-sizing: content-box !important;
       margin-top: 36px;
       padding: 32px;
       width: 696px;
@@ -232,6 +256,7 @@
 }
 
 .nowOrder {
+    box-sizing: content-box !important;
   .titleBox {
     width: 100%;
     display: flex;
@@ -493,6 +518,7 @@
 }
 
 .orderHistory {
+  box-sizing: content-box !important;
   .titleBox {
     width: 100%;
     display: flex;
