@@ -2882,6 +2882,7 @@ body {
 }
 .allV .classListContainer .classListBody ul {
   list-style-type: none;
+  margin-bottom: 0%;
 }
 .allV .classListContainer .classListBody ul li {
   height: 89px;
