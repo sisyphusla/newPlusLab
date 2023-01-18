@@ -14,7 +14,7 @@ import StarScore from "./StarScore";
 
 const SelectCourseChild = (props) => {
   const {
-    state: { cart, collection, },
+    state: { cart, collection },
     dispatch,
   } = CartState();
 
@@ -36,7 +36,6 @@ const SelectCourseChild = (props) => {
       <li
         className="dCard"
         id={props.value.id}
-        key={props.value.id}
         onMouseOver={handleMouseOver}
         onMouseOut={handleMouseOut}
         style={{ filter: `${Saturate ? "saturate(2)" : ""}` }}
