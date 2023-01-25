@@ -90,7 +90,6 @@ const Comment = () => {
                 marginRight: 10,
                 cursor: "pointer"
               }}
-              onChange={e => setComment(e.target.value)}
             />
           )
         })}

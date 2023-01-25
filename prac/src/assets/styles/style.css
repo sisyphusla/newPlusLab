@@ -2742,7 +2742,6 @@ body {
   position: absolute;
   bottom: 0;
   width: 100%;
-  transform: translateY(100%) translateY(-5px);
   transition: all 0.3s;
   flex-wrap: wrap;
   background: rgba(0, 0, 0, 0.1);
@@ -2830,6 +2829,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  line-height: normal;
 }
 .allV .videoContainer .videoControlBar .videoSpeed .videoSpeedList li:hover {
   background-color: #9d9faa;
@@ -3015,6 +3015,7 @@ body {
   justify-content: center;
   padding: 5px 20px;
   font-weight: 600;
+  color: black;
 }
 .infoContainer .noteContainer .noteBox .textArea {
   width: 100%;

@@ -86,7 +86,10 @@ function LessonAdd(props) {
             />
           )}
         </Item>
-
+        <Item>
+          <div style={{ fontWeight: 'bolder', fontSize: 15 }}>上傳課程影片:</div>
+          <PicturesLesson ref={lv} img={article.lessonvideo} />
+        </Item>
         <Item>
           <Button type='primary' onClick={submit}>發表</Button>
         </Item>

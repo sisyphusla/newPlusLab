@@ -42,7 +42,7 @@
         position: absolute;
         bottom: 0;
         width: 100%;
-        transform: translateY(100%) translateY(-5px);
+        // transform: translateY(100%) translateY(-5px);
         transition: all .3s;
         flex-wrap: wrap;
         background: rgba(0,0,0,0.1);
@@ -123,10 +123,8 @@
             display: none;
             ul{
               list-style-type: none;
-              
               font-size: 1.3rem;
               // width: fit-content;
-
             }
             li{
               padding: 0.2rem 0;
@@ -135,6 +133,7 @@
               flex-direction: column;
               justify-content: center;
               align-items: center; 
+              line-height:normal;
               &:hover{
                 background-color: $primaryLightestest;
               }
@@ -348,6 +347,7 @@
           justify-content: center;
           padding: 5px 20px;
           font-weight: 600;
+          color: black;
 
         }
         .textArea{
