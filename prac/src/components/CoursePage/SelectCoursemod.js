@@ -47,10 +47,12 @@ const SelectCoursemod = (props) => {
     //   }
     // }
   // const [SelectCourse, setSelectCourse] = useState([]);
+
+
   return (
     <Fragment>
       {data.map((v) => {
-        return <SelectCourseChild key={v.id} value={v} />;
+        return <SelectCourseChild key={v.id} value={v}  />;
       })}
     </Fragment>
   );

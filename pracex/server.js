@@ -21,8 +21,15 @@ const indexRouter = require('./routers')
 app.use('/', indexRouter)
  
 
-const course = require("./routers/course");
-app.use("/",course);
+const courseRouter = require("./routers/course");
+app.use("/course", courseRouter);
+
+const cartRouter = require("./routers/cart");
+app.use("/cart", cartRouter);
+
+const collectionsRouter = require("./routers/collections");
+app.use("/collection", collectionsRouter);
+
 const fs = require("fs");
 
 // 通過mongoose連接數據庫

@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import axios from "axios";
+import instance from "../../api/axiosInstance";
 
 const ForYouCourse = (props) => {
   const State = {
@@ -88,8 +89,8 @@ const [ForYouData, setForYouData] = useState([]);
   useEffect(() => {
     let ForYouCoursreData = async () => {
       try {
-        await axios
-          .get("http://localhost:5000/forYouCourse")
+        await instance
+          .get("/course/forYouCourse")
           .then((res) => setForYouData(res.data));
       } catch (error) {
         console.error(error);

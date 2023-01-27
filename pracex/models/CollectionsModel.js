@@ -1,8 +1,18 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const CourseSchema = new Schema(
+const CollectionSchema = new Schema(
   {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "users",
+      required: true,
+    },
+    Course: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Course",
+      required: true,
+    },
     id: { type: Number, default: 0 },
     img: { type: String, required: true },
     url: { type: String, required: true },
@@ -21,7 +31,10 @@ const CourseSchema = new Schema(
   }
 );
 
+const CollectionsModel = mongoose.model(
+  "Collections",
+  CollectionSchema,
+  "Collections"
+);
 
-const CourseModel = mongoose.model("Course", CourseSchema, "Course");
-
-module.exports = CourseModel;
+module.exports = CollectionsModel;

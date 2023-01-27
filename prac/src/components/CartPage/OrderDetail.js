@@ -8,25 +8,53 @@ const OrderDetail = () => {
     state: { cart },dispatch
   } = CartState();
 
+const handleDelCart = (e) => {
+    const DelData = async () => {
+      try {
+        const result = await instance.post("/cart/delCart", {
+          user: user.user._id,
+          id: props.value.id,
+          Course: props.value._id,
+          img: props.value.img,
+          url: props.value.url,
+          title: props.value.title,
+          price: props.value.price,
+          teacher: props.value.teacher,
+          shippingPrice: props.value.special,
+        });
+        dispatch({ type: "REMOVE_FROM_CART", payload: result.data });
+      } catch (err) {
+        dispatch({ type: "FETCH_FAIL", payload: getError(err) });
+      }
+    };
+    DelData();
+    e.preventDefault();
+  };
+
+
+  
   return (
     <Fragment>
-      <ul className="dCartList">
+
         {cart.map((v) => {
           return (
-            <Fragment key={v.value.id}>
-              <li>
-                <label>
-                  <input type="checkbox" name="orderdetial" id="20" />
-                  <img src={v.value.img} alt="" />
-                  <div className="dCartitem">
+            <Fragment key={v.id}>
+                <tr>
+                  <td>
+                    <input type="checkbox" name="orderdetial" id="20" />
+                  </td>
+                  <td>
+                    <img src={v.img} alt="" />
+                  </td>
+                  <td className="dCartitem">
                     <Link to="/">
-                      <div className="dCartTiltle">{v.value.title}</div>
+                      <div className="dCartTiltle">{v.title}</div>
                     </Link>
-                    <div className="dCartTeacher">{v.value.teacher}</div>
-                  </div>
-                  <div className="dOldPrice">NT$ {v.value.orignprice}</div>
-                  <div className="dSpecailPrice">NT$ {v.value.special}</div>
-                  <div className="dTrash">
+                    <div className="dCartTeacher">{v.teacher}</div>
+                  </td>
+                  <td className="dOldPrice">NT$ {v.price}</td>
+                  <td className="dSpecailPrice">NT$ {v.shippingPrice}</td>
+                  <td className="dTrash">
                     <svg
                       width="30"
                       height="110"
@@ -36,7 +64,7 @@ const OrderDetail = () => {
                       onClick={(e) => {
                         dispatch({
                           type: "REMOVE_CART",
-                          payload: v.value,
+                          payload: v,
                         });
                         e.preventDefault();
                       }}
@@ -46,17 +74,18 @@ const OrderDetail = () => {
                         fill="black"
                       />
                     </svg>
-                  </div>
-                </label>
-              </li>
-              <div className="dHr">
-                <hr />
-              </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td colSpan={6}>
+                    <hr />
+                  </td>
+                </tr>
+    
             </Fragment>
           );
         })}
-      </ul>
-      <Checkout />
+ 
     </Fragment>
   );
 };

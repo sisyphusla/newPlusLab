@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import instance from "../../api/axiosInstance";
 import toplay from "./img/toplay.svg";
 const Coupon = () => {
 
@@ -93,8 +94,8 @@ const couponInit = [
  useEffect(() => {
     let CouponData = async () => {
       try {
-        await axios.get("http://localhost:5000/Couponbar").then((res) => {
-          setCoupon(res.data) ;
+        await instance.get("/course/Couponbar").then((res) => {
+          setCoupon(res.data);
         });
       } catch (error) {
         console.error(error);

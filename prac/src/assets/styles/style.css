@@ -1073,34 +1073,133 @@ body {
 }
 .dCartContainer .cartcompos .tabletitle {
   color: #9d9faa;
-  display: flex;
-  flex-direction: row;
-  position: relative;
   font-size: 18px;
+  display: flex;
   height: 30px;
   text-align: center;
-  padding: 5px 0;
 }
-.dCartContainer .cartcompos .tabletitle > div:nth-child(1) {
+.dCartContainer .cartcompos .tabletitle > th:nth-child(1) {
   position: relative;
   width: 100px;
 }
-.dCartContainer .cartcompos .tabletitle > div:nth-child(2) {
+.dCartContainer .cartcompos .tabletitle > th:nth-child(2) {
   position: relative;
   width: 167px;
 }
-.dCartContainer .cartcompos .tabletitle > div:nth-child(3) {
+.dCartContainer .cartcompos .tabletitle > th:nth-child(3) {
   position: relative;
   width: 330px;
 }
-.dCartContainer .cartcompos .tabletitle > div:nth-child(4),
-.dCartContainer .cartcompos .tabletitle > div:nth-child(5) {
+.dCartContainer .cartcompos .tabletitle > th:nth-child(4),
+.dCartContainer .cartcompos .tabletitle > th:nth-child(5) {
   position: relative;
   width: 160px;
 }
-.dCartContainer .cartcompos .tabletitle > div:nth-child(6) {
+.dCartContainer .cartcompos .tabletitle > th:nth-child(6) {
   position: relative;
   width: 50px;
+}
+.dCartContainer .cartcompos .dCartList {
+  height: 300px;
+  display: block;
+  flex-direction: column;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* 網頁捲軸【滑過時】把手的顏色 */
+}
+.dCartContainer .cartcompos .dCartList::-webkit-scrollbar {
+  width: 5px;
+}
+.dCartContainer .cartcompos .dCartList::-webkit-scrollbar-track {
+  background: transparent;
+  width: 5px;
+}
+.dCartContainer .cartcompos .dCartList::-webkit-scrollbar-thumb {
+  background: #4967ff;
+  border-radius: 5px;
+}
+.dCartContainer .cartcompos .dCartList::-webkit-scrollbar-thumb:hover {
+  background: #003dcb;
+}
+.dCartContainer .cartcompos .dCartList tr > td:nth-child(1) {
+  position: relative;
+  width: 100px;
+  text-align: center;
+}
+.dCartContainer .cartcompos .dCartList tr > td:nth-child(1) input {
+  margin: 30px;
+  width: 20px;
+}
+.dCartContainer .cartcompos .dCartList tr > td:nth-child(2) {
+  position: relative;
+  width: 167px;
+}
+.dCartContainer .cartcompos .dCartList tr > td:nth-child(2) img {
+  width: fit-contentf;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.dCartContainer .cartcompos .dCartList tr > td:nth-child(3) {
+  position: relative;
+  width: 330px;
+  display: flex;
+  flex-direction: column;
+  padding: 14px 15px;
+}
+.dCartContainer .cartcompos .dCartList tr > td:nth-child(3) .dCartTiltle {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  color: #4967ff;
+  transition: all 0.3s;
+}
+.dCartContainer .cartcompos .dCartList tr > td:nth-child(3) .dCartTiltle:hover {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+.dCartContainer .cartcompos .dCartList tr > td:nth-child(3) .dCartTeacher {
+  font-weight: 400;
+  font-size: 18px;
+  height: 30px;
+  line-height: 33px;
+  letter-spacing: 0.1em;
+  color: #ffffff;
+}
+.dCartContainer .cartcompos .dCartList tr > td:nth-child(4) {
+  position: relative;
+  width: 160px;
+  text-align: center;
+  padding: 40px 5px;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 33px;
+  letter-spacing: 0.1em;
+  color: #9d9faa;
+  text-decoration: line-through;
+}
+.dCartContainer .cartcompos .dCartList tr > td:nth-child(5) {
+  position: relative;
+  width: 160px;
+  text-align: center;
+  padding: 40px 5px;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 33px;
+  letter-spacing: 0.1em;
+  color: #e23965;
+}
+.dCartContainer .cartcompos .dCartList tr > td:nth-child(6) {
+  position: relative;
+  width: 50px;
+}
+.dCartContainer .cartcompos .dCartList tr > td:nth-child(6) svg path {
+  fill: #aa003b;
+}
+.dCartContainer .cartcompos .dCartList tr > td:nth-child(6) svg path:hover {
+  fill: #e23965;
 }
 .dCartContainer .dcartPageTitle {
   padding-top: 30px;
@@ -1117,105 +1216,6 @@ body {
 }
 .dCartContainer .dcartPageTitle .dCartTitle span svg path {
   fill: #aa003b;
-}
-
-.dCartList {
-  height: 500px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  /* 網頁捲軸【滑過時】把手的顏色 */
-}
-.dCartList::-webkit-scrollbar {
-  width: 5px;
-}
-.dCartList::-webkit-scrollbar-track {
-  background: transparent;
-  width: 5px;
-}
-.dCartList::-webkit-scrollbar-thumb {
-  background: #4967ff;
-  border-radius: 5px;
-}
-.dCartList::-webkit-scrollbar-thumb:hover {
-  background: #003dcb;
-}
-.dCartList li label {
-  height: 100px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  display: flex;
-  flex-direction: row;
-  padding: 10px 0;
-  align-items: center;
-}
-.dCartList li label input {
-  margin: 30px;
-  width: 20px;
-}
-.dCartList li label img {
-  width: 167px;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-.dCartList li label .dTrash {
-  padding: 0 30px;
-  float: right;
-  width: 50px;
-  cursor: pointer;
-}
-.dCartList li label .dTrash svg path {
-  fill: #aa003b;
-}
-.dCartList li label .dTrash svg path:hover {
-  fill: #e23965;
-}
-.dCartList li label .dCartitem {
-  display: flex;
-  flex-direction: column;
-  padding: 5px 15px;
-  width: 300px;
-}
-.dCartList li label .dCartitem .dCartTiltle {
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 1.5;
-  letter-spacing: 0.1em;
-  color: #4967ff;
-  transition: all 0.3s;
-}
-.dCartList li label .dCartitem .dCartTiltle:hover {
-  text-decoration: underline;
-  text-underline-offset: 5px;
-}
-.dCartList li label .dCartitem .dCartTeacher {
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 33px;
-  letter-spacing: 0.1em;
-  color: #ffffff;
-}
-.dCartList li label .dOldPrice {
-  width: 150px;
-  text-align: center;
-  padding: 40px 5px;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 33px;
-  letter-spacing: 0.1em;
-  color: #9d9faa;
-  text-decoration: line-through;
-}
-.dCartList li label .dSpecailPrice {
-  width: 150px;
-  text-align: center;
-  padding: 40px 5px;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 33px;
-  letter-spacing: 0.1em;
-  color: #e23965;
 }
 
 .checkoutorder {

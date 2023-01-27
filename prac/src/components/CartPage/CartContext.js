@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useReducer, useState } from "react";
+import instance from "../../api/axiosInstance";
 import { cartReducer } from "./CartReducers";
 import { getError } from "./utils";
 
@@ -7,7 +8,7 @@ const Cart = createContext();
 
 const Context = ({ children }) => {
   
-  const [Course, setCourse] = useState([]);
+
   // const Courselist = [
   //   {
   //     id: 1,
@@ -350,7 +351,7 @@ const Context = ({ children }) => {
 useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await axios.get(`http://localhost:5000/allCourses`);
+        const result = await instance.get(`/course/allCourses`);
         dispatch({ type: "REFRESH_COURSE", payload: result.data });
       } catch (err) {
         dispatch({ type: 'FETCH_FAIL', payload: getError(err) });
@@ -358,6 +359,31 @@ useEffect(() => {
     };
     fetchData();
 },[])
+
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const result = await instance.get(`/cart`);
+      dispatch({ type: "REFRESH_CART", payload: result.data });
+    } catch (err) {
+      dispatch({ type: "FETCH_FAIL", payload: getError(err) });
+    }
+  };
+  fetchData();
+}, []);
+
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const result = await instance.get(`/collection`);
+      dispatch({ type: "REFRESH_COLLECTIONS", payload: result.data });
+    } catch (err) {
+      dispatch({ type: "FETCH_FAIL", payload: getError(err) });
+    }
+  };
+  fetchData();
+}, []);
+
 
   const [state, dispatch] = useReducer(cartReducer, {
     Courselist:[],

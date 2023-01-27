@@ -28,7 +28,9 @@ const SelectCourse = () => {
   useEffect(() => {
     let CoursreData = async () => {
       try {
-        await instance.get("/allCourses").then((res) => setList(res.data));
+        await instance
+          .get("/course/allCourses")
+          .then((res) => setList(res.data));
       } catch (error) {
         console.error(error);
       }

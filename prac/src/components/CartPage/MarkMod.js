@@ -30,12 +30,12 @@ const MarkMod = () => {
         {collection.length > 3 ? (
           <Slider {...settings}>
             {collection.map((r) => {
-              return <Mark value={r} key={r.value.id} />;
+              return <Mark value={r} key={r.id} />;
             })}
           </Slider>
         ) : (
           collection.map((v) => {
-            return <Mark value={v} key={v.value.id} />;
+            return <Mark value={v} key={v.id} />;
           })
         )}
       </ul>

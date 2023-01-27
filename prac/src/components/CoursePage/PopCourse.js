@@ -26,7 +26,7 @@ useEffect(() => {
   let FetchData = async () => {
     try {
       await instance
-        .get("/popCourses")
+        .get("/course/popCourses")
         .then((res) => setPopCourse(res.data));
     } catch (error) {
       console.error(error);

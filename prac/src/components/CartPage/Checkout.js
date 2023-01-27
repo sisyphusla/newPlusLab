@@ -9,16 +9,16 @@ const Checkout = () => {
     dispatch,
   } = CartState();
 
-  const [Total, setTotal] = useState();
-  const [Subtotal, setSubtotal] = useState();
+  const [Total, setTotal] = useState(0);
+  const [Subtotal, setSubtotal] = useState(0);
 
 
 useEffect(() => {
   setSubtotal(
-    cart.reduce((acc, curr) => acc + Number(curr.value.special) * curr.qty, 0)
+    cart.reduce((acc, curr) => acc + Number(curr.shippingPrice) * 1, 0)
   );
   setTotal(
-    cart.reduce((acc, curr) => acc + Number(curr.value.special) * curr.qty, 0)
+    cart.reduce((acc, curr) => acc + Number(curr.shippingPrice) * 1, 0)
   );
 }, [cart]);
 

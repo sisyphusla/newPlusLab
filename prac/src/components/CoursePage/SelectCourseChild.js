@@ -6,8 +6,10 @@ import React, {
   useContext,
 } from "react";
 import { Link } from "react-router-dom";
-
+import instance from "../../api/axiosInstance";
 import { CartState } from "../CartPage/CartContext";
+import user from "../../utils/memoryUtils";
+import { getError } from "../CartPage/utils";
 
 import StarScore from "./StarScore";
 // import data from "./data";
@@ -17,8 +19,6 @@ const SelectCourseChild = (props) => {
     state: { cart, collection },
     dispatch,
   } = CartState();
-
-  
 
   // const [SelectCourse, setSelectCourse] = useState([]);
   const [Saturate, setSaturate] = useState(false);
@@ -30,6 +30,114 @@ const SelectCourseChild = (props) => {
     // document.getElementById(index).style.filter = "";
     setSaturate(false);
   };
+
+  const handleAddToCart = (e) => {
+    const FetchData = async () => {
+      try {
+        const result = await instance
+          .post("/cart/cart", {
+            user: user.user._id,
+            id: props.value.id,
+            Course: props.value._id,
+            img: props.value.img,
+            url: props.value.url,
+            title: props.value.title,
+            price: props.value.price,
+            shippingPrice: props.value.special,
+            teacher:props.value.teacher,
+          })
+          // .get("/cart/cart");
+          console.log(result.data);
+            dispatch({ type: "ADD_TO_CART", payload: result.data });       
+      } catch (err) {
+        dispatch({ type: "FETCH_FAIL", payload: getError(err) });
+      }
+    };
+      FetchData();           
+      e.preventDefault();
+  };
+  const handleDelCart = (e) => {
+    const DelData = async () => {
+      try {
+        const result = await instance.post("/cart/delCart", {
+          user: user.user._id,
+          id: props.value.id,
+          Course: props.value._id,
+          img: props.value.img,
+          url: props.value.url,
+          title: props.value.title,
+          price: props.value.price,
+          teacher: props.value.teacher,
+          shippingPrice: props.value.special,
+        });
+        dispatch({ type: "REMOVE_FROM_CART", payload: result.data });
+      } catch (err) {
+        dispatch({ type: "FETCH_FAIL", payload: getError(err) });
+      }
+    };
+    DelData();
+    e.preventDefault();
+  };
+  const handleAddToCollections = (e) => {
+    const FetchData = async () => {
+      try {
+        const result = await instance.post("/collection/updateCollections", {
+          user: user.user._id,
+          id: props.value.id,
+          Course: props.value._id,
+          img: props.value.img,
+          url: props.value.url,
+          title: props.value.title,
+          text: props.value.text,
+          star: props.value.star,
+          ratecount:props.value.ratecount,
+          price: props.value.price,
+          special: props.value.special,
+          students:props.value.students,
+          videLength:props.value.videLength,
+          teacher: props.value.teacher,
+        });
+        // .get("/cart/cart");
+        console.log(result.data);
+        dispatch({ type: "ADD_TO_COllECTTAG", payload: result.data });
+      } catch (err) {
+        dispatch({ type: "FETCH_FAIL", payload: getError(err) });
+      }
+    };
+    FetchData();
+    e.preventDefault();
+  };
+  const handleDelCollections = (e) => {
+    const DelData = async () => {
+      try {
+        const result = await instance.post("/collection/delcollection", {
+          user: user.user._id,
+          id: props.value.id,
+          Course: props.value._id,
+          img: props.value.img,
+          url: props.value.url,
+          title: props.value.title,
+          text: props.value.text,
+          star: props.value.star,
+          ratecount: props.value.ratecount,
+          price: props.value.price,
+          special: props.value.special,
+          students: props.value.students,
+          videLength: props.value.videLength,
+          teacher: props.value.teacher,
+        });
+        dispatch({ type: "REMOVE_FROM_COllECTTAG", payload: result.data });
+      } catch (err) {
+        dispatch({ type: "FETCH_FAIL", payload: getError(err) });
+      }
+    };
+    DelData();
+    e.preventDefault();
+  };
+
+
+
+
 
   return (
     <Link to="/">
@@ -43,22 +151,14 @@ const SelectCourseChild = (props) => {
         <img className="imgCard" src={props.value.img} />
 
         <div className="shopCart">
-          {cart.some((p) => p.value.id === props.value.id) ? (
+          {cart.some((p) => p.id === props.value.id) ? (
             <svg
               width="28"
               height="28"
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              onClick={(e) => {
-                dispatch({
-                  type: "REMOVE_FROM_CART",
-                  payload: props,
-                });
-               
-
-                e.preventDefault();
-              }}
+              onClick={handleDelCart}
             >
               <path
                 d="M7.2 19.2C5.88 19.2 4.812 20.28 4.812 21.6C4.812 22.92 5.88 24 7.2 24C8.52 24 9.6 22.92 9.6 21.6C9.6 20.28 8.52 19.2 7.2 19.2ZM0 0V2.4H2.4L6.72 11.508L5.1 14.448C4.908 14.784 4.8 15.18 4.8 15.6C4.8 16.92 5.88 18 7.2 18H21.6V15.6H7.704C7.536 15.6 7.404 15.468 7.404 15.3L7.44 15.156L8.52 13.2H17.46C18.36 13.2 19.152 12.708 19.56 11.964L23.856 4.176C23.952 4.008 24 3.804 24 3.6C24 2.94 23.46 2.4 22.8 2.4H5.052L3.924 0H0ZM19.2 19.2C17.88 19.2 16.812 20.28 16.812 21.6C16.812 22.92 17.88 24 19.2 24C20.52 24 21.6 22.92 21.6 21.6C21.6 20.28 20.52 19.2 19.2 19.2Z"
@@ -72,13 +172,7 @@ const SelectCourseChild = (props) => {
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              onClick={(e) => {
-                dispatch({
-                  type: "ADD_TO_CART",
-                  payload: props,
-                });
-                e.preventDefault();
-              }}
+              onClick={handleAddToCart}
             >
               <path
                 d="M7.2 19.2C5.88 19.2 4.812 20.28 4.812 21.6C4.812 22.92 5.88 24 7.2 24C8.52 24 9.6 22.92 9.6 21.6C9.6 20.28 8.52 19.2 7.2 19.2ZM0 0V2.4H2.4L6.72 11.508L5.1 14.448C4.908 14.784 4.8 15.18 4.8 15.6C4.8 16.92 5.88 18 7.2 18H21.6V15.6H7.704C7.536 15.6 7.404 15.468 7.404 15.3L7.44 15.156L8.52 13.2H17.46C18.36 13.2 19.152 12.708 19.56 11.964L23.856 4.176C23.952 4.008 24 3.804 24 3.6C24 2.94 23.46 2.4 22.8 2.4H5.052L3.924 0H0ZM19.2 19.2C17.88 19.2 16.812 20.28 16.812 21.6C16.812 22.92 17.88 24 19.2 24C20.52 24 21.6 22.92 21.6 21.6C21.6 20.28 20.52 19.2 19.2 19.2Z"
@@ -88,20 +182,14 @@ const SelectCourseChild = (props) => {
           )}
         </div>
         <div className="dCardMark">
-          {collection.some((p) => p.value.id === props.value.id) ? (
+          {collection.some((p) => p.id === props.value.id) ? (
             <svg
               width="20"
               height="30"
               viewBox="0 2 20 26"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              onClick={(e) => {
-                dispatch({
-                  type: "REMOVE_FROM_CollectTAG",
-                  payload: props,
-                });
-                e.preventDefault();
-              }}
+              onClick={handleDelCollections}
             >
               <path
                 d="M2.85714 0H17.1429C18.7143 0 20 1.3 20 2.88889V26L10 21.6667L0 26L0.014286 2.88889C0.014286 1.3 1.28571 0 2.85714 0Z"
@@ -119,13 +207,7 @@ const SelectCourseChild = (props) => {
               viewBox="0 2 20 26"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              onClick={(e) => {
-                dispatch({
-                  type: "ADD_TO_CollectTAG",
-                  payload: props,
-                });
-                e.preventDefault();
-              }}
+              onClick={handleAddToCollections}
             >
               <path
                 d="M2.85714 0H17.1429C18.7143 0 20 1.3 20 2.88889V26L10 21.6667L0 26L0.014286 2.88889C0.014286 1.3 1.28571 0 2.85714 0Z"
