@@ -59,7 +59,7 @@ const State = {
               </tr>
             </thead>
             <tbody className="dCartList">
-              <OrderDetail />
+              {cart.map((v)=> <OrderDetail value={v} key={v.id} />)}
             </tbody>
           </table>
           <Checkout />
