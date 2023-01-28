@@ -9,6 +9,8 @@ export const cartReducer = (state, action) => {
       return { ...state, cart: action.payload };
     case "REFRESH_COLLECTIONS":
       return { ...state, collection: action.payload };
+    case "REFRESH_ORDER":
+      return { ...state, order: action.payload };
     case "CREATE_REQUEST":
       return { ...state, loadingCreateReview: true };
     case "CREATE_SUCCESS":
@@ -23,13 +25,21 @@ export const cartReducer = (state, action) => {
       return { ...state, loading: false, error: action.payload };
     case "ADD_TO_CART":
       return { ...state, cart: [...state.cart, { ...action.payload, qty: 1 }] };
+    case "ADD_TO_ORDER":
+      return {
+        ...state,
+        order: [...state.order, { ...action.payload }],
+      };
     case "REMOVE_FROM_CART":
       return {
         ...state,
         cart: state.cart.filter((c) => c.id !== action.payload.id),
       };
-
-
+    case "REMOVE_FROM_ORDER":
+      return {
+        ...state,
+        order: state.order.filter((c) => c.id !== action.payload.id),
+      };
     case "CHANGE_CART_QTY":
       return {
         ...state,

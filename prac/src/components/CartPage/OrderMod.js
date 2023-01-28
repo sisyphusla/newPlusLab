@@ -9,11 +9,26 @@ const OrderMod = () => {
   const {
     state: { cart },
   } = CartState();
+
+
+
+
+
+
+ 
+
 const State = {
   titles: [
     {
       id: 1,
-      title: <input type="checkbox" name="allOrder" id="20" />,
+      title: (
+        <input
+          type="checkbox"
+          className="allOrder"
+          name="allSelect"
+         
+        />
+      ),
     },
     {
       id: 2,

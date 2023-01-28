@@ -11,16 +11,61 @@ import { CartState } from "./CartContext";
 import Checkout from "./Checkout";
 import user from "../../utils/memoryUtils";
 import { getError } from "../CartPage/utils";
+
 const OrderDetail = (props) => {
   const {
-    state: { cart },
+    state: { cart},
     dispatch,
   } = CartState();
-
+  const [checked, isChecked] = useState(props.value.isChecked);
   const handleDelCart = (e) => {
     const DelData = async () => {
       try {
         const result = await instance.post("/cart/delCart", {
+          user: user.user._id,
+          id: props.value.id,
+         
+        });
+        dispatch({ type: "REMOVE_FROM_CART", payload: result.data });
+      } catch (err) {
+        dispatch({ type: "FETCH_FAIL", payload: getError(err) });
+      }
+    };
+    DelData();
+      const delOrder = async () => {
+        try {
+          const result = await instance.post("/orderCourse/delete", {
+            user: user.user._id,
+            id: props.value.id,
+          });
+          dispatch({ type: "REMOVE_FROM_ORDER", payload: result.data });
+        } catch (err) {
+          dispatch({ type: "FETCH_FAIL", payload: getError(err) });
+        }
+      };
+      delOrder();
+    e.preventDefault();
+  };
+
+  const handleChangeChecked = (e) => {
+    const chengeChecked = async () => {
+      try {
+        const result = await instance.post("/cart/updateCheck", {
+          user: user.user._id,
+          id: props.value.id,
+          isChecked: e.target.checked,
+        });
+        isChecked(!e.target.checked);
+      } catch (err) {
+        dispatch({ type: "FETCH_FAIL", payload: getError(err) });
+      }
+    };
+    chengeChecked();
+console.log(props);
+if(e.target.checked===true){
+    const updataOrder = async () => {
+      try {
+        const result = await instance.post("/orderCourse/update", {
           user: user.user._id,
           id: props.value.id,
           Course: props.value._id,
@@ -29,23 +74,41 @@ const OrderDetail = (props) => {
           title: props.value.title,
           price: props.value.price,
           teacher: props.value.teacher,
-          shippingPrice: props.value.special,
+          shoppingPrice: props.value.shoppingPrice,
+          isChecked: e.target.checked,
         });
-        dispatch({ type: "REMOVE_FROM_CART", payload: result.data });
+        dispatch({ type: "ADD_TO_ORDER", payload: result.data });
       } catch (err) {
         dispatch({ type: "FETCH_FAIL", payload: getError(err) });
       }
     };
-    DelData();
-    e.preventDefault();
-  };
+    updataOrder();
+  }else{
+     const delOrder = async () => {
+       try {
+         const result = await instance.post("/orderCourse/delete", {
+           user: user.user._id,
+           id: props.value.id,
+         });
+         dispatch({ type: "REMOVE_FROM_ORDER", payload: result.data });
+       } catch (err) {
+         dispatch({ type: "FETCH_FAIL", payload: getError(err) });
+       }
+     };
+      delOrder();
+  }
+}
 
   return (
     <Fragment>
-      {console.log(props)}
       <tr>
         <td>
-          <input type="checkbox" name="orderdetial" id="20" />
+          <input
+            type="checkbox"
+            className="orderdetial"
+            checked={checked}
+            onChange={handleChangeChecked}
+          />
         </td>
         <td>
           <img src={props.value.img} alt="" />
@@ -57,7 +120,7 @@ const OrderDetail = (props) => {
           <div className="dCartTeacher">{props.value.teacher}</div>
         </td>
         <td className="dOldPrice">NT$ {props.value.price}</td>
-        <td className="dSpecailPrice">NT$ {props.value.shippingPrice}</td>
+        <td className="dSpecailPrice">NT$ {props.value.shoppingPrice}</td>
         <td className="dTrash">
           <svg
             width="30"

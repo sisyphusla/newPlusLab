@@ -42,7 +42,18 @@ router.post("/delCart", (req, res) => {
   );
 });
 
-
+router.post("/updateCheck", (req, res) => {
+  checkOfCart = req.body;
+  CartModel.updateOne({ user: req.body.user, id: req.body.id }, checkOfCart, {
+    upsert: true,
+  }).exec((err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.send(checkOfCart);
+    }
+  });
+});
 
 
 module.exports = router;

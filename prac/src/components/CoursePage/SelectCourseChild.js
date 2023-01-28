@@ -43,7 +43,7 @@ const SelectCourseChild = (props) => {
             url: props.value.url,
             title: props.value.title,
             price: props.value.price,
-            shippingPrice: props.value.special,
+            shoppingPrice: props.value.special,
             teacher:props.value.teacher,
           })
           // .get("/cart/cart");
@@ -68,7 +68,7 @@ const SelectCourseChild = (props) => {
           title: props.value.title,
           price: props.value.price,
           teacher: props.value.teacher,
-          shippingPrice: props.value.special,
+          shoppingPrice: props.value.special,
         });
         dispatch({ type: "REMOVE_FROM_CART", payload: result.data });
       } catch (err) {

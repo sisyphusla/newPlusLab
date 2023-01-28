@@ -1064,7 +1064,7 @@ body {
 .dCartContainer .cartcompos {
   display: flex;
   flex-direction: column;
-  width: 65vw;
+  width: 66vw;
   margin: 0 auto;
 }
 .dCartContainer .cartcompos hr {
@@ -1080,24 +1080,25 @@ body {
 }
 .dCartContainer .cartcompos .tabletitle > th:nth-child(1) {
   position: relative;
-  width: 100px;
+  width: 10.34%;
+  visibility: hidden;
 }
 .dCartContainer .cartcompos .tabletitle > th:nth-child(2) {
   position: relative;
-  width: 167px;
+  width: 17.27%;
 }
 .dCartContainer .cartcompos .tabletitle > th:nth-child(3) {
   position: relative;
-  width: 330px;
+  width: 34.13%;
 }
 .dCartContainer .cartcompos .tabletitle > th:nth-child(4),
 .dCartContainer .cartcompos .tabletitle > th:nth-child(5) {
   position: relative;
-  width: 160px;
+  width: 16.55%;
 }
 .dCartContainer .cartcompos .tabletitle > th:nth-child(6) {
   position: relative;
-  width: 50px;
+  width: 5.17%;
 }
 .dCartContainer .cartcompos .dCartList {
   height: 300px;
@@ -1124,7 +1125,7 @@ body {
 }
 .dCartContainer .cartcompos .dCartList tr > td:nth-child(1) {
   position: relative;
-  width: 100px;
+  width: 10.34%;
   text-align: center;
 }
 .dCartContainer .cartcompos .dCartList tr > td:nth-child(1) input {
@@ -1133,7 +1134,7 @@ body {
 }
 .dCartContainer .cartcompos .dCartList tr > td:nth-child(2) {
   position: relative;
-  width: 167px;
+  width: 17.27%;
 }
 .dCartContainer .cartcompos .dCartList tr > td:nth-child(2) img {
   width: fit-contentf;
@@ -1143,12 +1144,12 @@ body {
 }
 .dCartContainer .cartcompos .dCartList tr > td:nth-child(3) {
   position: relative;
-  width: 330px;
   display: flex;
   flex-direction: column;
   padding: 14px 15px;
 }
 .dCartContainer .cartcompos .dCartList tr > td:nth-child(3) .dCartTiltle {
+  width: 100%;
   font-weight: 700;
   font-size: 20px;
   line-height: 1.5;
@@ -1170,7 +1171,7 @@ body {
 }
 .dCartContainer .cartcompos .dCartList tr > td:nth-child(4) {
   position: relative;
-  width: 160px;
+  width: 16.55%;
   text-align: center;
   padding: 40px 5px;
   font-weight: 600;
@@ -1182,7 +1183,7 @@ body {
 }
 .dCartContainer .cartcompos .dCartList tr > td:nth-child(5) {
   position: relative;
-  width: 160px;
+  width: 16.55%;
   text-align: center;
   padding: 40px 5px;
   font-weight: 600;
@@ -1193,7 +1194,8 @@ body {
 }
 .dCartContainer .cartcompos .dCartList tr > td:nth-child(6) {
   position: relative;
-  width: 50px;
+  text-align: center;
+  width: 5.17%;
 }
 .dCartContainer .cartcompos .dCartList tr > td:nth-child(6) svg path {
   fill: #aa003b;

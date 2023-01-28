@@ -5,7 +5,7 @@ import { CartState } from "./CartContext";
 const Checkout = () => {
 
   const {
-    state: { cart },
+    state: { cart,order },
     dispatch,
   } = CartState();
 
@@ -13,14 +13,13 @@ const Checkout = () => {
   const [Subtotal, setSubtotal] = useState(0);
 
 
+
 useEffect(() => {
-  setSubtotal(
-    cart.reduce((acc, curr) => acc + Number(curr.shippingPrice) * 1, 0)
-  );
+  setSubtotal(order.reduce((acc, curr) => acc + Number(curr.shoppingPrice) * 1, 0));
   setTotal(
-    cart.reduce((acc, curr) => acc + Number(curr.shippingPrice) * 1, 0)
+    order.reduce((acc, curr) => acc + Number(curr.shoppingPrice) * 1, 0)
   );
-}, [cart]);
+}, [order]);
 
   return (
     <div className="checkoutorder">
