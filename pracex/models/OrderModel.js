@@ -21,7 +21,9 @@ const OrderSchema = new Schema(
     price: { type: Number, default: 0 },
     special: { type: Number, default: 0 },
     shoppingPrice: { type: Number, required: true },
-    isChecked:{type: Boolean, default: false}
+    isChecked: { type: Boolean, default: false },
+    discountCode: { type: String, default:"" },
+    discount: { type: Number, default: 1 },
   },
   {
     timestamps: true,

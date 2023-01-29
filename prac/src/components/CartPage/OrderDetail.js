@@ -14,7 +14,7 @@ import { getError } from "../CartPage/utils";
 
 const OrderDetail = (props) => {
   const {
-    state: { cart},
+    state: { cart },
     dispatch,
   } = CartState();
   const [checked, isChecked] = useState(props.value.isChecked);
@@ -24,7 +24,6 @@ const OrderDetail = (props) => {
         const result = await instance.post("/cart/delCart", {
           user: user.user._id,
           id: props.value.id,
-         
         });
         dispatch({ type: "REMOVE_FROM_CART", payload: result.data });
       } catch (err) {
@@ -32,18 +31,18 @@ const OrderDetail = (props) => {
       }
     };
     DelData();
-      const delOrder = async () => {
-        try {
-          const result = await instance.post("/orderCourse/delete", {
-            user: user.user._id,
-            id: props.value.id,
-          });
-          dispatch({ type: "REMOVE_FROM_ORDER", payload: result.data });
-        } catch (err) {
-          dispatch({ type: "FETCH_FAIL", payload: getError(err) });
-        }
-      };
-      delOrder();
+    const delOrder = async () => {
+      try {
+        const result = await instance.post("/orderCourse/delete", {
+          user: user.user._id,
+          id: props.value.id,
+        });
+        dispatch({ type: "REMOVE_FROM_ORDER", payload: result.data });
+      } catch (err) {
+        dispatch({ type: "FETCH_FAIL", payload: getError(err) });
+      }
+    };
+    delOrder();
     e.preventDefault();
   };
 
@@ -61,43 +60,43 @@ const OrderDetail = (props) => {
       }
     };
     chengeChecked();
-console.log(props);
-if(e.target.checked===true){
-    const updataOrder = async () => {
-      try {
-        const result = await instance.post("/orderCourse/update", {
-          user: user.user._id,
-          id: props.value.id,
-          Course: props.value._id,
-          img: props.value.img,
-          url: props.value.url,
-          title: props.value.title,
-          price: props.value.price,
-          teacher: props.value.teacher,
-          shoppingPrice: props.value.shoppingPrice,
-          isChecked: e.target.checked,
-        });
-        dispatch({ type: "ADD_TO_ORDER", payload: result.data });
-      } catch (err) {
-        dispatch({ type: "FETCH_FAIL", payload: getError(err) });
-      }
-    };
-    updataOrder();
-  }else{
-     const delOrder = async () => {
-       try {
-         const result = await instance.post("/orderCourse/delete", {
-           user: user.user._id,
-           id: props.value.id,
-         });
-         dispatch({ type: "REMOVE_FROM_ORDER", payload: result.data });
-       } catch (err) {
-         dispatch({ type: "FETCH_FAIL", payload: getError(err) });
-       }
-     };
+    if (e.target.checked === true) {
+      const updataOrder = async () => {
+        try {
+          const result = await instance.post("/orderCourse/update", {
+            user: user.user._id,
+            id: props.value.id,
+            Course: props.value._id,
+            img: props.value.img,
+            url: props.value.url,
+            title: props.value.title,
+            price: props.value.price,
+            teacher: props.value.teacher,
+            shoppingPrice: props.value.shoppingPrice,
+            isChecked: e.target.checked,
+            discount:1,
+          });
+          dispatch({ type: "ADD_TO_ORDER", payload: result.data });
+        } catch (err) {
+          dispatch({ type: "FETCH_FAIL", payload: getError(err) });
+        }
+      };
+      updataOrder();
+    } else {
+      const delOrder = async () => {
+        try {
+          const result = await instance.post("/orderCourse/delete", {
+            user: user.user._id,
+            id: props.value.id,
+          });
+          dispatch({ type: "REMOVE_FROM_ORDER", payload: result.data });
+        } catch (err) {
+          dispatch({ type: "FETCH_FAIL", payload: getError(err) });
+        }
+      };
       delOrder();
-  }
-}
+    }
+  };
 
   return (
     <Fragment>

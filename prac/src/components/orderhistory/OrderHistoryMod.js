@@ -1,54 +1,36 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { Link } from "react-router-dom";
-import OrderDetail from "../CartPage/OrderDetail";
-import { CartState } from "./CartContext";
-import Checkout from "./Checkout";
+import { CartState } from "../CartPage/CartContext";
 import noneBox from "./img/Box.png";
+import OrderHsitory from "./OrderHistory";
 
-const OrderMod = () => {
+const OrderHistoryMod = () => {
   const {
     state: { cart },
   } = CartState();
 
+  const State = {
+    titles: [
+      {
+        id: 2,
+        title: "縮圖",
+      },
+      {
+        id: 3,
+        title: "標題/作者",
+      },
 
-const State = {
-  titles: [
-    {
-      id: 1,
-      title: (
-        <input
-          type="checkbox"
-          className="allOrder"
-          name="allSelect"
-         
-        />
-      ),
-    },
-    {
-      id: 2,
-      title: "縮圖",
-    },
-    {
-      id: 3,
-      title: "標題/作者",
-    },
+      {
+        id: 4,
+        title: "購買價格",
+      },
 
-    {
-      id: 4,
-      title: "原價",
-    },
-
-    {
-      id: 5,
-      title: "特價",
-    },
-    {
-      id: 6,
-      title: "刪除",
-    },
-  ],
-};
-
+      {
+        id: 5,
+        title: "購買時間",
+      }
+    ],
+  };
 
   return (
     <Fragment>
@@ -68,10 +50,11 @@ const State = {
               </tr>
             </thead>
             <tbody className="dCartList">
-              {cart.map((v)=> <OrderDetail value={v} key={v.id} />)}
+              {cart.map((v) => (
+                <OrderHsitory value={v} key={v.id} />
+              ))}
             </tbody>
           </table>
-         
         </Fragment>
       ) : (
         <Fragment>
@@ -85,9 +68,8 @@ const State = {
           </div>
         </Fragment>
       )}
-      <Checkout />
     </Fragment>
   );
 };
 
-export default OrderMod;
+export default OrderHistoryMod;

@@ -3,6 +3,9 @@ const md5 = require("blueimp-md5");
 const fs = require("fs");
 const router = express.Router();
 const CartModel = require("../models/CartModel");
+const DiscountModel=require("../models/DiscountModel")
+
+
 
 router.get("/", (req, res) => {
   CartModel.find({}, (err, data) => {
@@ -12,6 +15,22 @@ router.get("/", (req, res) => {
       res.send(data);
     }
   });
+});
+
+
+router.post("/getdicount", (req, res) => { 
+  (gettime = req.body), 
+    DiscountModel.find(
+      { user: gettime.user, EXP: { $gte: gettime.today } },
+      (err, data) => {
+        if (err) {
+          res.status(500).send(err);
+        } else {
+          res.send(data);
+    
+        }
+      }
+    );
 });
 
 
@@ -54,6 +73,16 @@ router.post("/updateCheck", (req, res) => {
     }
   });
 });
+
+
+
+
+
+
+
+
+
+
 
 
 module.exports = router;

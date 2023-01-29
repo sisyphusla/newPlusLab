@@ -3,6 +3,7 @@ import { createContext, useContext, useEffect, useReducer, useState } from "reac
 import instance from "../../api/axiosInstance";
 import { cartReducer } from "./CartReducers";
 import { getError } from "./utils";
+import user from "../../utils/memoryUtils";
 
 const Cart = createContext();
 
@@ -49,7 +50,9 @@ useEffect(() => {
 useEffect(() => {
   const fetchData = async () => {
     try {
-      const result = await instance.get(`/orderCourse`);
+      const result = await instance.post(`/orderCourse/get`, {
+        user: user.user._id,
+      });
       dispatch({ type: "REFRESH_ORDER", payload: result.data });
     } catch (err) {
       dispatch({ type: "FETCH_FAIL", payload: getError(err) });
@@ -58,11 +61,27 @@ useEffect(() => {
   fetchData();
 }, []);
 
+useEffect(() => {
+   const discount = async () => {
+     try {
+       const result = await instance.post("/cart/getdicount", {
+         user: user.user._id,
+         today: new Date(),
+       });
+       dispatch({ type: "REFRESH_DISCOUNT", payload: result.data });
+     } catch (err) {
+       dispatch({ type: "FETCH_FAIL", payload: getError(err) });
+     }
+   };
+  discount();
+}, []);
+
   const [state, dispatch] = useReducer(cartReducer, {
     Courselist:[],
     cart: [],
     order:[],
     collection:[],
+    discount:[],
     loading: true,
     error: '',
   });

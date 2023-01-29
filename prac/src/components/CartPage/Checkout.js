@@ -1,11 +1,16 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { Link } from "react-router-dom";
+import instance from "../../api/axiosInstance";
 import { CartState } from "./CartContext";
+import { getError } from "./utils";
+import user from "../../utils/memoryUtils";
+import DiscountBar from "./discountBar";
+import Checkpage from "../../pages/checkpage/checkpage";
 
 const Checkout = () => {
 
   const {
-    state: { cart,order },
+    state: { cart, order, discount},
     dispatch,
   } = CartState();
 
@@ -13,12 +18,10 @@ const Checkout = () => {
   const [Subtotal, setSubtotal] = useState(0);
 
 
-
 useEffect(() => {
-  setSubtotal(order.reduce((acc, curr) => acc + Number(curr.shoppingPrice) * 1, 0));
-  setTotal(
-    order.reduce((acc, curr) => acc + Number(curr.shoppingPrice) * 1, 0)
-  );
+  setSubtotal(order.reduce((acc, curr) => acc + Number(curr.shoppingPrice) * 1 , 0));
+  setTotal(order.reduce(
+      (acc, curr) =>acc + Number(curr.shoppingPrice) * 1 * curr.discount,0));
 }, [order]);
 
   return (
@@ -29,15 +32,19 @@ useEffect(() => {
         <span className="sSubtotal">NT ${Subtotal}</span>
       </div>
       <div className="sDiscount">
-        <input type="checkbox" />
-        我要使用折扣碼<span className="sNoSpecial">無法使用</span>
-      </div>
-      <div className="icodeitems">
-        <input className="iDiscountCode" type="text" />
-        <input className="iCodeSubmit" type="submit" value="確定" />
+        <span> 我要使用折扣碼</span>
+        <DiscountBar
+          placeholder={
+            discount.length !== 0 ? "請輸入折扣碼" : "無法使用折扣碼"
+          }
+          data={discount}
+          disabled={discount.length === 0 ? true : false}
+        />
       </div>
       <div className="dTotalPrice">NT$ {Total}</div>
-      <input className="iorder" type="button" value="結帳" />
+      <Link to="/checkpage" className="aCheckorder">
+        <button className="iorder">結帳</button>
+      </Link>
     </div>
   );
 };

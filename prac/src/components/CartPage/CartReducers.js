@@ -9,6 +9,8 @@ export const cartReducer = (state, action) => {
       return { ...state, cart: action.payload };
     case "REFRESH_COLLECTIONS":
       return { ...state, collection: action.payload };
+    case "REFRESH_DISCOUNT":
+      return { ...state, discount: action.payload };
     case "REFRESH_ORDER":
       return { ...state, order: action.payload };
     case "CREATE_REQUEST":
@@ -57,6 +59,12 @@ export const cartReducer = (state, action) => {
       return {
         ...state,
         collection: state.collection.filter((c) => c.id !== action.payload.id),
+      };
+
+    case "UPDATE_TO_ORDER":
+      return {
+        ...state,
+        order: [ ...action.payload ],
       };
 
     default:

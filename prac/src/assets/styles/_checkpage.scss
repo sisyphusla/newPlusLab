@@ -42,11 +42,12 @@ body {
   height: 130px;
 }
 
-.dCartContainer {
+.dCheckContainer {
   width: 77%;
   padding-left: 6%;
+  margin-bottom:60px;
 
-  .cartcompos {
+  .checkcompos {
     display: flex;
     flex-direction: column;
     width: 66vw;
@@ -65,35 +66,25 @@ body {
       text-align: center;
 
       > th:nth-child(1) {
-        position: relative;
-        width: 9.04%;
-        visibility: hidden;
+       position: relative;
+        width: 17.28%;
       }
       > th:nth-child(2) {
         position: relative;
-        width: 17.18%;
+        width: 66.18%;
       }
       > th:nth-child(3) {
-        position: relative;
-        width: 31.01%;
-      }
-      > th:nth-child(4),
-      > th:nth-child(5) {
-        position: relative;
+         position: relative;
         width: 16.46%;
       }
-      > th:nth-child(6) {
-        position: relative;
-        width: 9.12%;
-      }
+    
     }
-    .dCartList {
+    .dCheckList {
       height: 300px;
       display: block;
       flex-direction: column;
       width: 100%;
-      overflow-y: auto;
-      overflow-x: hidden;
+      margin-bottom: 300px;
 
       &::-webkit-scrollbar {
         width: 5px;
@@ -113,16 +104,8 @@ body {
       /* 網頁捲軸【滑過時】把手的顏色 */
 
       tr {
+    
         > td:nth-child(1) {
-          position: relative;
-          width: 8.34%;
-          text-align: center;
-          input {
-            margin: 30px;
-            width: 20px;
-          }
-        }
-        > td:nth-child(2) {
           position: relative;
           width: 17.27%;
           img {
@@ -131,13 +114,14 @@ body {
             object-fit: cover;
           }
         }
-        > td:nth-child(3) {
+        > td:nth-child(2) {
           position: relative;
           //  width: 34.13% ;
           display: flex;
           flex-direction: column;
           padding: 14px 15px;
-          .dCartTiltle {
+          margin: 15px 0px;
+          .dCheckTiltle {
             width: 100%;
             font: {
               weight: 700;
@@ -163,7 +147,7 @@ body {
             color: $white;
           }
         }
-        > td:nth-child(4) {
+        > td:nth-child(3) {
           position: relative;
           width: 16.55%;
           text-align: center;
@@ -175,42 +159,17 @@ body {
           line-height: 33px;
           letter-spacing: 0.1em;
           color: $primaryLightestest;
-          text-decoration: line-through;
         }
-        > td:nth-child(5) {
-          position: relative;
-          width: 16.55%;
-
-          text-align: center;
-          padding: 40px 5px;
-          font: {
-            weight: 600;
-            size: 20px;
-          }
-          line-height: 33px;
-          letter-spacing: 0.1em;
-          color: $red;
-        }
-        > td:nth-child(6) {
-          position: relative;
-          text-align: center;
-          width: 9.17%;
-          svg {
-            path {
-              fill: $redDarker;
-              &:hover {
-                fill: $red;
-              }
-            }
-          }
+      
+        
         }
       }
     }
   }
-  .dcartPageTitle {
+  .dCheckPageTitle {
     padding-top: 30px;
     padding-bottom: 30px;
-    .dCartTitle {
+    .dCheckTitle {
       font: {
         weight: 700;
         size: 30px;
@@ -230,7 +189,7 @@ body {
       }
     }
   }
-}
+
 
 .checkoutorder {
   display: flexbox;
@@ -292,25 +251,23 @@ body {
       padding: 0 25px;
       position: absolute;
 
-      .iDiscountCode {
+      .icheckDiscountCode {
         background-color: $primary;
         border: 2px solid $primaryLightestest;
         width: 100%;
         height: 100%;
-        color: $white;
+        color:$primaryLightestest;
         font-size: 20px;
         padding: 5px;
         position: relative;
       }
       .iCodeSubmit {
-        position:relative;
+        position: absolute;
         right: 25px;
         width: 70px;
-        height: 37px;
         background-color: $primaryLightestest;
         border: 2px solid $primaryLightestest;
         color: $white;
-        font-size: large;
         transition: all 0.3s ease;
         &:hover {
           background-color: $primaryLighter;
@@ -365,10 +322,10 @@ body {
     color: $red;
   }
 
-  .dTotalPrice {
+  .dCheckTotalPrice {
     position: absolute;
     right: 10px;
-    bottom: 70px;
+    top: 90px;
     font-size: 30px;
     line-height: 33px;
     font-weight: 700;
@@ -377,9 +334,10 @@ body {
     color: $red;
   }
 
-  .iorder {
-    position: absolute;
-    bottom: 20px;
+  .iCheckorder {
+    position: relative;
+    bottom: -100px;
+    left:6px;
     background-color: $blue;
     padding: 10px 80px;
     border-radius: 24px;
@@ -389,98 +347,10 @@ body {
     line-height: 22px;
     letter-spacing: 0.15em;
     color: $white;
-    margin: 5px 35px;
     &:hover {
       background-color: $blueDarker;
     }
   }
 }
 
-.dCartNone {
-  display: flex;
-  padding: 50px 0 0 0;
-  justify-content: center;
-  img {
-    width: 300px;
-    margin: 30px;
-    margin-bottom: 10px;
-  }
-}
-.btnCartNone {
-  text-align: center;
-  button {
-    background-color: $blue;
-    border-radius: 24px;
-    padding: 10px 20px;
-    margin: 30px;
-    font: {
-      weight: 600;
-      size: 18px;
-    }
-    line-height: 22px;
-    letter-spacing: 0.15em;
-    color: $white;
-    svg {
-      color: $white;
-    }
-    &:hover {
-      background-color: $blueDarker;
-    }
-  }
-}
-.dCollectlist {
-  justify-content: center;
-  list-style-type: none;
-  height: 400px;
 
-  .slick-dots {
-    bottom: -80px;
-
-    li {
-      margin: 25px;
-      button::before {
-        content: "  ";
-        background-color: $pramaryDarker;
-        width: 60px;
-        height: 15px;
-        border-radius: 2px;
-      }
-    }
-
-    .slick-active {
-      button::before {
-        background-color: $blue;
-      }
-    }
-  }
-  a:hover > .slick-prev,
-  .slick-next {
-    z-index: 100;
-  }
-  .slick-arrow {
-    right: 0px;
-  }
-  .slick-track {
-    width: 100%;
-  }
-  .slick-prev:before {
-    content: url(../../components/CoursePage/img/toleft.svg);
-    left: -30px;
-    top: -10px;
-    position: absolute;
-    opacity: 0.35;
-    transition: all 0.8s;
-    &:hover {
-      opacity: 1;
-    }
-  }
-
-  .slick-next:before {
-    content: url(../../components/CoursePage/img/toright.svg);
-    right: -70px;
-    top: -10px;
-    position: absolute;
-    opacity: 0.35;
-    transition: all 0.8s;
-  }
-}
