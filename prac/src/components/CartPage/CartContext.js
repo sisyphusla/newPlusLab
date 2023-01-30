@@ -82,6 +82,7 @@ useEffect(() => {
     order:[],
     collection:[],
     discount:[],
+    history:[],
     loading: true,
     error: '',
   });

@@ -14,7 +14,7 @@ import { getError } from "../CartPage/utils";
 
 const OrderDetail = (props) => {
   const {
-    state: { cart },
+    state: { cart,order },
     dispatch,
   } = CartState();
   const [checked, isChecked] = useState(props.value.isChecked);
@@ -47,6 +47,7 @@ const OrderDetail = (props) => {
   };
 
   const handleChangeChecked = (e) => {
+ 
     const chengeChecked = async () => {
       try {
         const result = await instance.post("/cart/updateCheck", {
@@ -66,7 +67,7 @@ const OrderDetail = (props) => {
           const result = await instance.post("/orderCourse/update", {
             user: user.user._id,
             id: props.value.id,
-            Course: props.value._id,
+            Course: props.value.Course,
             img: props.value.img,
             url: props.value.url,
             title: props.value.title,
@@ -74,7 +75,7 @@ const OrderDetail = (props) => {
             teacher: props.value.teacher,
             shoppingPrice: props.value.shoppingPrice,
             isChecked: e.target.checked,
-            discount:1,
+            discount: 1,
           });
           dispatch({ type: "ADD_TO_ORDER", payload: result.data });
         } catch (err) {

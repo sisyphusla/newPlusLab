@@ -6,7 +6,8 @@ import OrderHsitory from "./OrderHistory";
 
 const OrderHistoryMod = () => {
   const {
-    state: { cart },
+    state: { cart, order },
+    dispatch,
   } = CartState();
 
   const State = {
@@ -50,7 +51,7 @@ const OrderHistoryMod = () => {
               </tr>
             </thead>
             <tbody className="dCartList">
-              {cart.map((v) => (
+              {order.map((v) => (
                 <OrderHsitory value={v} key={v.id} />
               ))}
             </tbody>

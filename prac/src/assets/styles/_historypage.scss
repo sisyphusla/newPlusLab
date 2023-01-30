@@ -70,16 +70,16 @@ body {
      
       > th:nth-child(1) {
         position: relative;
-        width: 17.18%;
+        width: 17.27%;
       }
       > th:nth-child(2) {
         position: relative;
-        width: 31.01%;
+        width: 49.63%;
       }
       > th:nth-child(4),
       > th:nth-child(3) {
         position: relative;
-        width: 16.46%;
+        width: 16.55%;
       }
       > th:nth-child(6) {
         position: relative;
@@ -111,6 +111,7 @@ body {
           display: flex;
           flex-direction: column;
           padding: 14px 15px;
+          margin: 28px 0;
           .dCartTiltle {
             width: 100%;
             font: {
@@ -149,7 +150,7 @@ body {
           line-height: 33px;
           letter-spacing: 0.1em;
           color: $primaryLightestest;
-          text-decoration: line-through;
+         
         }
         > td:nth-child(4) {
           position: relative;
@@ -163,7 +164,7 @@ body {
           }
           line-height: 33px;
           letter-spacing: 0.1em;
-          color: $red;
+          color: $primaryLightestest;
         }
 
       }

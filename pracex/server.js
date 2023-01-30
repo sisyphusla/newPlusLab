@@ -4,6 +4,9 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const cors = require("cors");
+
+
+
 app.use(cors());
 // 声明使用解析post请求的中间件
 app.use(express.urlencoded({ extended: true })); // 请求体参数是: name=tom&pwd=123

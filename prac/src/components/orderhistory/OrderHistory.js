@@ -16,8 +16,28 @@ const OrderHsitory = (props) => {
     state: { cart },
     dispatch,
   } = CartState();
- 
-console.log(props)
+
+  let date = new Date(props.value.updatedAt);
+  let DateFormatStr =
+    date.getFullYear().toString() +
+    "-" +
+    ((date.getMonth() + 1).toString().length == 2
+      ? (date.getMonth() + 1).toString()
+      : "0" + (date.getMonth() + 1).toString()) +
+    "-" +
+    (date.getDate().toString().length == 2
+      ? date.getDate().toString()
+      : "0" + date.getDate().toString()) +
+    " " +
+    (date.getHours().toString().length == 2
+      ? date.getHours().toString()
+      : "0" + date.getHours().toString()) +
+    ":" +
+    ((parseInt(date.getMinutes() / 5) * 5).toString().length == 2
+      ? (parseInt(date.getMinutes() / 5) * 5).toString()
+      : "0" + (parseInt(date.getMinutes() / 5) * 5).toString()) +
+    ":00";
+
   return (
     <Fragment>
       <tr>
@@ -32,7 +52,7 @@ console.log(props)
         </td>
 
         <td className="dSpecailPrice">NT$ {props.value.shoppingPrice}</td>
-        <td className="dHistoryTime">{props.value.updatedAt}</td>
+        <td className="dHisTime">{DateFormatStr}</td>
       </tr>
       <tr>
         <td colSpan={6}>

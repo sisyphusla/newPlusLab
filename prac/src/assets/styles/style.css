@@ -1662,16 +1662,16 @@ body {
 }
 .dOrderHistoryContainer .OrderHistorycompos .tabletitle > th:nth-child(1) {
   position: relative;
-  width: 17.18%;
+  width: 17.27%;
 }
 .dOrderHistoryContainer .OrderHistorycompos .tabletitle > th:nth-child(2) {
   position: relative;
-  width: 31.01%;
+  width: 49.63%;
 }
 .dOrderHistoryContainer .OrderHistorycompos .tabletitle > th:nth-child(4),
 .dOrderHistoryContainer .OrderHistorycompos .tabletitle > th:nth-child(3) {
   position: relative;
-  width: 16.46%;
+  width: 16.55%;
 }
 .dOrderHistoryContainer .OrderHistorycompos .tabletitle > th:nth-child(6) {
   position: relative;
@@ -1697,6 +1697,7 @@ body {
   display: flex;
   flex-direction: column;
   padding: 14px 15px;
+  margin: 28px 0;
 }
 .dOrderHistoryContainer .OrderHistorycompos .dCartList tr > td:nth-child(2) .dCartTiltle {
   width: 100%;
@@ -1729,7 +1730,6 @@ body {
   line-height: 33px;
   letter-spacing: 0.1em;
   color: #9d9faa;
-  text-decoration: line-through;
 }
 .dOrderHistoryContainer .OrderHistorycompos .dCartList tr > td:nth-child(4) {
   position: relative;
@@ -1740,7 +1740,7 @@ body {
   font-size: 20px;
   line-height: 33px;
   letter-spacing: 0.1em;
-  color: #e23965;
+  color: #9d9faa;
 }
 .dOrderHistoryContainer .dOrderHistoryTitle {
   padding-top: 30px;

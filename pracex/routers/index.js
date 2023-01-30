@@ -1,6 +1,19 @@
 const express = require('express')
 const md5 = require('blueimp-md5')
 const fs = require("fs");
+const axios = require("axios");
+
+require("dotenv").config();
+
+const {
+  LINEPAY_CHANNEL_ID,
+  LINEPAY_CHANNEL_SECRET_KEY,
+  LINEPAY_VERSION,
+  LINEPAY_SITE,
+  LINEPAY_RETURN_HOST,
+  LINEPAY_RETURN_CONFIRM_URL,
+  LINEPAY_RETURN_CANCEL_URL,
+} = process.env;
 
 const UserModel = require('../models/UserModel')
 const ProductModel = require('../models/ProductModel')
@@ -356,6 +369,15 @@ function pageFilter(arr, pageNum, pageSize) {
 }
 
 require('./file-upload')(router)
+
+
+
+
+
+
+
+
+
 
 
 
