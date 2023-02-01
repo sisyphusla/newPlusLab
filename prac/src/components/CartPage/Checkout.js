@@ -29,7 +29,9 @@ useEffect(() => {
       <div className="dOrderTitle">訂單明細</div>
       <div>
         <span className="sSubtotaltitle">小計</span>
-        <span className="sSubtotal">NT ${Subtotal}</span>
+        <span className="sSubtotal">NT ${Number(
+              parseFloat(Subtotal).toFixed(3)
+            ).toLocaleString()}</span>
       </div>
       <div className="sDiscount">
         <span> 我要使用折扣碼</span>
@@ -41,7 +43,9 @@ useEffect(() => {
           disabled={discount.length === 0 ? true : false}
         />
       </div>
-      <div className="dTotalPrice">NT$ {Total}</div>
+      <div className="dTotalPrice">NT$ {Number(
+              parseFloat(Total).toFixed(3)
+            ).toLocaleString()}</div>
       <Link to="/checkpage" className="aCheckorder">
         <button className="iorder">結帳</button>
       </Link>

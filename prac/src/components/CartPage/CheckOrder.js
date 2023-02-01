@@ -76,6 +76,7 @@ const CheckOrder = () => {
     const payToLinepay = async () => {
       try {
         const result = await instance.post("/orderCourse/topay", {
+          user: user.user._id,
           amount: Total,
           currency: "TWD",
           orderid: parseInt(new Date().getTime() / 1000),
@@ -84,15 +85,49 @@ const CheckOrder = () => {
               id: yyyymmddHHMMSS,
               amount: Total,
               products: orderlist,
+              name: "PLUS LAB 投資實驗室",
             },
           ],
         });
         window.location = result.data;
-      } catch (error) {
-        console.log(error);
+        // window.location = `http://localhost:3000/orderHistorypage`;
+      } catch (err) {
+        dispatch({ type: "FETCH_FAIL", payload: getError(err) });
       }
     };
     payToLinepay();
+    const fetchData = async () => {
+      try {
+        const result = await instance.post(`/orderCourse/updateHistory`);
+        if (order.discountCode !== undefined) {
+          try {
+            const result = await instance.post(
+              `/orderCourse/deletediecountitem`,
+              {
+                user: user.user._id,
+                discountCodes: order.discountCode,
+              }
+            );
+          } catch (err) {
+            dispatch({ type: "FETCH_FAIL", payload: getError(err) });
+          }
+        }
+      } catch (err) {
+        dispatch({ type: "FETCH_FAIL", payload: getError(err) });
+      }
+    };
+    fetchData();
+const delcartData = async () => {
+  try {
+    const result = await instance.get(`/orderCourse/delcartData`, {
+      user: user.user._id,
+    });
+  } catch (err) {
+    dispatch({ type: "FETCH_FAIL", payload: getError(err) });
+  }
+};
+delcartData();
+
   };
 
   return (
@@ -100,7 +135,9 @@ const CheckOrder = () => {
       <div className="dOrderTitle">訂單確認</div>
       <div>
         <span className="sSubtotaltitle">小計</span>
-        <span className="sSubtotal">NT ${Subtotal}</span>
+        <span className="sSubtotal">NT ${Number(
+              parseFloat(Subtotal).toFixed(3)
+            ).toLocaleString()}</span>
       </div>
       <div className="sDiscount">
         <span> 折扣碼</span>
@@ -112,7 +149,9 @@ const CheckOrder = () => {
             value={order[0].discountCode}
           />
         </div>
-        <div className="dCheckTotalPrice">NT$ {Total}</div>
+        <div className="dCheckTotalPrice">NT$ {Number(
+              parseFloat(Total).toFixed(3)
+            ).toLocaleString()}</div>
 
         <button className="iCheckorder" onClick={handlePayOrder}>
           確認結帳

@@ -21,7 +21,7 @@ const CartSchema = new Schema(
     price: { type: Number, default: 0 },
     special: { type: Number, default: 0 },
     shoppingPrice: { type: Number, required: true },
-    isChecked:{type: Boolean, default: false}
+    isChecked: { type: Boolean, required: true },
   },
   {
     timestamps: true,

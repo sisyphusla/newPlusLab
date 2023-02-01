@@ -25,12 +25,17 @@ const CheckDetail = (props) => {
           <img src={props.value.img} alt="" />
         </td>
         <td className="dCartitem">
-          <Link to="/">
+          <Link to={`/video/${props.value.title}`}>
             <div className="dCheckTiltle">{props.value.title}</div>
           </Link>
           <div className="dCartTeacher">{props.value.teacher}</div>
         </td>
-        <td className="dCheckPrice">NT$ {props.value.shoppingPrice}</td>
+        <td className="dCheckPrice">
+          NT${" "}
+          {Number(
+            parseFloat(props.value.shoppingPrice).toFixed(3)
+          ).toLocaleString()}
+        </td>
       </tr>
       <tr>
         <td colSpan={6}>

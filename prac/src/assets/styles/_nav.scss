@@ -127,16 +127,16 @@ nav {
   .cartNumber{
     position:absolute;
     background-color:$red;
-    width: 22px;
-    height: 23px;
+    width: 17px;
+    height: 17px;
    
     color: $white;
     border-radius: 20px;
-    font-size:12pt;
+    font-size:9pt;
     text-align: center;
     line-height: 18px;
-   top:-8px;
-   left:2px;
+   top:-6px;
+   left:4px;
    z-index: -1;
   
 }

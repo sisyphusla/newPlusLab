@@ -160,15 +160,15 @@ nav .profilePic:hover .mouth {
 nav .cartNumber {
   position: absolute;
   background-color: #e23965;
-  width: 22px;
-  height: 23px;
+  width: 17px;
+  height: 17px;
   color: #ffffff;
   border-radius: 20px;
-  font-size: 12pt;
+  font-size: 9pt;
   text-align: center;
   line-height: 18px;
-  top: -8px;
-  left: 2px;
+  top: -6px;
+  left: 4px;
   z-index: -1;
 }
 nav a {
@@ -545,7 +545,7 @@ ul li a button:hover {
 
 .divToYou {
   background-color: #1d1f27;
-  height: 500px;
+  height: 420px;
 }
 .divToYou .slick-dots {
   bottom: -80px;
@@ -606,6 +606,7 @@ ul li a button:hover {
 .divToYou .dClasstext {
   position: relative;
   padding: 30px;
+  width: 70%;
   color: #9d9faa;
 }
 .divToYou .dClasstext .score {
@@ -660,7 +661,7 @@ ul li a button:hover {
   transition: all 0.2s ease-out;
   padding: 0px 15px;
   display: flexbox;
-  width: 100px;
+  width: 120px;
   height: 40px;
   background-color: #e23965;
   color: #ffffff;
@@ -819,8 +820,12 @@ ul li a button:hover {
   color: #e23965;
   z-index: 2;
 }
-.dCard .dCardMark:hover {
-  path: #e23965;
+.dCard .dCardMark:hover svg {
+  fill: #e23965;
+}
+.dCard .dCardPersonCount {
+  position: absolute;
+  bottom: 30px;
 }
 .dCard .dCardTeacher {
   color: #1d1f27;
@@ -829,6 +834,8 @@ ul li a button:hover {
   line-height: 33px;
   /* identical to box height, or 206% */
   letter-spacing: 0.05em;
+  position: absolute;
+  bottom: 60px;
 }
 .dCard .dCardtext {
   padding: 10px;
@@ -841,7 +848,7 @@ ul li a button:hover {
 }
 .dCard .dCardPrice {
   display: flex;
-  position: relative;
+  position: absolute;
   font-weight: 600;
   font-size: 22px;
   justify-content: center;
@@ -849,14 +856,17 @@ ul li a button:hover {
   letter-spacing: 0.1em;
   color: #e23965;
   float: right;
-  position: relative;
-  top: -40px;
+  right: 20px;
+  bottom: 10px;
 }
 .dCard .dCardClock {
   align-items: baseline;
+  position: absolute;
+  bottom: 0px;
 }
 
-.dCardMore, .dCardLast {
+.dCardMore,
+.dCardLast {
   width: 100%;
   height: 100px;
   padding: 10px 0;
@@ -864,7 +874,8 @@ ul li a button:hover {
   align-items: center;
   justify-content: center;
 }
-.dCardMore button, .dCardLast button {
+.dCardMore button,
+.dCardLast button {
   background-color: #4967ff;
   padding: 10px 30px;
   font-weight: 600;
@@ -875,7 +886,8 @@ ul li a button:hover {
   color: #ffffff;
   border-radius: 24px;
 }
-.dCardMore button:hover, .dCardLast button:hover {
+.dCardMore button:hover,
+.dCardLast button:hover {
   background-color: #003dcb;
 }
 

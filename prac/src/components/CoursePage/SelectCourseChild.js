@@ -34,20 +34,20 @@ const SelectCourseChild = (props) => {
   const handleAddToCart = (e) => {
     const FetchData = async () => {
       try {
-        const result = await instance
-          .post("/cart/cart", {
-            user: user.user._id,
-            id: props.value.id,
-            Course: props.value._id,
-            img: props.value.img,
-            url: props.value.url,
-            title: props.value.title,
-            price: props.value.price,
-            shoppingPrice: props.value.special,
-            teacher:props.value.teacher,
-          })
+        const result = await instance.post("/cart/cart", {
+          user: user.user._id,
+          id: props.value.id,
+          Course: props.value._id,
+          img: props.value.img,
+          url: props.value.url,
+          title: props.value.title,
+          price: props.value.price,
+          shoppingPrice: props.value.special,
+          teacher: props.value.teacher,
+          isChecked:false,
+        });
           // .get("/cart/cart");
-          console.log(result.data);
+          
             dispatch({ type: "ADD_TO_CART", payload: result.data });       
       } catch (err) {
         dispatch({ type: "FETCH_FAIL", payload: getError(err) });
@@ -140,7 +140,7 @@ const SelectCourseChild = (props) => {
 
 
   return (
-    <Link to="/">
+    <Link to={`/video/${props.value.title}`}>
       <li
         className="dCard"
         id={props.value.id}
@@ -270,7 +270,12 @@ const SelectCourseChild = (props) => {
             </svg>
             {props.value.videLength} 小時
           </div>
-          <div className="dCardPrice">NT$ {props.value.special}</div>
+          <div className="dCardPrice">
+            NT${" "}
+            {Number(
+              parseFloat(props.value.special).toFixed(3)
+            ).toLocaleString()}
+          </div>
         </div>
       </li>
     </Link>

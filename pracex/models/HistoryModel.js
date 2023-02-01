@@ -8,17 +8,35 @@ const HistorySchema = new Schema(
       ref: "users",
       required: true,
     },
-    id: { type: Number, default: 0 },
-    Course: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Course",
-      required: true,
+    orderId: { type: Number, default: 0 },
+    amount: { type: Number, default: 0 },
+    packages: [
+      {
+        id: { type: String, default: "" },
+        name: { type: String, default: "" },
+        amount: { type: Number, default: 0 },
+        products: [
+          {
+            id: {
+              type: mongoose.Schema.Types.ObjectId,
+              ref: "Course",
+              required: true,
+            },
+            name: { type: String, default: "" },
+            quantity: { type: Number, default: 0 },
+            price: { type: Number, default: 0 },
+            imageUrl: { type: String, default: "" },
+            originalPrice: { type: Number, default: 0 },
+          },
+        ],
+      },
+    ],
+    redirectUrls: {
+      confirmUrl: { type: String, default: "" },
+      cancelUrl: { type: String, default: "" },
     },
-    shoppingPrice: { type: Number, required: true },
-    isChecked: { type: Boolean, default: false },
+    name: { type: String, default: "" },
     isSuccessed: { type: Boolean, default: false },
-    discountCode: { type: String, default: "" },
-    discount: { type: Number, default: 1 },
   },
   {
     timestamps: true,

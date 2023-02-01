@@ -9,6 +9,8 @@ const axios = require("axios");
 const { json } = require("express");
 const { HmacSHA256 } = require("crypto-js");
 const Base64 = require("crypto-js/enc-base64");
+const HistoryModel = require("../models/HistoryModel");
+const CartModel = require("../models/CartModel");
 
 require("dotenv").config();
 
@@ -98,48 +100,144 @@ router.post("/delete", (req, res) => {
   );
 });
 
-router.post("/topay", async (req, res) => {
-  try {
-    const linepayBody = {
-      amount: req.body.amount,
-      currency: req.body.currency,
-      orderId: req.body.orderid,
-      packages: req.body.packages,
-      redirectUrls: {
-        confirmUrl: `${LINEPAY_RETURN_HOST}${LINEPAY_RETURN_CONFIRM_URL}`,
-        cancelUrl: `${LINEPAY_RETURN_HOST}${LINEPAY_RETURN_CANCEL_URL}`,
-      },
-    };
+let order = {};
+let user = "";
 
-    const uri = `/payments/request`;
-    const nonce = parseInt(new Date().getTime() / 1000);
 
-    const string = `${LINEPAY_CHANNEL_SECRET_KEY}/${LINEPAY_VERSION}${uri}${JSON.stringify(
-      linepayBody
-    )}${nonce}`;
+router
+  .post("/topay", async (req, res) => {
+    try {
+      const linepayBody = {
+        amount: req.body.amount,
+        currency: req.body.currency,
+        orderId: req.body.orderid,
+        packages: req.body.packages,
+        redirectUrls: {
+          confirmUrl: `${LINEPAY_RETURN_HOST}${LINEPAY_RETURN_CONFIRM_URL}`,
+          cancelUrl: `${LINEPAY_RETURN_HOST}${LINEPAY_RETURN_CANCEL_URL}`,
+        },
+      };
+      order = linepayBody;
+      user = req.body.user;
+      const uri = `/payments/request`;
+      const headers = linePayBodyHeaders(uri, linepayBody);
 
-    const signature = Base64.stringify(
-      HmacSHA256(string, LINEPAY_CHANNEL_SECRET_KEY)
-    );
-    const headers = {
-      "X-LINE-ChannelId": LINEPAY_CHANNEL_ID,
-      "Content-Type": "application/json",
-      "X-LINE-Authorization-Nonce": nonce,
-      "X-LINE-Authorization": signature,
-    };
+      const url = `${LINEPAY_SITE}/${LINEPAY_VERSION}${uri}`;
 
-    const url = `${LINEPAY_SITE}/${LINEPAY_VERSION}${uri}`;
+      const linePayRes = await axios.post(url, linepayBody, { headers });
 
-    const linePayRes = await axios.post(url, linepayBody, { headers });
-
-    if (linePayRes?.data?.returnCode === "0000") {
-      res.send(linePayRes?.data?.info.paymentUrl.web);
+      if (linePayRes?.data?.returnCode === "0000") {
+        res.send(linePayRes?.data?.info.paymentUrl.web);
+      }
+      res.end;
+    } catch (error) {
+      console.log(error);
+      res.end;
     }
-    res.end;
-  } catch (error) {
-    console.log(error);
-    res.end;
-  }
+  })
+
+  .get("/linePay/confirm", async (req, res) => {
+    const { transactionId, orderId } = req.query;
+
+    try {
+      // 建立 LINE Pay 請求規定的資料格式
+      const uri = `/payments/${transactionId}/confirm`;
+      const linePayBody = {
+        amount: order.amount,
+        currency: "TWD",
+      };
+
+      // CreateSignature 建立加密內容
+      const headers = linePayBodyHeaders(uri, linePayBody);
+
+      // API 位址
+      const url = `${LINEPAY_SITE}/${LINEPAY_VERSION}${uri}`;
+      const linePayRes = await axios.post(url, linePayBody, { headers });
+
+      // 請求成功...
+      if (linePayRes?.data?.returnCode === "0000") {
+        res.redirect(`http://localhost:3000/orderHistorypage`);
+      } else {
+        res.status(400).send({
+          message: linePayRes,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      // 各種運行錯誤的狀態：可進行任何的錯誤處理
+      res.end();
+    }
+  });
+
+function linePayBodyHeaders(uri, linepayBody) {
+  const nonce = parseInt(new Date().getTime() / 1000);
+
+  const string = `${LINEPAY_CHANNEL_SECRET_KEY}/${LINEPAY_VERSION}${uri}${JSON.stringify(
+    linepayBody
+  )}${nonce}`;
+
+  const signature = Base64.stringify(
+    HmacSHA256(string, LINEPAY_CHANNEL_SECRET_KEY)
+  );
+  const headers = {
+    "X-LINE-ChannelId": LINEPAY_CHANNEL_ID,
+    "Content-Type": "application/json",
+    "X-LINE-Authorization-Nonce": nonce,
+    "X-LINE-Authorization": signature,
+  };
+  return headers;
+}
+
+router.post("/updateHistory", (req, res) => {
+  let history = order;
+  HistoryModel.updateMany(
+    {
+      user: user,
+      orderId: order.orderId,
+    },
+    history,
+    {
+      upsert: true,
+    }
+  ).exec((err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      // res.send(history);
+    }
+  });
+});
+
+// router.post("/deletediecountitem", (req, res) => {
+//   const { discountCodes, user } = req.body;
+//   DiscountModel.deleteOne({ user: user, discountCode: discountCodes }).exec(
+//     (err, data) => {
+//       if (err) {
+//         res.status(500).send(err);
+//       } else {
+//         console.log(data);
+//         // res.send(history);
+//       }
+//     }
+//   );
+// });
+
+router.post("/delcartData", (req, res) => {
+  const { user } = req.body;
+  console.log(req.body);
+  CartModel.deleteMany({
+          user: user,
+          isChecked: true,
+        }).exec(
+    (err, data) => {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        console.log(data);
+        // res.send(history);
+      }
+    }
+  );
 });
 
 module.exports = router;

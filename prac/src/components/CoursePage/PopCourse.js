@@ -45,13 +45,13 @@ useEffect(() => {
         {PopCourse.map((v) => {
           return (
             <div key={v.id} className="slider">
-              <div className="card" >
+              <div className="card">
                 <div className="cardImg">
                   <img src={v.img} alt="" />
                 </div>
                 <ul>
                   <li>
-                    <Link to="/">
+                    <Link to={`/video/${v.title}`}>
                       <svg
                         width="50"
                         height="50"

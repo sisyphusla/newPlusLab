@@ -38,6 +38,9 @@ const OrderHsitory = (props) => {
       : "0" + (parseInt(date.getMinutes() / 5) * 5).toString()) +
     ":00";
 
+
+
+    
   return (
     <Fragment>
       <tr>
@@ -45,13 +48,18 @@ const OrderHsitory = (props) => {
           <img src={props.value.img} alt="" />
         </td>
         <td className="dCartitem">
-          <Link to="/">
+          <Link to={`/video/${props.value.title}`}>
             <div className="dCartTiltle">{props.value.title}</div>
           </Link>
           <div className="dCartTeacher">{props.value.teacher}</div>
         </td>
 
-        <td className="dSpecailPrice">NT$ {props.value.shoppingPrice}</td>
+        <td className="dSpecailPrice">
+          NT${" "}
+          {Number(
+            parseFloat(props.value.shoppingPrice).toFixed(3)
+          ).toLocaleString()}
+        </td>
         <td className="dHisTime">{DateFormatStr}</td>
       </tr>
       <tr>

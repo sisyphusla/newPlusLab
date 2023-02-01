@@ -55,10 +55,11 @@ const OrderDetail = (props) => {
           id: props.value.id,
           isChecked: e.target.checked,
         });
-        isChecked(!e.target.checked);
+       
       } catch (err) {
         dispatch({ type: "FETCH_FAIL", payload: getError(err) });
       }
+       isChecked(!e.target.checked);
     };
     chengeChecked();
     if (e.target.checked === true) {
@@ -114,13 +115,17 @@ const OrderDetail = (props) => {
           <img src={props.value.img} alt="" />
         </td>
         <td className="dCartitem">
-          <Link to="/">
+          <Link to={`/video/${props.value.title}`}>
             <div className="dCartTiltle">{props.value.title}</div>
           </Link>
           <div className="dCartTeacher">{props.value.teacher}</div>
         </td>
-        <td className="dOldPrice">NT$ {props.value.price}</td>
-        <td className="dSpecailPrice">NT$ {props.value.shoppingPrice}</td>
+        <td className="dOldPrice">NT$ {Number(
+              parseFloat(props.value.price).toFixed(3)
+            ).toLocaleString()}</td>
+        <td className="dSpecailPrice">NT$ {Number(
+              parseFloat(props.value.shoppingPrice).toFixed(3)
+            ).toLocaleString()}</td>
         <td className="dTrash">
           <svg
             width="30"

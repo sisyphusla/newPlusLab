@@ -117,10 +117,10 @@ const couponInit = [
     if (timeLeft.seconds >= 0) {
       return (
         <div className="divSale">
-          【{Coupon[0].discount}】{Coupon[0].course}
+          【{Coupon[0].discount}】{Coupon[0].course},剩下
           <span>{timeLeft.days}</span>天<span>{timeLeft.hours}</span>時
           <span>{timeLeft.minutes}</span>分<span>{timeLeft.seconds}</span>秒
-          <Link to="/">
+          <Link to={`/video/${Coupon[0].course}`}>
             <button>
               立即查看
               <svg

@@ -138,7 +138,7 @@ const RecentClassChild = (props) => {
 
  
   return (
-    <Link to="/" key={props.value.id}>
+    <Link to={`/video/${props.value.title}`} key={props.value.id}>
       <li
         className="dCard"
         id={props.value.id}
@@ -268,7 +268,12 @@ const RecentClassChild = (props) => {
             </svg>
             {props.value.videLength} 小時
           </div>
-          <div className="dCardPrice">NT$ {props.value.special}</div>
+          <div className="dCardPrice">
+            NT${" "}
+            {Number(
+              parseFloat(props.value.special).toFixed(3)
+            ).toLocaleString()}
+          </div>
         </div>
       </li>
     </Link>

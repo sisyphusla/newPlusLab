@@ -25,7 +25,7 @@ export default class App extends Component {
             <Route path="/login" component={Login}></Route>
             <Route path="/profile" component={Profile}></Route>
             <Route path="/register" component={Register} />
-            <Route path="/video" component={VideoPage} />
+            <Route path="/video/:id" component={VideoPage} />
             <Route path="/Coursepage" component={Coursepage} />
             <Route path="/orderHistorypage" component={OrderHistoryPage} />
             <Route path="/Cartpage" component={Cartpage} />
