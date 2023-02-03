@@ -6,7 +6,7 @@ import { getError } from "./utils";
 import user from "../../utils/memoryUtils";
 import DiscountBar from "./discountBar";
 import Checkpage from "../../pages/checkpage/checkpage";
-
+import linePay from "./img/linepay.png";
 const Checkout = () => {
 
   const {
@@ -29,9 +29,9 @@ useEffect(() => {
       <div className="dOrderTitle">訂單明細</div>
       <div>
         <span className="sSubtotaltitle">小計</span>
-        <span className="sSubtotal">NT ${Number(
-              parseFloat(Subtotal).toFixed(3)
-            ).toLocaleString()}</span>
+        <span className="sSubtotal">
+          NT ${Number(Subtotal).toLocaleString()}
+        </span>
       </div>
       <div className="sDiscount">
         <span> 我要使用折扣碼</span>
@@ -43,12 +43,14 @@ useEffect(() => {
           disabled={discount.length === 0 ? true : false}
         />
       </div>
-      <div className="dTotalPrice">NT$ {Number(
-              parseFloat(Total).toFixed(3)
-            ).toLocaleString()}</div>
+      <div className="dTotalPrice">NT$ {Number(Total).toLocaleString()}</div>
       <Link to="/checkpage" className="aCheckorder">
-        <button className="iorder">結帳</button>
+        <button className="iorder">
+        
+          <span>結帳</span>
+        </button>
       </Link>
+      <div className="notice">本平台只接受LinePay付款</div>
     </div>
   );
 };

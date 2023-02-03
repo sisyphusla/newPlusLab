@@ -6,7 +6,7 @@ import { getError } from "./utils";
 import user from "../../utils/memoryUtils";
 import DiscountBar from "./discountBar";
 import Checkpage from "../../pages/checkpage/checkpage";
-
+import linePay from "./img/linepay.png";
 const CheckOrder = () => {
   const {
     state: { cart, order, discount },
@@ -96,38 +96,37 @@ const CheckOrder = () => {
       }
     };
     payToLinepay();
-    const fetchData = async () => {
-      try {
-        const result = await instance.post(`/orderCourse/updateHistory`);
-        if (order.discountCode !== undefined) {
-          try {
-            const result = await instance.post(
-              `/orderCourse/deletediecountitem`,
-              {
-                user: user.user._id,
-                discountCodes: order.discountCode,
-              }
-            );
-          } catch (err) {
-            dispatch({ type: "FETCH_FAIL", payload: getError(err) });
-          }
-        }
-      } catch (err) {
-        dispatch({ type: "FETCH_FAIL", payload: getError(err) });
-      }
-    };
-    fetchData();
-const delcartData = async () => {
-  try {
-    const result = await instance.get(`/orderCourse/delcartData`, {
-      user: user.user._id,
-    });
-  } catch (err) {
-    dispatch({ type: "FETCH_FAIL", payload: getError(err) });
-  }
-};
-delcartData();
-
+    // const fetchData = async () => {
+    //   try {
+    //     const result = await instance.post(`/orderCourse/updateHistory`);
+    //     // if (order.discountCode !== undefined) {
+    //     //   try {
+    //     //     const result = await instance.post(
+    //     //       `/orderCourse/deletediecountitem`,
+    //     //       {
+    //     //         user: user.user._id,
+    //     //         discountCodes: order.discountCode,
+    //     //       }
+    //     //     );
+    //     //   } catch (err) {
+    //     //     dispatch({ type: "FETCH_FAIL", payload: getError(err) });
+    //     //   }
+    //     // }
+    //   } catch (err) {
+    //     dispatch({ type: "FETCH_FAIL", payload: getError(err) });
+    //   }
+    // };
+    // fetchData();
+    // const delcartData = async () => {
+    //   try {
+    //     const result = await instance.get(`/orderCourse/delcartData`, {
+    //       user: user.user._id,
+    //     });
+    //   } catch (err) {
+    //     dispatch({ type: "FETCH_FAIL", payload: getError(err) });
+    //   }
+    // };
+    // delcartData();
   };
 
   return (
@@ -135,9 +134,9 @@ delcartData();
       <div className="dOrderTitle">訂單確認</div>
       <div>
         <span className="sSubtotaltitle">小計</span>
-        <span className="sSubtotal">NT ${Number(
-              parseFloat(Subtotal).toFixed(3)
-            ).toLocaleString()}</span>
+        <span className="sSubtotal">
+          NT ${Number(Subtotal).toLocaleString()}
+        </span>
       </div>
       <div className="sDiscount">
         <span> 折扣碼</span>
@@ -149,12 +148,13 @@ delcartData();
             value={order[0].discountCode}
           />
         </div>
-        <div className="dCheckTotalPrice">NT$ {Number(
-              parseFloat(Total).toFixed(3)
-            ).toLocaleString()}</div>
+        <div className="dCheckTotalPrice">
+          NT$ {Number(Total).toLocaleString()}
+        </div>
 
         <button className="iCheckorder" onClick={handlePayOrder}>
-          確認結帳
+          <img src={linePay} />
+          <span>付款</span>
         </button>
       </div>
     </div>

@@ -44,17 +44,17 @@ const SelectCourseChild = (props) => {
           price: props.value.price,
           shoppingPrice: props.value.special,
           teacher: props.value.teacher,
-          isChecked:false,
+          isChecked: false,
         });
-          // .get("/cart/cart");
-          
-            dispatch({ type: "ADD_TO_CART", payload: result.data });       
+        // .get("/cart/cart");
+
+        dispatch({ type: "ADD_TO_CART", payload: result.data });
       } catch (err) {
         dispatch({ type: "FETCH_FAIL", payload: getError(err) });
       }
     };
-      FetchData();           
-      e.preventDefault();
+    FetchData();
+    e.preventDefault();
   };
   const handleDelCart = (e) => {
     const DelData = async () => {
@@ -90,11 +90,11 @@ const SelectCourseChild = (props) => {
           title: props.value.title,
           text: props.value.text,
           star: props.value.star,
-          ratecount:props.value.ratecount,
+          ratecount: props.value.ratecount,
           price: props.value.price,
           special: props.value.special,
-          students:props.value.students,
-          videLength:props.value.videLength,
+          students: props.value.students,
+          videLength: props.value.videLength,
           teacher: props.value.teacher,
         });
         // .get("/cart/cart");
@@ -134,10 +134,6 @@ const SelectCourseChild = (props) => {
     DelData();
     e.preventDefault();
   };
-
-
-
-
 
   return (
     <Link to={`/video/${props.value.title}`}>
@@ -272,9 +268,7 @@ const SelectCourseChild = (props) => {
           </div>
           <div className="dCardPrice">
             NT${" "}
-            {Number(
-              parseFloat(props.value.special).toFixed(3)
-            ).toLocaleString()}
+            {Number( props.value.special).toLocaleString()}
           </div>
         </div>
       </li>

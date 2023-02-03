@@ -1096,7 +1096,7 @@ body {
   right: 30px;
   top: 200px;
   width: 280px;
-  height: 350px;
+  height: 370px;
   background-color: #44464f;
   font-weight: 500;
 }
@@ -1214,7 +1214,7 @@ body {
 .checkoutorder .dTotalPrice {
   position: absolute;
   right: 10px;
-  bottom: 70px;
+  bottom: 80px;
   font-size: 30px;
   line-height: 33px;
   font-weight: 700;
@@ -1224,9 +1224,10 @@ body {
 }
 .checkoutorder .iorder {
   position: absolute;
-  bottom: 20px;
+  bottom: 30px;
   background-color: #4967ff;
-  padding: 10px 80px;
+  width: 190px;
+  padding: 10px 0px;
   border-radius: 24px;
   border: 1px solid #4967ff;
   font-weight: 600;
@@ -1234,10 +1235,19 @@ body {
   line-height: 22px;
   letter-spacing: 0.15em;
   color: #ffffff;
-  margin: 5px 35px;
+  margin: 5px 45px;
+  display: inline-flex;
+  justify-content: center;
 }
 .checkoutorder .iorder:hover {
   background-color: #003dcb;
+}
+.checkoutorder .notice {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  color: #4967ff;
 }
 
 .dCartNone {
@@ -1479,7 +1489,7 @@ body {
   right: 30px;
   top: 200px;
   width: 280px;
-  height: 350px;
+  height: 370px;
   background-color: #44464f;
   font-weight: 500;
 }
@@ -1595,7 +1605,7 @@ body {
 .checkoutorder .dCheckTotalPrice {
   position: absolute;
   right: 10px;
-  top: 90px;
+  top: 110px;
   font-size: 30px;
   line-height: 33px;
   font-weight: 700;
@@ -1605,20 +1615,28 @@ body {
 }
 .checkoutorder .iCheckorder {
   position: relative;
-  bottom: -100px;
+  bottom: -110px;
   left: 6px;
   background-color: #4967ff;
-  padding: 10px 80px;
+  padding: 10px 40px;
   border-radius: 24px;
+  margin: 5px 25px;
   border: 1px solid #4967ff;
   font-weight: 600;
   font-size: 18px;
   line-height: 22px;
   letter-spacing: 0.15em;
   color: #ffffff;
+  display: inline-flex;
+  justify-content: center;
 }
 .checkoutorder .iCheckorder:hover {
   background-color: #003dcb;
+}
+.checkoutorder .iCheckorder img {
+  margin-right: 5px;
+  display: inline;
+  width: 70px;
 }
 
 @font-face {

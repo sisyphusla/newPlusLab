@@ -199,9 +199,9 @@ const RecentClassChild = (props) => {
             </svg>
           ) : (
             <svg
-              width="22"
-              height="32"
-              viewBox="0 -3 20 26"
+              width="20"
+              height="30"
+              viewBox="0 2 20 26"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               onClick={handleAddToCollections}
@@ -270,9 +270,7 @@ const RecentClassChild = (props) => {
           </div>
           <div className="dCardPrice">
             NT${" "}
-            {Number(
-              parseFloat(props.value.special).toFixed(3)
-            ).toLocaleString()}
+            {Number( props.value.special).toLocaleString()}
           </div>
         </div>
       </li>

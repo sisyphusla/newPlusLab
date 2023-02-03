@@ -33,7 +33,7 @@ const CheckDetail = (props) => {
         <td className="dCheckPrice">
           NT${" "}
           {Number(
-            parseFloat(props.value.shoppingPrice).toFixed(3)
+            props.value.shoppingPrice
           ).toLocaleString()}
         </td>
       </tr>

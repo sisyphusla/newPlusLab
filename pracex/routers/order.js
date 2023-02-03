@@ -59,7 +59,7 @@ router.post("/updatediscount", (req, res) => {
       if (err) {
         res.status(500).send(err);
       } else {
-        if (discountData.length !== 0) {
+        if (data[0] !== undefined && discountData.length !== 0) {
           OrderModel.updateMany(
             { user: discountData.user },
             {
@@ -81,6 +81,9 @@ router.post("/updatediscount", (req, res) => {
               });
             }
           });
+          
+        } else {
+       res.end();
         }
       }
     }
@@ -102,7 +105,6 @@ router.post("/delete", (req, res) => {
 
 let order = {};
 let user = "";
-
 
 router
   .post("/topay", async (req, res) => {
@@ -129,10 +131,10 @@ router
       if (linePayRes?.data?.returnCode === "0000") {
         res.send(linePayRes?.data?.info.paymentUrl.web);
       }
-      res.end;
+      res.end();
     } catch (error) {
       console.log(error);
-      res.end;
+      res.end();
     }
   })
 
@@ -226,18 +228,16 @@ router.post("/delcartData", (req, res) => {
   const { user } = req.body;
   console.log(req.body);
   CartModel.deleteMany({
-          user: user,
-          isChecked: true,
-        }).exec(
-    (err, data) => {
-      if (err) {
-        res.status(500).send(err);
-      } else {
-        console.log(data);
-        // res.send(history);
-      }
+    user: user,
+    isChecked: true,
+  }).exec((err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      console.log(data);
+      // res.send(history);
     }
-  );
+  });
 });
 
 module.exports = router;

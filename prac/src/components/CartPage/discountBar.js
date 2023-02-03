@@ -6,7 +6,6 @@ import { getError } from "./utils";
 import user from "../../utils/memoryUtils";
 
 const DiscountBar = ({ placeholder, data, disabled }) => {
- 
   const {
     state: { cart, order, discount },
     dispatch,
@@ -25,7 +24,6 @@ const DiscountBar = ({ placeholder, data, disabled }) => {
     } else {
       setFilteredData(newDisCount);
     }
-   
   };
 
   const handlediscount = (e) => {
@@ -33,20 +31,22 @@ const DiscountBar = ({ placeholder, data, disabled }) => {
     setFilteredData([]);
   };
 
-   const handleToAdd = (e) => {
-     const discount = async () => {
-       try {
-         const result = await instance.post("/orderCourse/updatediscount", {
-           user: user.user._id,
-           discount: wordEntered,
-         });
-         dispatch({ type: "UPDATE_TO_ORDER", payload: result.data });
-       } catch (err) {
-         dispatch({ type: "FETCH_FAIL", payload: getError(err) });
-       }
-     };
-     discount();
-   };
+  const handleToAdd = (e) => {
+    const discount = async () => {
+      try {
+        const result = await instance.post("/orderCourse/updatediscount", {
+          user: user.user._id,
+          discount: wordEntered,
+        });
+        if (result.data !== "") {
+          dispatch({ type: "UPDATE_TO_ORDER", payload: result.data });
+        }
+      } catch (err) {
+        dispatch({ type: "FETCH_FAIL", payload: getError(err) });
+      }
+    };
+    discount();
+  };
 
   return (
     <div className="icodeitems">
@@ -58,7 +58,9 @@ const DiscountBar = ({ placeholder, data, disabled }) => {
         value={wordEntered}
         onChange={handleFilter}
       />
-      <button className="iCodeSubmit" onClick={handleToAdd}>確認</button>
+      <button className="iCodeSubmit" onClick={handleToAdd}>
+        確認
+      </button>
       {filteredData.length != 0 && (
         <div className="discountGroup">
           {filteredData.map((v, i) => (
