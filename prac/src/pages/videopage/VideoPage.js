@@ -3,7 +3,6 @@ import ClassList from "../../components/Videopage/ClassList";
 import VideoInterface from "../../components/Videopage/VideoInterface";
 import InfoHead from "../../components/Videopage/InfoHead";
 import InfoTabs from "../../components/Videopage/InfoTabs";
-// import InfoContent from "../components/Videopage/InfoContent";
 import Comment from "../../components/Videopage/Comment";
 import CourseAnnouncement from "../../components/Videopage/CourseAnnouncement";
 import CourseIntro from "../../components/Videopage/CourseIntro";
@@ -18,8 +17,8 @@ const VideoPage = () => {
   const [currentTime, setCurrentTime] = useState('00:00');
   const [currentTab, setCurrentTab] = useState("intro");
   const videoRefProps = useRef(null);
- const username =
-   memoryUtils.user.username || memoryUtils.user.displayName || "";
+  const username =
+    memoryUtils.user.username || memoryUtils.user.displayName || "";
   return (
     <Fragment>
       {username ? <Nav /> : <NavLogOut />}

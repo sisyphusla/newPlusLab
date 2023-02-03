@@ -6,44 +6,45 @@ let ifWatch = []
 let usersinfo = {}
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default{
+export default {
     //保存user
-    saveUser(user){
+    saveUser(user) {
         //localStorage.setItem(USER_KEY,JSON.stringify(user))
-        store.set(USER_KEY,user)
+        store.set(USER_KEY, user)
     },
 
-    getUser(){
+    getUser() {
         //return JSON.parse(localStorage.getItem(USER_KEY) || '{}')
         return store.get(USER_KEY) || {}
     },
 
-    removeUser(){
+    removeUser() {
         //localStorage.removeItem(USER_KEY);
         store.remove(USER_KEY)
     },
 
     //保存是否觀看過
-    saveWatch(_id){
+    saveWatch(_id) {
         ifWatch.push(_id)
-        store.set(WATCH_BOOL,ifWatch)
+        store.set(WATCH_BOOL, ifWatch)
     },
 
-    getWatch(){
+    getWatch() {
         return store.get(WATCH_BOOL) || []
     },
 
-    removeWatch(){
+    removeWatch() {
         store.remove(WATCH_BOOL)
     },
-    
-    saveVerified(userinfo){
-        const {emailVerified,email} = userinfo
-        usersinfo = {...usersinfo,[email]:emailVerified};
-        store.set(EMAIL_VERIFY,usersinfo)
+
+    saveVerified(userinfo) {
+        const { emailVerified, email } = userinfo
+        usersinfo = { ...usersinfo, [email]: emailVerified };
+        store.set(EMAIL_VERIFY == true, usersinfo)
     },
-    getVerified(){
-        return store.get(EMAIL_VERIFY) || {}
+    getVerified() {
+        return store.get(EMAIL_VERIFY === true) || {}
+
     },
-    
+
 }
