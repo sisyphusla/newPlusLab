@@ -19,14 +19,14 @@ app.use(express.static(__dirname + '/public'));
 // 聲明使用路由器中間件
 const indexRouter = require('./routers')
 app.use('/', indexRouter)
- 
+
 
 const course = require("./routers/course");
-app.use("/",course);
+app.use("/", course);
 const fs = require("fs");
 
 // 通過mongoose連接數據庫
-mongoose.connect('mongodb://127.0.0.1:27017/server_db1', {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect('mongodb://127.0.0.1:27017/server_db1', { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log('連接數據庫成功!!!')
     // 只有當連上數據庫才去啟動服務器
