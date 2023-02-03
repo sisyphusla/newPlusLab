@@ -27,6 +27,6 @@ app.use(bodyParser.urlencoded({ extended: true, limit: '500mb' }));
 
 app.use('/', require('./routes/video.js'));
 app.use('/', require('./routes/videocomment.js'));
-app.use('/', require('./routes/crouseadd.js'));
+app.use('/', require('./routes/courseadd.js'));
 
 app.listen(8800);

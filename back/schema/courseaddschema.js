@@ -15,8 +15,8 @@ const CharterSchema = new Schema({
   }
 });
 
-const CrouseListSchema = new Schema({
-  crouseList: [CharterSchema]
+const CourseListSchema = new Schema({
+  courseList: [CharterSchema]
 });
 
-module.exports = mongoose.model('CrouseList', CrouseListSchema, 'crouseList');
+module.exports = mongoose.model('CourseList', CourseListSchema, 'courseList');
