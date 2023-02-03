@@ -94,17 +94,17 @@ const Note = ({ b, videoRefProps }) => {
           <div className="textArea">
             <textarea
               type="text"
-              placeholder="Enter your note here"
+              placeholder="在這裡紀錄您的筆記！"
               // value={note}
               onChange={e => setNote(e.target.value)}
             />
             <div className="textAreaBtn">
-              <button className="cancelBtn" onClick={handleCancelBtnClick}>Cancel</button>
+              <button className="cancelBtn" onClick={handleCancelBtnClick}>取消</button>
               <button
                 className="saveBtn"
                 onClick={handleSaveBtnClick}
                 type="submit"
-                disabled={isLoading}>Save</button>
+                disabled={isLoading}>保存</button>
             </div>
           </div>
         </div>
@@ -114,7 +114,7 @@ const Note = ({ b, videoRefProps }) => {
           className="noteBtn"
           onClick={handleNoteBtnClick}
         >
-          Create a new note at {b}
+          在 {b} 作個筆記吧！
           <img src={addNote} alt="" />
         </button>
       )}

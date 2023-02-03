@@ -98,7 +98,7 @@ const Comment = () => {
         <div className="textArea">
           <textarea
             type="text"
-            placeholder="Enter your comment here"
+            placeholder="請在此輸入您的評價"
             value={comment}
             onChange={e => setComment(e.target.value)}
           />
@@ -109,7 +109,7 @@ const Comment = () => {
               onClick={handleSaveCommentBtnClick}
               disabled={isLoading}
             >
-              Save
+              送出
             </button>
           </div>
         </div>
