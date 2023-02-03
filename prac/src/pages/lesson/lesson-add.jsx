@@ -6,7 +6,7 @@ import { reqAddLesson } from '../../api'
 import { formateDate } from '../../utils/dateUtils'
 import storageUtils from '../../utils/storageUtils'
 // import PicturesLesson from './picture'
-import Crouseadd from './Crouseadd'
+import Courseadd from './Courseadd'
 // import { BASE_IMG_URL } from '../../utils/constant'
 import axios from 'axios';
 
@@ -16,14 +16,14 @@ function LessonAdd(props) {
 
   const [chapterList, setChapterList] = useState([])
   const [subChapterList, setSubChapterList] = useState([])
-  const [crouseVideo, setCrouseVideo] = useState([]);
+  const [courseVideo, setCourseVideo] = useState([]);
   const [article, setArticle] = useState(props.location.state || {})
   const [isUpdate, setIsUpdate] = useState(!!props.location.state)
   // const lv = useRef()
 
-  const sendCrouseListToBackend = async (crouseList) => {
+  const sendCourseListToBackend = async (courseList) => {
     try {
-      const result = await axios.post('http://localhost:8800/crouseadd', { crouseList });
+      const result = await axios.post('http://localhost:8800/courseadd', { courseList });
       if (result.status === 200) {
         message.success('傳送資料到後端成功');
       } else {
@@ -38,7 +38,7 @@ function LessonAdd(props) {
     // console.log(chapterList);
     // console.log(subChapterList);
     // console.log(article.author);
-    console.log(crouseVideo);
+    console.log(courseVideo);
 
 
     props.form.validateFields(async (error, values) => {
@@ -54,23 +54,23 @@ function LessonAdd(props) {
         if (isUpdate) {
           article._id = article._id
         }
-        const hasEmptyOrUndefined = crouseVideo.flat().some(val => val === "" || val === undefined);
+        const hasEmptyOrUndefined = courseVideo.flat().some(val => val === "" || val === undefined);
         if (hasEmptyOrUndefined) {
-          message.warning("crouseVideo 中存在空或未定義的值，請確認后再發表");
+          message.warning("courseVideo 中存在空或未定義的值，請確認后再發表");
           return;
         }
         //調用接口去發表課程
         const result = await reqAddLesson(article);
-        if (result.status === 0 && crouseVideo.flat().some(val => val !== "" || val !== undefined)) {
+        if (result.status === 0 && courseVideo.flat().some(val => val !== "" || val !== undefined)) {
           message.success(`${isUpdate ? '修改' : '發表'}課程成功`);
           props.history.goBack()
-          let crouseList = chapterList.map((title, index) => ({
+          let courseList = chapterList.map((title, index) => ({
             title,
             content: subChapterList[index],
-            video: crouseVideo[index] || [],
+            video: courseVideo[index] || [],
           }));
-          console.log(crouseList);
-          sendCrouseListToBackend(crouseList);
+          console.log(courseList);
+          sendCourseListToBackend(courseList);
         } else {
           message.error(`${isUpdate ? '修改' : '發表'}文章失敗，請檢查是否完成上傳影片`);
         }
@@ -122,10 +122,10 @@ function LessonAdd(props) {
             />
           )}
         </Item>
-        <Crouseadd
+        <Courseadd
           getChapterList={setChapterList}
           getSubChapterList={setSubChapterList}
-          getCrouseVideo={setCrouseVideo}
+          getCourseVideo={setCourseVideo}
         />
         <Item>
           <Button type='primary' onClick={submit}>發表</Button>

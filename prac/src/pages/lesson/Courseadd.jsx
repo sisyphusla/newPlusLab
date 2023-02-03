@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Input } from 'antd'
 import { BsFillPencilFill, BsFillTrashFill } from "react-icons/bs";
-import './crouseadd.css'
+import './courseadd.css'
 
-const CourseAdd = ({ getChapterList, getSubChapterList, getCrouseVideo }) => {
+const CourseAdd = ({ getChapterList, getSubChapterList, getCourseVideo }) => {
 
   // const [showButtons, setShowButtons] = useState(false);
   const [showAddChapter, setShowAddChapter] = useState(false);
@@ -99,10 +99,10 @@ const CourseAdd = ({ getChapterList, getSubChapterList, getCrouseVideo }) => {
   };
 
 
-  const [crouseVideo, setCrouseVideo] = useState([]);
+  const [courseVideo, setCourseVideo] = useState([]);
 
   //取得用戶上傳的影片檔案，依照index組成陣列，陣列內的排序為subIndex
-  const handleCrouseVideo = (index, subIndex, e) => {
+  const handleCourseVideo = (index, subIndex, e) => {
     const uploadedFile = e.target.files[0];
 
     if (uploadedFile.type !== ("video/mp4")) {
@@ -112,12 +112,12 @@ const CourseAdd = ({ getChapterList, getSubChapterList, getCrouseVideo }) => {
       const fileReader = new FileReader();
       fileReader.readAsArrayBuffer(uploadedFile);
       fileReader.onloadend = () => {
-        const updatedCrouseVideo = [...crouseVideo];
-        if (!updatedCrouseVideo[index]) {
-          updatedCrouseVideo[index] = [];
+        const updatedCourseVideo = [...courseVideo];
+        if (!updatedCourseVideo[index]) {
+          updatedCourseVideo[index] = [];
         }
-        updatedCrouseVideo[index][subIndex] = new Uint8Array(fileReader.result);
-        setCrouseVideo(updatedCrouseVideo);
+        updatedCourseVideo[index][subIndex] = new Uint8Array(fileReader.result);
+        setCourseVideo(updatedCourseVideo);
       };
     }
   };
@@ -125,8 +125,8 @@ const CourseAdd = ({ getChapterList, getSubChapterList, getCrouseVideo }) => {
 
 
   useEffect(() => {
-    getCrouseVideo(crouseVideo);
-  }, [crouseVideo]);
+    getCourseVideo(courseVideo);
+  }, [courseVideo]);
 
   useEffect(() => {
     getSubChapterList(subChapterList)
@@ -179,7 +179,7 @@ const CourseAdd = ({ getChapterList, getSubChapterList, getCrouseVideo }) => {
 
                     <input
                       type="file"
-                      onChange={(e) => handleCrouseVideo(index, subIndex, e)}
+                      onChange={(e) => handleCourseVideo(index, subIndex, e)}
                       accept="video/mp4"
                     />
 
