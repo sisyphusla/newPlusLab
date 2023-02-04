@@ -935,10 +935,12 @@ body {
   flex-direction: column;
   width: 66vw;
   margin: 0 auto;
+  height: 400px;
 }
 .dCartContainer .cartcompos hr {
   color: #6f717b;
   width: 100%;
+  margin: 10px 0px;
 }
 .dCartContainer .cartcompos .tabletitle {
   color: #9d9faa;
@@ -1666,14 +1668,14 @@ body {
 }
 
 .dOrderHistoryContainer {
-  width: 70%;
+  width: 90%;
   padding-left: 6%;
   padding-bottom: 100px;
 }
 .dOrderHistoryContainer .OrderHistorycompos {
   display: flex;
   flex-direction: column;
-  width: 1010px;
+  width: 100%;
   margin: 0 auto;
 }
 .dOrderHistoryContainer .OrderHistorycompos hr {
@@ -1707,70 +1709,90 @@ body {
   position: relative;
   width: 9.12%;
 }
-.dOrderHistoryContainer .OrderHistorycompos .dCartList {
+.dOrderHistoryContainer .OrderHistorycompos .dHistoryList {
   display: block;
   flex-direction: column;
   width: 100%;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  color: #9d9faa;
 }
-.dOrderHistoryContainer .OrderHistorycompos .dCartList tr > td:nth-child(1) {
+.dOrderHistoryContainer .OrderHistorycompos .dHistoryList .historyId {
+  height: 40px;
+  background-color: #4967ff;
+  padding: 0 15px;
+  color: #ffffff;
+}
+.dOrderHistoryContainer .OrderHistorycompos .dHistoryList .historyId > td {
+  align-items: center;
+}
+.dOrderHistoryContainer .OrderHistorycompos .dHistoryList .historylist {
+  transition: all 0.3s;
+}
+.dOrderHistoryContainer .OrderHistorycompos .dHistoryList .historylist > td:nth-child(1) {
   position: relative;
   width: 17.27%;
 }
-.dOrderHistoryContainer .OrderHistorycompos .dCartList tr > td:nth-child(1) img {
-  width: fit-contentf;
+.dOrderHistoryContainer .OrderHistorycompos .dHistoryList .historylist > td:nth-child(1) img {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  margin: 15px 0;
 }
-.dOrderHistoryContainer .OrderHistorycompos .dCartList tr > td:nth-child(2) {
+.dOrderHistoryContainer .OrderHistorycompos .dHistoryList .historylist > td:nth-child(2) {
   position: relative;
   display: flex;
   flex-direction: column;
   padding: 14px 15px;
   margin: 28px 0;
 }
-.dOrderHistoryContainer .OrderHistorycompos .dCartList tr > td:nth-child(2) .dCartTiltle {
+.dOrderHistoryContainer .OrderHistorycompos .dHistoryList .historylist > td:nth-child(2) .dCartTiltle {
   width: 100%;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 25px;
   line-height: 1.5;
   letter-spacing: 0.1em;
   color: #4967ff;
   transition: all 0.3s;
 }
-.dOrderHistoryContainer .OrderHistorycompos .dCartList tr > td:nth-child(2) .dCartTiltle:hover {
+.dOrderHistoryContainer .OrderHistorycompos .dHistoryList .historylist > td:nth-child(2) .dCartTiltle:hover {
   text-decoration: underline;
   text-underline-offset: 5px;
 }
-.dOrderHistoryContainer .OrderHistorycompos .dCartList tr > td:nth-child(2) .dCartTeacher {
+.dOrderHistoryContainer .OrderHistorycompos .dHistoryList .historylist > td:nth-child(2) .dCartTeacher {
   font-weight: 400;
-  font-size: 18px;
+  font-size: 20px;
   height: 30px;
   line-height: 33px;
   letter-spacing: 0.1em;
   color: #ffffff;
 }
-.dOrderHistoryContainer .OrderHistorycompos .dCartList tr > td:nth-child(3) {
+.dOrderHistoryContainer .OrderHistorycompos .dHistoryList .historylist > td:nth-child(3) {
   position: relative;
   width: 16.55%;
   text-align: center;
   padding: 40px 5px;
   font-weight: 600;
-  font-size: 18px;
+  font-size: 25px;
   line-height: 33px;
   letter-spacing: 0.1em;
   color: #9d9faa;
 }
-.dOrderHistoryContainer .OrderHistorycompos .dCartList tr > td:nth-child(4) {
+.dOrderHistoryContainer .OrderHistorycompos .dHistoryList .historylist > td:nth-child(4) {
   position: relative;
   width: 16.55%;
   text-align: center;
   padding: 40px 5px;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 25px;
   line-height: 33px;
   letter-spacing: 0.1em;
-  color: #9d9faa;
+  color: #e23965;
 }
 .dOrderHistoryContainer .dOrderHistoryTitle {
   padding-top: 30px;
@@ -1789,52 +1811,7 @@ body {
   fill: #aa003b;
 }
 
-.dOrderHistoryList li {
-  height: 100px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  display: flex;
-  flex-direction: row;
-  padding: 10px 0;
-  align-items: center;
-}
-.dOrderHistoryList li input {
-  margin: 30px;
-  width: 20px;
-}
-.dOrderHistoryList li img {
-  width: 167px;
-  height: 100%;
-  -o-object-fit: contain;
-     object-fit: contain;
-}
-.dOrderHistoryList li .dOrderHistoryListItem {
-  display: flex;
-  flex-direction: column;
-  padding: 5px 15px;
-  width: 500px;
-}
-.dOrderHistoryList li .dOrderHistoryListItem .dOrderHistoryTiltle {
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 1.5;
-  letter-spacing: 0.1em;
-  color: #4967ff;
-  transition: all 0.3s;
-}
-.dOrderHistoryList li .dOrderHistoryListItem .dOrderHistoryTiltle:hover {
-  text-decoration: underline;
-  text-underline-offset: 5px;
-}
-.dOrderHistoryList li .dOrderHistoryListItem .dOrderHistoryTeacher {
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 33px;
-  letter-spacing: 0.1em;
-  color: #ffffff;
-}
-.dOrderHistoryList li .dHistoryOldPrice {
+.dHistoryList .dHistoryOldPrice {
   width: 150px;
   text-align: center;
   padding: 40px 5px;
@@ -1845,7 +1822,7 @@ body {
   color: #9d9faa;
   text-decoration: line-through;
 }
-.dOrderHistoryList li .dHistorySpecailPrice {
+.dHistoryList .dHistorySpecailPrice {
   width: 150px;
   text-align: center;
   padding: 40px 5px;
@@ -1854,6 +1831,26 @@ body {
   line-height: 33px;
   letter-spacing: 0.1em;
   color: #e23965;
+}
+.dHistoryList .totalprice {
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 33px;
+  letter-spacing: 0.1em;
+  color: #e23965;
+  text-align: end;
+}
+.dHistoryList .nodata {
+  height: 20px;
+}
+.dHistoryList .totallistdata {
+  height: 60px;
+}
+.dHistoryList .totallistdata > td:nth-child(1) {
+  width: 10%;
+}
+.dHistoryList .totallistdata > td:nth-child(2) {
+  width: 100%;
 }
 
 .head1 {

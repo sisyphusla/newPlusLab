@@ -15,7 +15,7 @@ export const reqProducts = (pageNum, pageSize,username) => ajax(BASE + '/api1/ma
 //獲取商品分頁列表
 export const reqLesson = (pageNum, pageSize,username) => ajax(BASE + '/api1/manage/lesson/list', {pageNum, pageSize,username})
 
- 
+export const reqDiscounts = (pageNum, pageSize,username) => ajax(BASE + '/api1/manage/discount/list', {pageNum, pageSize,username})
 
 /*
 搜索商品分頁列表 (根据文章標題/文章作者)
@@ -27,6 +27,18 @@ export const reqSearchArticle = ({pageNum, pageSize, searchName, searchType}) =>
     [searchType]: searchName,
   })
 
+  export const reqSearchDiscount = ({
+    pageNum,
+    pageSize,
+    searchName,
+    searchType,
+  }) =>
+    ajax(BASE + "/api1/manage/discount/search", {
+      pageNum,
+      pageSize,
+      [searchType]: searchName,
+    });
+
   export const reqSearchLesson = ({pageNum, pageSize, searchName, searchType}) => ajax(BASE + '/api1/manage/lesson/search', {
     pageNum,
     pageSize,
@@ -37,6 +49,14 @@ export const reqSearchArticle = ({pageNum, pageSize, searchName, searchType}) =>
   //發表/修改 文章 
   export const reqAddArticle = (article)=>ajax(BASE+'/api1/manage/article/'+(article._id?'update':'add'),article,'POST')
   
+export const reqAddDiscount = (discount) =>
+  ajax(
+    BASE + "/api1/manage/discount/" + (discount._id ? "update" : "add"),
+    discount,
+    "POST"
+  );
+
+
   export const reqAddLesson = (article)=>ajax(BASE+'/api1/manage/lesson/'+(article._id?'update':'add'),article,'POST')
 
 

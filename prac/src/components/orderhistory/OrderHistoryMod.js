@@ -4,38 +4,38 @@ import { CartState } from "../CartPage/CartContext";
 import noneBox from "./img/Box.png";
 import OrderHsitory from "./OrderHistory";
 
+
 const OrderHistoryMod = () => {
   const {
-    state: { cart, order },
+    state: { cart, order, history },
     dispatch,
   } = CartState();
 
   const State = {
     titles: [
       {
-        id: 2,
+        id: 1,
         title: "縮圖",
       },
       {
-        id: 3,
+        id: 2,
         title: "標題/作者",
       },
 
       {
-        id: 4,
-        title: "購買價格",
+        id: 3,
+        title: "原始價格",
       },
 
       {
-        id: 5,
-        title: "購買時間",
-      }
+        id: 4,
+        title: "購買金額",
+      },
     ],
   };
-
   return (
     <Fragment>
-      {cart.length > 0 ? (
+      {history.length > 0 ? (
         <Fragment>
           <table className="tOrder">
             <thead>
@@ -45,14 +45,14 @@ const OrderHistoryMod = () => {
                 })}
               </tr>
               <tr>
-                <td colSpan={6}>
+                <td colSpan={4}>
                   <hr />
                 </td>
               </tr>
             </thead>
-            <tbody className="dCartList">
-              {order.map((v) => (
-                <OrderHsitory value={v} key={v.id} />
+            <tbody className="dHistoryList">
+              {history.map((v) => (
+                <OrderHsitory value={v} key={v._id} />
               ))}
             </tbody>
           </table>

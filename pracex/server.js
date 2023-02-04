@@ -30,6 +30,9 @@ app.use("/collection", collectionsRouter);
 const orderRouter = require("./routers/order");
 app.use("/orderCourse", orderRouter);
 
+const historyRouter = require("./routers/history");
+app.use("/history", historyRouter);
+
 const fs = require("fs");
 
 // 通過mongoose連接數據庫

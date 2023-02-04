@@ -10,6 +10,7 @@ import instance from "../../api/axiosInstance";
 import { CartState } from "../CartPage/CartContext";
 import user from "../../utils/memoryUtils";
 import { getError } from "../CartPage/utils";
+import OrderHsitoryList from "./OrderHistoryList";
 
 const OrderHsitory = (props) => {
   const {
@@ -36,37 +37,39 @@ const OrderHsitory = (props) => {
     ((parseInt(date.getMinutes() / 5) * 5).toString().length == 2
       ? (parseInt(date.getMinutes() / 5) * 5).toString()
       : "0" + (parseInt(date.getMinutes() / 5) * 5).toString()) +
-    ":00";
+    ":" +
+    ((parseInt(date.getSeconds() / 5) * 5).toString().length == 2
+      ? (parseInt(date.getSeconds() / 5) * 5).toString()
+      : "0" + (parseInt(date.getSeconds() / 5) * 5).toString());
 
 
 
-    
   return (
     <Fragment>
-      <tr>
-        <td>
-          <img src={props.value.img} alt="" />
-        </td>
-        <td className="dCartitem">
-          <Link to={`/video/${props.value.title}`}>
-            <div className="dCartTiltle">{props.value.title}</div>
-          </Link>
-          <div className="dCartTeacher">{props.value.teacher}</div>
-        </td>
+      {props.value.packages.map((v) => {
+     
+          return (
+            <Fragment key={v._id}>
+              <tr>
+                <td colSpan={4} className="historyId">
+                  訂單編號:{v.id}
+                </td>
+              </tr>
+              <OrderHsitoryList val={v.products} />
 
-        <td className="dSpecailPrice">
-          NT${" "}
-          {Number(
-            parseFloat(props.value.shoppingPrice).toFixed(3)
-          ).toLocaleString()}
-        </td>
-        <td className="dHisTime">{DateFormatStr}</td>
-      </tr>
-      <tr>
-        <td colSpan={6}>
-          <hr />
-        </td>
-      </tr>
+              <tr className="totallistdata">
+                <td colSpan={2}>訂單時間:{DateFormatStr}</td>
+                <td colSpan={2} className="totalprice">
+                  總價格:NT$ {Math.round(v.amount).toLocaleString()}
+                </td>
+              </tr>
+              <tr>
+                <td colSpan={4} className="nodata"></td>
+              </tr>
+            </Fragment>
+          );
+        })
+      }
     </Fragment>
   );
 };

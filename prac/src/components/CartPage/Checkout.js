@@ -30,7 +30,7 @@ useEffect(() => {
       <div>
         <span className="sSubtotaltitle">小計</span>
         <span className="sSubtotal">
-          NT ${Number(Subtotal).toLocaleString()}
+          NT ${Math.round(Subtotal).toLocaleString()}
         </span>
       </div>
       <div className="sDiscount">
@@ -43,10 +43,11 @@ useEffect(() => {
           disabled={discount.length === 0 ? true : false}
         />
       </div>
-      <div className="dTotalPrice">NT$ {Number(Total).toLocaleString()}</div>
+      <div className="dTotalPrice">
+        NT$ {Math.round(Total).toLocaleString()}
+      </div>
       <Link to="/checkpage" className="aCheckorder">
         <button className="iorder">
-        
           <span>結帳</span>
         </button>
       </Link>

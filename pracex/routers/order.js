@@ -11,6 +11,7 @@ const { HmacSHA256 } = require("crypto-js");
 const Base64 = require("crypto-js/enc-base64");
 const HistoryModel = require("../models/HistoryModel");
 const CartModel = require("../models/CartModel");
+const PayResModel = require("../models/payResultModel");
 
 require("dotenv").config();
 
@@ -81,9 +82,8 @@ router.post("/updatediscount", (req, res) => {
               });
             }
           });
-          
         } else {
-       res.end();
+          res.end();
         }
       }
     }
@@ -105,7 +105,7 @@ router.post("/delete", (req, res) => {
 
 let order = {};
 let user = "";
-
+let payResult = {};
 router
   .post("/topay", async (req, res) => {
     try {
@@ -155,14 +155,17 @@ router
       // API 位址
       const url = `${LINEPAY_SITE}/${LINEPAY_VERSION}${uri}`;
       const linePayRes = await axios.post(url, linePayBody, { headers });
-
+        payResult = linePayRes?.data;
       // 請求成功...
       if (linePayRes?.data?.returnCode === "0000") {
         res.redirect(`http://localhost:3000/orderHistorypage`);
+        payResult = linePayRes?.data;
+       
       } else {
         res.status(400).send({
           message: linePayRes,
         });
+        payResult = linePayRes?.data;
       }
     } catch (error) {
       console.log(error);
@@ -192,6 +195,7 @@ function linePayBodyHeaders(uri, linepayBody) {
 
 router.post("/updateHistory", (req, res) => {
   let history = order;
+
   HistoryModel.updateMany(
     {
       user: user,
@@ -205,7 +209,7 @@ router.post("/updateHistory", (req, res) => {
     if (err) {
       res.status(500).send(err);
     } else {
-      // res.send(history);
+     res.end();
     }
   });
 });
@@ -226,7 +230,6 @@ router.post("/updateHistory", (req, res) => {
 
 router.post("/delcartData", (req, res) => {
   const { user } = req.body;
-  console.log(req.body);
   CartModel.deleteMany({
     user: user,
     isChecked: true,
@@ -238,6 +241,27 @@ router.post("/delcartData", (req, res) => {
       // res.send(history);
     }
   });
+});
+
+router.post("/payResultData", (req, res) => {
+ let payData = payResult;
+
+ PayResModel.updateMany(
+   {
+     user: user,
+     "info.orderId": order.orderId,
+   },
+   payData,
+   {
+     upsert: true,
+   }
+ ).exec((err, data) => {
+   if (err) {
+     res.status(500).send(err);
+   } else {
+     res.end();
+   }
+ });
 });
 
 module.exports = router;

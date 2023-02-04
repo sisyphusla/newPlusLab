@@ -79,6 +79,19 @@ const Context = ({ children }) => {
     discount();
   }, []);
 
+    useEffect(() => {
+      const history = async () => {
+        try {
+          const result = await instance.get("/history");
+          console.log(result.data);
+          dispatch({ type: "REFRESH_HISTORY", payload: result.data });
+        } catch (err) {
+          dispatch({ type: "FETCH_FAIL", payload: getError(err) });
+        }
+      };
+      history();
+    }, []);
+
   const [state, dispatch] = useReducer(cartReducer, {
     Courselist: [],
     cart: [],

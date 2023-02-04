@@ -10,6 +10,7 @@ const HistorySchema = new Schema(
     },
     orderId: { type: Number, default: 0 },
     amount: { type: Number, default: 0 },
+    payresult:{ type: String, default: "" },
     packages: [
       {
         id: { type: String, default: "" },

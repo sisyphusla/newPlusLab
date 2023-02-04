@@ -1,6 +1,5 @@
 import instance from "../../api/axiosInstance";
 
-
 export const cartReducer = (state, action) => {
   switch (action.type) {
     case "REFRESH_COURSE":
@@ -11,6 +10,8 @@ export const cartReducer = (state, action) => {
       return { ...state, collection: action.payload };
     case "REFRESH_DISCOUNT":
       return { ...state, discount: action.payload };
+    case "REFRESH_HISTORY":
+      return { ...state, history: action.payload };
     case "REFRESH_ORDER":
       return { ...state, order: action.payload };
     case "CREATE_REQUEST":
@@ -64,7 +65,7 @@ export const cartReducer = (state, action) => {
     case "UPDATE_TO_ORDER":
       return {
         ...state,
-        order: [ ...action.payload ],
+        order: [...action.payload],
       };
 
     default:

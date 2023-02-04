@@ -51,10 +51,12 @@ body {
     flex-direction: column;
     width: 66vw;
     margin: 0 auto;
+    height:400px ;
 
     hr {
       color: $primaryLightest;
       width: 100%;
+      margin: 10px 0px;
     }
     .tabletitle {
       color: $primaryLightestest;
@@ -113,6 +115,7 @@ body {
       /* 網頁捲軸【滑過時】把手的顏色 */
 
       tr {
+  
         > td:nth-child(1) {
           position: relative;
           width: 8.34%;
