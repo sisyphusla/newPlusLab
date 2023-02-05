@@ -3185,7 +3185,6 @@ body {
   position: absolute;
   bottom: 0;
   width: 100%;
-  transform: translateY(100%) translateY(-5px);
   transition: all 0.3s;
   flex-wrap: wrap;
   background: rgba(0, 0, 0, 0.1);
@@ -3201,7 +3200,7 @@ body {
   cursor: ew-resize;
 }
 .allV .videoContainer .videoControlBar .progress .progressFilled {
-  background: #e0e03b;
+  background: #8895ff;
   flex: 0;
 }
 .allV .videoContainer .videoControlBar .videoBtnContainer {
@@ -3236,7 +3235,7 @@ body {
   margin: 0 1rem;
 }
 .allV .videoContainer .videoControlBar .voiceBtn .voiceBar .voiceFill {
-  background: #e0e03b;
+  background: #8895ff;
   flex: 0;
   flex-basis: 100%;
 }
@@ -3273,6 +3272,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  line-height: normal;
 }
 .allV .videoContainer .videoControlBar .videoSpeed .videoSpeedList li:hover {
   background-color: #9d9faa;
@@ -3284,7 +3284,7 @@ body {
   display: flex;
   align-items: stretch;
   flex-direction: column;
-  background-color: #6f717b;
+  background-color: #2f3137;
   color: #ffffff;
   width: 21.8%;
   font-size: 22px;
@@ -3325,6 +3325,8 @@ body {
 }
 .allV .classListContainer .classListBody ul {
   list-style-type: none;
+  margin-bottom: 0%;
+  background-color: #6f717b;
 }
 .allV .classListContainer .classListBody ul li {
   height: 89px;
@@ -3398,7 +3400,6 @@ body {
 .infoContainer .infoBtn {
   margin-top: 5vh;
   border-bottom: solid #6f717b;
-  width: 74%;
   display: flex;
   text-decoration: none;
 }
@@ -3411,7 +3412,7 @@ body {
 }
 .infoContainer .infoBtn button {
   display: flex;
-  color: #003dcb;
+  color: #8895ff;
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -3419,8 +3420,12 @@ body {
 .infoContainer .infoBtn button span {
   font-size: 32px;
 }
+.infoContainer .infoBtn button:hover {
+  color: #4967ff;
+}
 .infoContainer .infoBtn button:focus {
   box-shadow: 0 3px 0 #e23965;
+  color: #4967ff;
 }
 .infoContainer .introContainer {
   width: 74%;
@@ -3436,9 +3441,6 @@ body {
 }
 .infoContainer .introContainer .introText pre {
   white-space: pre-wrap;
-}
-.infoContainer .noteContainer {
-  width: 74%;
 }
 .infoContainer .noteContainer .noteBox {
   width: 76%;
@@ -3457,6 +3459,7 @@ body {
   justify-content: center;
   padding: 5px 20px;
   font-weight: 600;
+  color: black;
 }
 .infoContainer .noteContainer .noteBox .textArea {
   width: 100%;
@@ -3535,7 +3538,7 @@ body {
 .infoContainer .noteContainer .noteList .noteBox .noteContent {
   padding: 15px;
   width: 100%;
-  background-color: #9d9faa;
+  background-color: #6f717b;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -3546,12 +3549,9 @@ body {
   gap: 10px;
 }
 .infoContainer .noteContainer .noteList .noteBox .noteContent .noteContentDel button {
-  background-color: #9d9faa;
+  background-color: #6f717b;
   border: none;
   cursor: pointer;
-}
-.infoContainer .commentContainer {
-  width: 74%;
 }
 .infoContainer .commentContainer .commentRating {
   width: 76%;
@@ -3613,7 +3613,7 @@ body {
 .infoContainer .commentContainer .commentList .commentBox .commentContent {
   padding: 15px;
   width: 100%;
-  background-color: #9d9faa;
+  background-color: #6f717b;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -3624,7 +3624,7 @@ body {
   gap: 10px;
 }
 .infoContainer .commentContainer .commentList .commentBox .commentContent .commentContentDel button {
-  background-color: #9d9faa;
+  background-color: transparent;
   border: none;
   cursor: pointer;
 }

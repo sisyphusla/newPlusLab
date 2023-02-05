@@ -42,7 +42,7 @@
         position: absolute;
         bottom: 0;
         width: 100%;
-        transform: translateY(100%) translateY(-5px);
+        // transform: translateY(100%) translateY(-5px);
         transition: all .3s;
         flex-wrap: wrap;
         background: rgba(0,0,0,0.1);
@@ -57,7 +57,7 @@
           cursor: ew-resize;
           .progressFilled {
             // width: 50%;
-            background: $yellow;
+            background: $blueLighter;
             flex: 0;
             // flex-basis: 0%;
           }
@@ -93,7 +93,7 @@
             background: rgba(255, 255, 255, 0.5);
             margin: 0 1rem;
             .voiceFill{
-            background: $yellow;
+            background: $blueLighter;
             flex: 0;
             flex-basis: 100%;
             }
@@ -123,10 +123,8 @@
             display: none;
             ul{
               list-style-type: none;
-              
               font-size: 1.3rem;
               // width: fit-content;
-
             }
             li{
               padding: 0.2rem 0;
@@ -135,6 +133,7 @@
               flex-direction: column;
               justify-content: center;
               align-items: center; 
+              line-height:normal;
               &:hover{
                 background-color: $primaryLightestest;
               }
@@ -151,7 +150,7 @@
       display: flex;
       align-items: stretch;
       flex-direction: column;
-      background-color: $primaryLightest;
+      background-color: $primaryLighter;
       color: $white;
       width: 21.8%;
       font-size: 22px;
@@ -174,6 +173,7 @@
             display: flex;
             outline: 1px solid $primaryLightestest;
             height: 89px;
+            // background-color:$primaryLighter;
             .expandSvg{
               width: 19.22%;
               display: flex;
@@ -191,7 +191,8 @@
         }
         ul{
           list-style-type: none;
-          
+          margin-bottom: 0%;
+          background-color: $primaryLightest;
           li{
             height: 89px;
             padding-left: 19.22%;
@@ -285,7 +286,7 @@
     .infoBtn {
       margin-top: 5vh;
       border-bottom: solid $primaryLightest;
-      width: 74%;
+      // width: 74%;
       display: flex;
       text-decoration:none ;
       
@@ -299,7 +300,7 @@
       
       button {
         display: flex;
-        color: $blueDarker;
+        color: $blueLighter;
         background-color: transparent;
         border: none;
         cursor: pointer;
@@ -307,8 +308,12 @@
           font-size: 32px;
         }
       }
+      button:hover{
+        color: $blue;
+      }
       button:focus {
         box-shadow: 0 3px 0 $red;
+        color: $blue;
       }
     }
 
@@ -330,7 +335,7 @@
       }
     }
     .noteContainer{
-      width: 74%;
+      // width: 74%;
       .noteBox{
         width: 76%;
         margin: 5vh 11.3%;
@@ -347,6 +352,7 @@
           justify-content: center;
           padding: 5px 20px;
           font-weight: 600;
+          color: black;
 
         }
         .textArea{
@@ -426,7 +432,7 @@
           .noteContent{
             padding: 15px;
             width: 100%;
-            background-color: $primaryLightestest;
+            background-color: $primaryLightest;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -435,7 +441,7 @@
               align-self: flex-end;
               gap: 10px;
               button{
-                background-color: $primaryLightestest;
+                background-color: $primaryLightest;
                 border: none;
                 cursor: pointer;
               }
@@ -445,7 +451,7 @@
       }
     }
     .commentContainer{
-      width: 74%;
+      // width: 74%;
       .commentRating{
         width: 76%;
         margin: 5vh 11.3%;
@@ -504,7 +510,7 @@
           .commentContent{
             padding: 15px;
             width: 100%;
-            background-color: $primaryLightestest;
+            background-color: $primaryLightest;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -513,7 +519,7 @@
               align-self: flex-end;
               gap: 10px;
               button{
-                background-color: $primaryLightestest;
+                background-color: transparent;
                 border: none;
                 cursor: pointer;
               }
