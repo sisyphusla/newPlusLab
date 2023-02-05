@@ -13,11 +13,13 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
-    console.log("Connect to Mongo Altas");
+    console.log("連接Mongo雲端成功");
   })
   .catch((e) => {
     console.log(e);
   });
+
+
 
 app.use(cors());
 // app.use(bodyParser.json());
@@ -28,5 +30,6 @@ app.use(bodyParser.urlencoded({ extended: true, limit: '500mb' }));
 app.use('/', require('./routes/video.js'));
 app.use('/', require('./routes/videocomment.js'));
 app.use('/', require('./routes/courseadd.js'));
+app.use('/', require('./routes/coursevideo.js'));
 
 app.listen(8800);
