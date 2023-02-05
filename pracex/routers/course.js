@@ -5,31 +5,41 @@ const router = express.Router();
 const CourseModel = require("../models/CourseModel");
 
 
-router.get("/popCourses", (req, res) => {
-  CourseModel.find({ star: 4 }, (err, data) => {
-    if (err) {
-      res.status(500).send(err);
-    } else {
-      res.send(data);
-    }
-  });
-});
 router.get("/recentClass", (req, res) => {
-  CourseModel.find({}, (err, data) => {
-    if (err) {
-      res.status(500).send(err);
-    } else {
-      res.send(data);
-    }
-  });
+  CourseModel.find({})
+    .sort({ timestamps: -1 })
+    .limit(20)
+    .exec((err, data) => {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.send(data);
+      }
+    });
 });
 
 router.get("/forYouCourse", (req, res) => {
-  CourseModel.find({}, (err, data) => {
+  CourseModel.find({})
+    .sort({ timestamps: -1 })
+    .limit(6)
+    .exec((err, data) => {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.send(data);
+      }
+    });
+});
+
+router.get("/popCourses", (req, res) => {
+  CourseModel.find({
+    $and: [{ star: { $lte: 5 } }, { star: { $gte: 4 } }],
+  }).exec((err, data) => {
     if (err) {
       res.status(500).send(err);
     } else {
       res.send(data);
+
     }
   });
 });

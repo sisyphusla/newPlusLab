@@ -14,6 +14,7 @@ import Question from '../question'
 import Article from '../article'
 import Member from '../member'
 import Role from '../role'
+import Dicount from '../discount';
 
 const {Footer, Sider, Content } = Layout;
 
@@ -27,29 +28,40 @@ export default class Admin extends Component {
     }
     
     return (
-      <Layout style={{minHeight:'100%'}}>
+      <Layout style={{ minHeight: "100%" }}>
         <Sider>
-          <LeftNav/>
+          <LeftNav />
         </Sider>
-      
-      <Layout>
-        <Header>Header</Header>
-        <Content style={{margin:20,backgroundColor:'white'}}>
-          <Switch>
-            <Route path='/admin/home' component={Home}/>
-            <Route path='/admin/lesson' component={Lesson}/>
-            <Route path='/admin/mylesson' component={MyLesson}/>
-            <Route path='/admin/question' component={Question}/>
-            <Route path='/admin/article' component={Article}/>
-            <Route path='/admin/myarticle' component={MyArticle}/>
-            <Route path='/admin/role' component={Role}/>
-            <Route path='/admin/member' component={Member}/>
-            <Redirect to='/admin/home' />
-          </Switch>
-        </Content>
-        <div  style={{textAlign : 'center ',color:'gray',height:50,lineHeight:'50px',fontSize:10}}>CopyRight&copy;股票實驗室</div>
+
+        <Layout>
+          <Header>Header</Header>
+          <Content style={{ margin: 20, backgroundColor: "white" }}>
+            <Switch>
+              <Route path="/admin/home" component={Home} />
+              <Route path="/admin/lesson" component={Lesson} />
+              <Route path="/admin/mylesson" component={MyLesson} />
+              <Route path="/admin/question" component={Question} />
+              <Route path="/admin/article" component={Article} />
+              <Route path="/admin/discount" component={Dicount} />
+              <Route path="/admin/myarticle" component={MyArticle} />
+              <Route path="/admin/role" component={Role} />
+              <Route path="/admin/member" component={Member} />
+              <Redirect to="/admin/home" />
+            </Switch>
+          </Content>
+          <div
+            style={{
+              textAlign: "center ",
+              color: "gray",
+              height: 50,
+              lineHeight: "50px",
+              fontSize: 10,
+            }}
+          >
+            CopyRight&copy;股票實驗室
+          </div>
+        </Layout>
       </Layout>
-    </Layout>
-    )
+    );
   }
 }

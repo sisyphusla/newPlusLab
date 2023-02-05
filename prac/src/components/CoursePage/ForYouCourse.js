@@ -6,67 +6,13 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import axios from "axios";
+import instance from "../../api/axiosInstance";
+import { CartState } from "../CartPage/CartContext";
+import { getError } from "../CartPage/utils";
+import user from "../../utils/memoryUtils";
 
 const ForYouCourse = (props) => {
-  const State = {
-    ToYou: [
-      {
-        id: 1,
-        img: "https://picsum.photos/500/300",
-        url: "https://picsum.photos/500/300",
-        title: "新手必學的3件事 - 進場點、停損點、停利點",
-        special: 3200,
-        text: " 一堂能讓各種交易風格都能更強大的衝刺課程！夠短，夠直接，能兼容在不同投資思維之中，能兼容在不同投資思維之中",
-        star: 4,
-        ratecount: 41,
-        students: 752,
-        videLength: 2.5,
-      },
-      {
-        id: 2,
-        img: "https://picsum.photos/500/300",
-        url: "https://picsum.photos/500/300",
-        title: "新手必學的3件事 - 進場點、停損點、停利點",
-        special: 3200,
-        text: " 一堂能讓各種交易風格都能更強大的衝刺課程！夠短，夠直接，能兼容在不同投資思維之中，能兼容在不同投資思維之中",
-        star: 4,
-        ratecount: 41,
-        students: 752,
-        videLength: 2.5,
-      },
-      {
-        id: 3,
-        img: "https://picsum.photos/500/300",
-        url: "https://picsum.photos/500/300",
-        title: "新手必學的3件事 - 進場點、停損點、停利點",
-        special: 3200,
-        " text":
-          " 一堂能讓各種交易風格都能更強大的衝刺課程！夠短，夠直接，能兼容在不同投資思維之中，能兼容在不同投資思維之中",
-        star: 3,
-        ratecount: 41,
-        students: 752,
-        videLength: 2.5,
-      },
-      {
-        id: 4,
-        img: "https://picsum.photos/500/300",
-        url: "https://picsum.photos/500/300",
-        title: "新手必學的3件事 - 進場點、停損點、停利點",
-        special: 3200,
-        text: " 一堂能讓各種交易風格都能更強大的衝刺課程！夠短，夠直接，能兼容在不同投資思維之中，能兼容在不同投資思維之中",
-        star: 5,
-        ratecount: 41,
-        students: 752,
-        videLength: 2.5,
-      },
-    ],
-    seach: [
-      {
-        title: "量價交易精髓：打造股票、期貨完美交易策略",
-        time: "2023-01-02 15:15:30",
-      },
-    ],
-  };
+  
 
    
 const [ForYouData, setForYouData] = useState([]);
@@ -83,13 +29,16 @@ const [ForYouData, setForYouData] = useState([]);
     dots: true,
   
   };
-
+  const {
+    state: { cart, collection },
+    dispatch,
+  } = CartState();
 
   useEffect(() => {
     let ForYouCoursreData = async () => {
       try {
-        await axios
-          .get("http://localhost:5000/forYouCourse")
+        await instance
+          .get("/course/forYouCourse")
           .then((res) => setForYouData(res.data));
       } catch (error) {
         console.error(error);
@@ -97,16 +46,39 @@ const [ForYouData, setForYouData] = useState([]);
     };
     ForYouCoursreData();
   }, []);
-
+ const handleAddToCart = (e) => {
+  
+   const FetchData = async () => {
+     try {
+       const result = await instance.post("/cart/cart", {
+         user: user.user._id,
+         id: props.value.id,
+         Course: props.value._id,
+         img: props.value.img,
+         url: props.value.url,
+         title: props.value.title,
+         price: props.value.price,
+         shoppingPrice: props.value.special,
+         teacher: props.value.teacher,
+         isChecked: false,
+       });
+       dispatch({ type: "ADD_TO_CART", payload: result.data });
+     } catch (err) {
+       dispatch({ type: "FETCH_FAIL", payload: getError(err) });
+     }
+   };
+   FetchData();
+   e.preventDefault();
+ };
 
 
   return (
     <div className="divToYou">
-      <div className="dBecause">因為你曾經瀏覽了「{State.seach[0].title}」</div>
+      {/* <div className="dBecause">因為你曾經瀏覽了「{State.seach[0].title}」</div> */}
       <Slider {...settings}>
         {ForYouData.map((t) => {
           return (
-            <Link to="/" key={t.id}>
+            <Link to={`/video/${t.title}`} key={t.id}>
               <div className="divItems">
                 <div className="imgClass">
                   <img src={t.img} />
@@ -164,8 +136,19 @@ const [ForYouData, setForYouData] = useState([]);
                     <p>{t.text}</p>
                   </div>
                   <div className="dClassPrice">
-                    <span>限時專屬價 NT$ {t.special} </span>
-                    <button className="dClassPriceBtn">立即購買</button>
+                    <span>
+                      限時專屬價 NT${" "}
+                      {Number(
+                        parseFloat(t.special).toFixed(3)
+                      ).toLocaleString()}{" "}
+                    </span>
+
+                    <button
+                      className="dClassPriceBtn"
+                      onClick={handleAddToCart}
+                    >
+                      加入購物車
+                    </button>
                   </div>
                 </div>
               </div>

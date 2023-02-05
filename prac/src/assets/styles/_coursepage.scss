@@ -162,7 +162,7 @@ body {
   }
   ul {
     position: relative;
-    top:50%;
+    top: 50%;
     height: 100%;
     list-style-type: none;
     display: flex;
@@ -172,7 +172,6 @@ body {
     li {
       position: absolute;
       top: 0%;
-     
 
       a {
         align-self: center;
@@ -232,8 +231,7 @@ body {
       position: absolute;
       transform: translateY(-60px);
       transition: 0.2s;
-      
-      ;}
+    }
   }
   ul li a span {
     transform: translateY(500px);
@@ -310,7 +308,6 @@ ul li a button {
     opacity: 0.35;
     transition: all 0.8s;
     top: -10px;
-    
   }
 }
 
@@ -319,7 +316,7 @@ ul li a button {
 }
 .divToYou {
   background-color: $primary;
-  height: 500px;
+  height: 420px;
   .slick-dots {
     bottom: -80px;
 
@@ -386,12 +383,12 @@ ul li a button {
   .dClasstext {
     position: relative;
     padding: 30px;
-
+    width: 70%;
     color: $primaryLightestest;
-  
+
     .score {
       font-size: 22px;
-    
+
       span {
         padding: 0 5px;
         vertical-align: baseline;
@@ -407,10 +404,9 @@ ul li a button {
         }
       }
       .sStar {
-      color: $redDarker;
-      font-size: 20px;
-    
-    }
+        color: $redDarker;
+        font-size: 20px;
+      }
       .starspan {
         padding: 1px;
         vertical-align: baseline;
@@ -428,7 +424,7 @@ ul li a button {
     }
     p {
       position: relative;
-      top:-20px;
+      top: -20px;
       padding: 10px;
     }
     .dClassPrice {
@@ -443,14 +439,14 @@ ul li a button {
         weight: 600;
         size: 22px;
       }
-     .dClassPriceBtn {
-      position: relative;
-      line-height: initial;
+      .dClassPriceBtn {
+        position: relative;
+        line-height: initial;
         transition: all 0.2s ease-out;
         padding: 0px 15px;
         display: flexbox;
-       
-        width: 100px;
+
+        width: 120px;
         height: 40px;
         background-color: $red;
         color: $white;
@@ -526,13 +522,11 @@ ul li a button {
   margin: 10px;
 
   background: $primary;
-  label{
+  label {
     position: relative;
     margin: 0 auto;
     color: $white;
     margin: 2px;
- 
-
   }
   .ulAllCourseContainer {
     display: flex;
@@ -545,7 +539,6 @@ ul li a button {
     height: calc(400 * 3);
     margin: 0 auto;
     list-style-type: none;
-    
   }
 }
 .dCard {
@@ -615,10 +608,10 @@ ul li a button {
     font-size: 25px;
     z-index: 2;
     color: $red;
-    &:hover{
-      svg{
-        path{
-          fill:$redDarker
+    &:hover {
+      svg {
+        path {
+          fill: $redDarker;
         }
       }
     }
@@ -631,9 +624,15 @@ ul li a button {
     padding: 5px;
     color: $red;
     z-index: 2;
-    &:hover{
-      path:$red
+    &:hover {
+      svg {
+        fill: $red;
+      }
     }
+  }
+  .dCardPersonCount{
+    position: absolute;
+    bottom: 30px;
   }
   .dCardTeacher {
     color: $primary;
@@ -645,6 +644,8 @@ ul li a button {
     /* identical to box height, or 206% */
 
     letter-spacing: 0.05em;
+     position: absolute;
+    bottom: 60px;
   }
   .dCardtext {
     padding: 10px;
@@ -656,8 +657,9 @@ ul li a button {
     height: 200px;
   }
   .dCardPrice {
-    display:flex;
-    position: relative;
+    display: flex;
+    position: absolute;
+    
     font: {
       weight: 600;
       size: 22px;
@@ -667,14 +669,17 @@ ul li a button {
     letter-spacing: 0.1em;
     color: $red;
     float: right;
-    position: relative;
-    top: -40px;
+    right: 20px;
+    bottom: 10px;
   }
-.dCardClock{
-  align-items: baseline;
+  .dCardClock {
+    align-items: baseline;
+    position: absolute;
+    bottom: 0px;
+  }
 }
-}
-.dCardMore,.dCardLast {
+.dCardMore,
+.dCardLast {
   width: 100%;
   height: 100px;
   padding: 10px 0;
@@ -698,11 +703,11 @@ ul li a button {
     }
   }
 }
-.dCardLast{
+.dCardLast {
   button {
     background-color: $primaryLightestest;
     color: $primary;
-  &:hover {
+    &:hover {
       background-color: $primaryLighter;
       color: $white;
     }
