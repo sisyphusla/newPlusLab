@@ -8,7 +8,7 @@ require('dotenv').config()
 
 
 mongoose
-  .connect(process.env.DB_CONNECTION, {
+  .connect("mongodb://127.0.0.1:27017/server_db1", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })

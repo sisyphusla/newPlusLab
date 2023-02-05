@@ -1008,10 +1008,11 @@ body {
   width: 17.27%;
 }
 .dCartContainer .cartcompos .dCartList tr > td:nth-child(2) img {
-  width: fit-contentf;
+  width: 230px;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  margin: 10px 0;
 }
 .dCartContainer .cartcompos .dCartList tr > td:nth-child(3) {
   position: relative;
@@ -1422,17 +1423,18 @@ body {
   width: 17.27%;
 }
 .dCheckContainer .checkcompos .dCheckList tr > td:nth-child(1) img {
-  width: fit-contentf;
+  width: 230px;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  margin: 10px 0;
 }
 .dCheckContainer .checkcompos .dCheckList tr > td:nth-child(2) {
   position: relative;
   display: flex;
   flex-direction: column;
   padding: 14px 15px;
-  margin: 15px 0px;
+  margin: 30px 0px;
 }
 .dCheckContainer .checkcompos .dCheckList tr > td:nth-child(2) .dCheckTiltle {
   width: 100%;
@@ -1694,24 +1696,23 @@ body {
 }
 .dOrderHistoryContainer .OrderHistorycompos .tabletitle > th:nth-child(1) {
   position: relative;
-  width: 17.27%;
+  width: 16.92%;
 }
 .dOrderHistoryContainer .OrderHistorycompos .tabletitle > th:nth-child(2) {
   position: relative;
-  width: 49.63%;
+  width: 48.6%;
 }
-.dOrderHistoryContainer .OrderHistorycompos .tabletitle > th:nth-child(4),
 .dOrderHistoryContainer .OrderHistorycompos .tabletitle > th:nth-child(3) {
   position: relative;
-  width: 16.55%;
+  width: 16.2%;
 }
-.dOrderHistoryContainer .OrderHistorycompos .tabletitle > th:nth-child(6) {
+.dOrderHistoryContainer .OrderHistorycompos .tabletitle > th:nth-child(4) {
   position: relative;
-  width: 9.12%;
+  width: 16.3%;
 }
 .dOrderHistoryContainer .OrderHistorycompos .dHistoryList {
   display: block;
-  flex-direction: column;
+  height: 600px;
   width: 100%;
   font-weight: 700;
   font-size: 20px;
@@ -1719,7 +1720,22 @@ body {
   letter-spacing: 0.1em;
   color: #9d9faa;
 }
+.dOrderHistoryContainer .OrderHistorycompos .dHistoryList::-webkit-scrollbar {
+  width: 5px;
+}
+.dOrderHistoryContainer .OrderHistorycompos .dHistoryList::-webkit-scrollbar-track {
+  background: transparent;
+  width: 5px;
+}
+.dOrderHistoryContainer .OrderHistorycompos .dHistoryList::-webkit-scrollbar-thumb {
+  background: #4967ff;
+  border-radius: 5px;
+}
+.dOrderHistoryContainer .OrderHistorycompos .dHistoryList::-webkit-scrollbar-thumb:hover {
+  background: #003dcb;
+}
 .dOrderHistoryContainer .OrderHistorycompos .dHistoryList .historyId {
+  width: 100%;
   height: 40px;
   background-color: #4967ff;
   padding: 0 15px;
@@ -1736,13 +1752,11 @@ body {
   width: 17.27%;
 }
 .dOrderHistoryContainer .OrderHistorycompos .dHistoryList .historylist > td:nth-child(1) img {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
+  width: 230px;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-  margin: 15px 0;
+  margin: 10px 0;
 }
 .dOrderHistoryContainer .OrderHistorycompos .dHistoryList .historylist > td:nth-child(2) {
   position: relative;
@@ -1811,8 +1825,12 @@ body {
   fill: #aa003b;
 }
 
+.dHistoryList {
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
 .dHistoryList .dHistoryOldPrice {
-  width: 150px;
   text-align: center;
   padding: 40px 5px;
   font-weight: 600;
