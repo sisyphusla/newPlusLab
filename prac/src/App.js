@@ -13,6 +13,7 @@ import Checkpage from "./pages/checkpage/checkpage";
 import Profile from './pages/profile/profile'
 import './assets/styles/style.css'
 import Context from './components/CartPage/CartContext'
+import MyCoursepage from './pages/mycourse/mycoursepage'
 
 
 export default class App extends Component {
@@ -27,6 +28,7 @@ export default class App extends Component {
             <Route path="/register" component={Register} />
             <Route path="/video/:id" component={VideoPage} />
             <Route path="/Coursepage" component={Coursepage} />
+            <Route path="/mycourse" component={MyCoursepage} />
             <Route path="/orderHistorypage" component={OrderHistoryPage} />
             <Route path="/Cartpage" component={Cartpage} />
             <Route path="/checkpage" component={Checkpage} />

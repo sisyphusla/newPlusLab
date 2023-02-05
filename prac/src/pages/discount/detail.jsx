@@ -26,11 +26,11 @@ export default class DicountDetail extends Component {
       <Card title={title} className="discount-detail">
         <List itemLayout="vertical">
           <Item>
-            <span className="left">文章標題:</span>
+            <span className="left">優惠劵名稱:</span>
             <span>{name}</span>
           </Item>
           <Item>
-            <span className="left">文章作者:</span>
+            <span className="left">發放者:</span>
             <span>{author}</span>
           </Item>
           <Item>

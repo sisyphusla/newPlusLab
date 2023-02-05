@@ -17,7 +17,7 @@ const Option = Select.Option;
 export default class DiscountHome extends Component {
   state = {
     total: 0,
-    article: [],
+    discount: [],
     loading: false,
     searchName: "", //搜索的關鍵字
     searchType: "discountName", //根據什麼來搜索
@@ -60,7 +60,7 @@ export default class DiscountHome extends Component {
                   });
                 }}
               >
-                {found ? element : element1}詳情
+                {found ? element : element1}詳細資訊
               </LinkButton>
               <LinkButton
                 onClick={() =>
@@ -126,8 +126,8 @@ export default class DiscountHome extends Component {
             this.setState({ searchType: value });
           }}
         >
-          <Option value="productName">按名稱搜索</Option>
-          <Option value="productAuth">按作者搜索</Option>
+          <Option value="discountName">按名稱</Option>
+          <Option value="discountAuth">按作者</Option>
         </Select>
         <Input
           placeholder="關鍵字"
@@ -138,7 +138,7 @@ export default class DiscountHome extends Component {
           }}
         />
         <Button type="primary" onClick={() => this.getDiscount(1)}>
-          搜索
+          搜尋
         </Button>
       </span>
     );
@@ -150,7 +150,7 @@ export default class DiscountHome extends Component {
         }}
       >
         <Icon type="plus" />
-        發表文章
+        增加優惠券
       </Button>
     );
     return (

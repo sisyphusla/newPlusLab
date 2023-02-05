@@ -62,8 +62,6 @@ const [ForYouData, setForYouData] = useState([]);
          teacher: props.value.teacher,
          isChecked: false,
        });
-       // .get("/cart/cart");
-
        dispatch({ type: "ADD_TO_CART", payload: result.data });
      } catch (err) {
        dispatch({ type: "FETCH_FAIL", payload: getError(err) });

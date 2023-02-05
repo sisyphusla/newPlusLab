@@ -171,7 +171,7 @@ const CheckOrder = () => {
             className="icheckDiscountCode"
             type="text"
             disabled={true}
-            value={order[0].discountCode}
+            value={order.length > 0 ? order[0].discountCode : ""}
           />
         </div>
         <div className="dCheckTotalPrice">

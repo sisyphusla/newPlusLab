@@ -7,6 +7,9 @@ import user from "../../utils/memoryUtils";
 import DiscountBar from "./discountBar";
 import Checkpage from "../../pages/checkpage/checkpage";
 import linePay from "./img/linepay.png";
+
+
+
 const Checkout = () => {
 
   const {

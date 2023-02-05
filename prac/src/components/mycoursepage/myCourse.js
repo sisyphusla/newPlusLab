@@ -7,20 +7,14 @@ import React, {
 } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-
-import FilterBox from "./FilterBox";
-import LoadigBox from "./LoadingBox";
-import MessegeBox from "./MessageBox";
-import SelectCourseChild from "./SelectCourseChild";
 import { CartState } from "../CartPage/CartContext";
-import SelectCoursemod from "./SelectCoursemod";
-import  instance  from "../../api/axiosInstance";
-// import data from "./data";
+import instance from "../../api/axiosInstance";
+import MyCoursemod from "./myCoursemod";
 
-const SelectCourse = () => {
+const MyCourse = () => {
   const {
     state: { cart, Courselist },
-    dispatch
+    dispatch,
   } = CartState();
   const [list, setList] = useState([]); // 全部數據
   const [page, setPage] = useState(1); //  第一次展示 第一頁數據
@@ -38,7 +32,6 @@ const SelectCourse = () => {
     CoursreData();
   }, []);
 
-
   const getNextPage = () => {
     setPage((preState) => preState + 1);
   };
@@ -47,18 +40,9 @@ const SelectCourse = () => {
   return (
     <Fragment>
       <div className="divAllCourse">
-        {/* <FilterBox /> */}
         <ul className="ulAllCourseContainer">
-          {/* {
-           loading ? (
-             <LoadigBox />
-           ) : error ? (
-             <MessegeBox />
-           ) : (
-            )
-           } */}
           {list.length !== 0 ? (
-            <SelectCoursemod
+            <MyCoursemod
               data={list.slice(0, page * 12)}
               handleNextPage={getNextPage}
               curPage={page}
@@ -86,12 +70,7 @@ const SelectCourse = () => {
           </button>
         </div>
       ) : (
-        <div className="dCardLast">
-          <button>課程已達最後分頁</button>
-        </div>
-      )}
-    </Fragment>
-  );
+        <div className="dCardLast"> <button>課程已達最後分頁</button></div>)}</Fragment>);
 };
 
-export default SelectCourse;
+export default MyCourse;

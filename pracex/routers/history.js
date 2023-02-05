@@ -4,8 +4,9 @@ const fs = require("fs");
 const router = express.Router();
 const HistoryModel = require("../models/HistoryModel");
 
-router.get("/", (req, res) => {
-  HistoryModel.find({})
+router.post("/", (req, res) => {
+  user=req.body.user
+  HistoryModel.find({user:user})
     .populate("packages.products.id")
     .sort({ "packages.id": -1 })
     .exec((err, data) => {
