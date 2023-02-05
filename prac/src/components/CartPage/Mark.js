@@ -24,14 +24,14 @@ const Mark = (props) => {
     setSaturate(false);
   };
 
-
+console.log(props)
   const handleAddToCart = (e) => {
     const FetchData = async () => {
       try {
         const result = await instance.post("/cart/cart", {
           user: user.user._id,
           id: props.value.id,
-          Course: props.value._id,
+          Course: props.value.Course,
           img: props.value.img,
           url: props.value.url,
           title: props.value.title,

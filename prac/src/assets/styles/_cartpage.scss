@@ -51,7 +51,7 @@ body {
     flex-direction: column;
     width: 66vw;
     margin: 0 auto;
-    height:400px ;
+    height: 400px;
 
     hr {
       color: $primaryLightest;
@@ -115,7 +115,6 @@ body {
       /* 網頁捲軸【滑過時】把手的顏色 */
 
       tr {
-  
         > td:nth-child(1) {
           position: relative;
           width: 8.34%;
@@ -129,9 +128,10 @@ body {
           position: relative;
           width: 17.27%;
           img {
-            width: fit-contentf;
+            width: 230px;
             height: 100%;
             object-fit: cover;
+            margin: 10px 0;
           }
         }
         > td:nth-child(3) {
@@ -139,9 +139,11 @@ body {
           //  width: 34.13% ;
           display: flex;
           flex-direction: column;
-          padding: 14px 15px;
+             padding: 14px 15px;
+          
           .dCartTiltle {
             width: 100%;
+        
             font: {
               weight: 700;
               size: 20px;
@@ -306,7 +308,7 @@ body {
         position: relative;
       }
       .iCodeSubmit {
-        position:relative;
+        position: relative;
         right: 25px;
         width: 70px;
         height: 37px;
@@ -394,21 +396,19 @@ body {
     letter-spacing: 0.15em;
     color: $white;
     margin: 5px 45px;
-    display:inline-flex;
+    display: inline-flex;
     justify-content: center;
-   
+
     &:hover {
       background-color: $blueDarker;
     }
-
   }
-  .notice{
+  .notice {
     position: absolute;
     bottom: 10px;
     width: 100%;
-    text-align:center;
+    text-align: center;
     color: $blue;
-    
   }
 }
 
