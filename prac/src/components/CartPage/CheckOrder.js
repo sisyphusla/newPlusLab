@@ -99,43 +99,59 @@ const CheckOrder = () => {
     const fetchData = async () => {
       try {
         const result = await instance.post(`/orderCourse/updateHistory`);
-        if (order.discountCode !== undefined) {
           try {
             const result = await instance.post(
               `/orderCourse/deletediecountitem`,
               {
                 user: user.user._id,
-                discountCodes: order[0].discountCode,
+                discountCode: order[0].discountCode,
               }
             );
           } catch (err) {
             dispatch({ type: "FETCH_FAIL", payload: getError(err) });
-          }
-        }
+          };      
+         
       } catch (err) {
         dispatch({ type: "FETCH_FAIL", payload: getError(err) });
       }
     };
     fetchData();
-     const payData = async () => {
+    const delCartItems = async () => {
        try {
-         const result = await instance.post(`/orderCourse/payResultData`);
-       
+         const result = await instance.post(`/orderCourse/deletecartitem`, {
+           user: user.user._id,
+         });
+       console.log(result);
        } catch (err) {
          dispatch({ type: "FETCH_FAIL", payload: getError(err) });
        }
      };
-     payData();
-// const delcartData = async () => {
-//   try {
-//     const result = await instance.get(`/orderCourse/delcartData`, {
-//       user: user.user._id,
-//     });
-//   } catch (err) {
-//     dispatch({ type: "FETCH_FAIL", payload: getError(err) });
-//   }
-// };
-// delcartData();
+     delCartItems();
+    const delOrderItems = async () => {
+      try {
+        const result = await instance.post(`/orderCourse/deleteOrderitem`, {
+          user: user.user._id,
+        });
+        console.log(result);
+      } catch (err) {
+        dispatch({ type: "FETCH_FAIL", payload: getError(err) });
+      }
+    };
+    delOrderItems();
+
+
+
+
+    //  const payData = async () => {
+    //    try {
+    //      const result = await instance.post(`/orderCourse/payResutData`);
+       
+    //    } catch (err) {
+    //      dispatch({ type: "FETCH_FAIL", payload: getError(err) });
+    //    }
+    //  };
+    //  payData();
+
 
   };
 

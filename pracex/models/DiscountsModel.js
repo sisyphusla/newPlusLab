@@ -16,14 +16,16 @@ const mongoose = require('mongoose');
 
 // 2.定義Schema
 const discountsSchema = new mongoose.Schema({
-  username:{type: String, required: true},//文章發布人
-  name: {type: String, required: true}, // 文章標題
-  author: {type: String, required: true}, // 文章作者
-  update: {type: String},
-  watch:{type:Number, default:0}, //0是未看過，1是看過
-  detail: {type: String},//文章內容
+    EXP: { type: Date, required: true, default: new Date() },
+    discountName: { type: String, required: true },
+    discountCode: { type: String, required: true },
+    discount: { type: Number, required: true },
+  },
+  {
+    timestamps: true,
+  }
 
-})
+)
 
 
 // 3. 定義Model(與集合對應, 可以操作集合)

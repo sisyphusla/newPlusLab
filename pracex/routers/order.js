@@ -214,54 +214,72 @@ router.post("/updateHistory", (req, res) => {
   });
 });
 
-// router.post("/deletediecountitem", (req, res) => {
-//   const { discountCodes, user } = req.body;
-//   DiscountModel.deleteOne({ user: user, discountCode: discountCodes }).exec(
-//     (err, data) => {
-//       if (err) {
-//         res.status(500).send(err);
-//       } else {
-//         console.log(data);
-//         // res.send(history);
-//       }
-//     }
-//   );
-// });
-
-router.post("/delcartData", (req, res) => {
-  const { user } = req.body;
-  CartModel.deleteMany({
-    user: user,
-    isChecked: true,
-  }).exec((err, data) => {
-    if (err) {
-      res.status(500).send(err);
-    } else {
-      console.log(data);
-      // res.send(history);
-    }
+router
+  .post("/deletediecountitem", (req, res) => {
+    const { discountCode, user } = req.body;
+    DiscountModel.deleteOne({ user: user, discountCode: discountCode }).exec(
+      (err, data) => {
+        if (err) {
+          res.status(500).send(err);
+        } else {
+          console.log(data);
+          // res.send(history);
+        }
+      }
+    );
   });
-});
 
-router.post("/payResultData", (req, res) => {
- let payData = payResult;
 
- PayResModel.updateMany(
-   {
-     user: user,
-     "info.orderId": order.orderId,
-   },
-   payData,
-   {
-     upsert: true,
-   }
- ).exec((err, data) => {
-   if (err) {
-     res.status(500).send(err);
-   } else {
-     res.end();
-   }
- });
-});
+  router.post("/deletecartitem", (req, res) => {
+    const {  user } = req.body;
+    console.log(req.body);
+    CartModel.deleteMany({user: user}).exec(
+      (err, data) => {
+        if (err) {
+          res.status(500).send(err);
+        } else {
+          console.log(data);
+          // res.send(history);
+        }
+      }
+    );
+  });
+
+  router.post("/deleteOrderitem", (req, res) => {
+    const { user } = req.body;
+    OrderModel.deleteMany({ user: user }).exec((err, data) => {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        console.log(data);
+        // res.send(history);
+      }
+    });
+  });
+
+
+
+
+
+// router.post("/payResultData", (req, res) => {
+//  let payData = payResult;
+
+//  PayResModel.updateMany(
+//    {
+//      user: user,
+//      "info.orderId": order.orderId,
+//    },
+//    payData,
+//    {
+//      upsert: true,
+//    }
+//  ).exec((err, data) => {
+//    if (err) {
+//      res.status(500).send(err);
+//    } else {
+//      res.end();
+//    }
+//  });
+// });
 
 module.exports = router;
