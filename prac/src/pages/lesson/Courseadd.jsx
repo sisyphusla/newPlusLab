@@ -109,16 +109,12 @@ const CourseAdd = ({ getChapterList, getSubChapterList, getCourseVideo }) => {
       alert('請上傳mp4格式的影片！');
       return;
     } else {
-      const fileReader = new FileReader();
-      fileReader.readAsArrayBuffer(uploadedFile);
-      fileReader.onloadend = () => {
-        const updatedCourseVideo = [...courseVideo];
-        if (!updatedCourseVideo[index]) {
-          updatedCourseVideo[index] = [];
-        }
-        updatedCourseVideo[index][subIndex] = new Uint8Array(fileReader.result);
-        setCourseVideo(updatedCourseVideo);
-      };
+      const updatedCrouseVideo = [...courseVideo];
+      if (!updatedCrouseVideo[index]) {
+        updatedCrouseVideo[index] = [];
+      }
+      updatedCrouseVideo[index][subIndex] = uploadedFile;
+      setCourseVideo(updatedCrouseVideo);
     }
   };
 
@@ -181,6 +177,7 @@ const CourseAdd = ({ getChapterList, getSubChapterList, getCourseVideo }) => {
                       type="file"
                       onChange={(e) => handleCourseVideo(index, subIndex, e)}
                       accept="video/mp4"
+                      name='file'
                     />
 
                     <button className='titleRename' onClick={() => handleEditSubChapter(index, subIndex)}>

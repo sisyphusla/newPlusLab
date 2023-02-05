@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const InfoHead = () => {
+  const [cousreName, setCousreName] = useState([]);
+  useEffect(() => {
+    axios.get('http://localhost:8800/courseadd')
+      .then(res => {
+        // console.log(res.data[0].courseList[0]);
+        setCousreName(res.data[0].courseList[0].classname)
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <div>
       <div className="infoHead">
         <div className="infoHeadTitle">
-          <span>20堂課教你存好股，打造投資現金流</span>
+          <span>{cousreName}</span>
         </div>
         {/* <div className="infoHeadPrice"><span>NT$ 1,600</span></div>
         <div className="infoHeadShopCart">

@@ -13,7 +13,7 @@ router.post('/comment', (req, res) => {
     .then(() => {
       console.log(req.body.currentValue);
       console.log(req.body.comment);
-      res.send('收到訊息');
+      res.send('收到評論');
     })
     .catch(err => {
       console.log(err);

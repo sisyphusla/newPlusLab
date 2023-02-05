@@ -1,10 +1,10 @@
 import React from 'react';
-import { v4 as uuidv4 } from 'uuid';
+// import { v4 as uuidv4 } from 'uuid';
 
 
 import { Upload, Icon, Modal, message } from 'antd';
-import {reqDeleteImg} from '../../api/index'
-import {BASE_IMG_URL} from '../../utils/constant'
+import { reqDeleteImg } from '../../api/index'
+import { BASE_IMG_URL } from '../../utils/constant'
 
 function getBase64(file) {
   return new Promise((resolve, reject) => {
@@ -16,24 +16,24 @@ function getBase64(file) {
 }
 
 export default class PicturesLesson extends React.Component {
-  
+
   state = {
     previewVisible: false,
     previewImage: '',
-    fileList:[]
+    fileList: []
   };
 
 
-  constructor(props){
+  constructor(props) {
     super(props);
-    let fileList =[]
-    const {lessonvideo} = this.props
-    if(!!lessonvideo){
-      fileList=lessonvideo.map((item,index)=>({
-        uid:-index,
-        name:item,
-        status:'done',
-        url:BASE_IMG_URL+item,
+    let fileList = []
+    const { lessonvideo } = this.props
+    if (!!lessonvideo) {
+      fileList = lessonvideo.map((item, index) => ({
+        uid: -index,
+        name: item,
+        status: 'done',
+        url: BASE_IMG_URL + item,
       }))
     }
     this.state = {
@@ -44,9 +44,9 @@ export default class PicturesLesson extends React.Component {
   }
 
   //獲取已上傳文件名字的數組
-  getImg=()=>{
+  getImg = () => {
     return this.state.fileList.map(file => file.name)
-}
+  }
 
 
   handleCancel = () => this.setState({ previewVisible: false });
@@ -60,32 +60,32 @@ export default class PicturesLesson extends React.Component {
       previewImage: file.url || file.preview,
       previewVisible: true,
     });
-  }; 
+  };
 
   //file:當前操作的文件(上傳/刪除)
   //fileList:所有已上傳的文件
-  handleChange = async({ file,fileList }) => {
+  handleChange = async ({ file, fileList }) => {
 
     //一旦上傳成功，修正file的值(name,url)
-    if(file.status ==='done'){
-        const result = file.response //{status:0,data:{name:'xxx.jpg,url:圖片地址}}
-        if(result.status===0){
-            message.success('上傳影片成功')
-            const {name,url} = result.data
-            file = fileList[fileList.length-1]
-            file.name = name
-            file.url=url
-        }else{
-            message.error('上傳影片失敗')
-        }
-    }else if(file.status ==='removed'){//刪除影片
-        const result = await reqDeleteImg(file.name)
-        if(result.status ===0){
-            message.success('刪除影片成功')
-        }else{
-            message.error('刪除影片失敗')
-        }
-    }   
+    if (file.status === 'done') {
+      const result = file.response //{status:0,data:{name:'xxx.jpg,url:圖片地址}}
+      if (result.status === 0) {
+        message.success('上傳影片成功')
+        const { name, url } = result.data
+        file = fileList[fileList.length - 1]
+        file.name = name
+        file.url = url
+      } else {
+        message.error('上傳影片失敗')
+      }
+    } else if (file.status === 'removed') {//刪除影片
+      const result = await reqDeleteImg(file.name)
+      if (result.status === 0) {
+        message.success('刪除影片成功')
+      } else {
+        message.error('刪除影片失敗')
+      }
+    }
 
 
 

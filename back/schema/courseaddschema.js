@@ -2,18 +2,22 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const CharterSchema = new Schema({
+  classname: {
+    type: String,
+    required: false
+  },
+
   title: {
     type: String,
-    required: true
+    required: false
   },
   content: {
     type: Array,
-    required: true
+    required: false
   },
-  video: {
-    type: mongoose.Schema.Types.Mixed,
-  }
 });
+
+
 
 const CourseListSchema = new Schema({
   courseList: [CharterSchema]
