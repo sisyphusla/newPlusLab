@@ -11,7 +11,7 @@ router.post('/courseadd', (req, res) => {
   courseList.save()
     .then(() => {
       console.log(req.body.courseList);
-      res.send('收到訊息');
+      res.send('收到課程列表');
     })
     .catch(err => {
       console.log(err);
@@ -28,14 +28,6 @@ router.get('/courseadd', (req, res) => {
   });
 });
 
-// router.put('/courseadd/:id', (req, res) => {
-//   CourseAdd.findByIdAndUpdate(req.params.id, req.body.courseList, { new: true }, (err, updatedCourseList) => {
-//     if (err) {
-//       res.status(500).send(err);
-//     } else {
-//       res.json(updatedCourseList);
-//     }
-//   });
-// });
+
 
 module.exports = router;

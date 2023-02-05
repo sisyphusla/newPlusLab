@@ -21,6 +21,8 @@ function LessonAdd(props) {
   const [isUpdate, setIsUpdate] = useState(!!props.location.state)
   // const lv = useRef()
 
+
+
   const sendCourseListToBackend = async (courseList) => {
     try {
       const result = await axios.post('http://localhost:8800/courseadd', { courseList });
@@ -34,12 +36,40 @@ function LessonAdd(props) {
     }
   };
 
-  const submit = () => {
-    // console.log(chapterList);
-    // console.log(subChapterList);
-    // console.log(article.author);
-    console.log(courseVideo);
 
+  // const sendCourseNameToBackend = async (article) => {
+  //   try {
+  //     const result = await axios.post('http://localhost:8800/courseadd', { article });
+  //     if (result.status === 200) {
+  //       message.success('傳送資料到後端成功');
+  //     } else {
+  //       message.error('傳送資料到後端失敗');
+  //     }
+  //   } catch (error) {
+  //     message.error(`發生錯誤: ${error}`);
+  //   }
+  // };
+
+  const sendVideoToBackend = async () => {
+    try {
+      // 使用 FormData 將檔案和資料一起傳遞
+      const formData = new FormData();
+      courseVideo.forEach((video, index) => {
+        video.forEach((subVideo, subIndex) => {
+          formData.append(`video`, subVideo);
+        });
+      });
+
+      const res = await axios.post('http://localhost:8800/coursevideo', formData);
+      console.log(res.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+
+  const submit = (e) => {
+    e.preventDefault();
 
     props.form.validateFields(async (error, values) => {
       if (!error) {
@@ -64,13 +94,16 @@ function LessonAdd(props) {
         if (result.status === 0 && courseVideo.flat().some(val => val !== "" || val !== undefined)) {
           message.success(`${isUpdate ? '修改' : '發表'}課程成功`);
           props.history.goBack()
-          let courseList = chapterList.map((title, index) => ({
+
+          let courseList = [{ classname: article.name }].concat(chapterList.map((title, index) => ({
             title,
-            content: subChapterList[index],
-            video: courseVideo[index] || [],
-          }));
-          console.log(courseList);
+            content: subChapterList[index]
+          }))
+          )
           sendCourseListToBackend(courseList);
+
+          console.log(courseList)
+          sendVideoToBackend();
         } else {
           message.error(`${isUpdate ? '修改' : '發表'}文章失敗，請檢查是否完成上傳影片`);
         }
