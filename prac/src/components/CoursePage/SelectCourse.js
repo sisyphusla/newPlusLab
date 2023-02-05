@@ -20,7 +20,7 @@ import  instance  from "../../api/axiosInstance";
 const SelectCourse = () => {
   const {
     state: { cart, Courselist },
-    dispatch,
+    dispatch
   } = CartState();
   const [list, setList] = useState([]); // 全部數據
   const [page, setPage] = useState(1); //  第一次展示 第一頁數據
@@ -28,7 +28,9 @@ const SelectCourse = () => {
   useEffect(() => {
     let CoursreData = async () => {
       try {
-        await instance.get("/allCourses").then((res) => setList(res.data));
+        await instance
+          .get("/course/allCourses")
+          .then((res) => setList(res.data));
       } catch (error) {
         console.error(error);
       }

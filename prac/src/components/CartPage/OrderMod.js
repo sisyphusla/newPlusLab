@@ -9,11 +9,20 @@ const OrderMod = () => {
   const {
     state: { cart },
   } = CartState();
+
+
 const State = {
   titles: [
     {
       id: 1,
-      title: " ",
+      title: (
+        <input
+          type="checkbox"
+          className="allOrder"
+          name="allSelect"
+         
+        />
+      ),
     },
     {
       id: 2,
@@ -45,15 +54,24 @@ const State = {
     <Fragment>
       {cart.length > 0 ? (
         <Fragment>
-          <div className="dHr">
-            <div className="tabletitle">
-              {State.titles.map((v) => {
-                return <div key={v.id}>{v.title}</div>;
-              })}
-            </div>
-            <hr />
-          </div>
-          <OrderDetail />
+          <table className="tOrder">
+            <thead>
+              <tr className="tabletitle">
+                {State.titles.map((v) => {
+                  return <th key={v.id}>{v.title}</th>;
+                })}
+              </tr>
+              <tr>
+                <td colSpan={6}>
+                  <hr />
+                </td>
+              </tr>
+            </thead>
+            <tbody className="dCartList">
+              {cart.map((v)=> <OrderDetail value={v} key={v.id} />)}
+            </tbody>
+          </table>
+         
         </Fragment>
       ) : (
         <Fragment>

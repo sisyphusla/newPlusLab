@@ -1,7 +1,19 @@
+import instance from "../../api/axiosInstance";
+
 export const cartReducer = (state, action) => {
   switch (action.type) {
     case "REFRESH_COURSE":
       return { ...state, Courselist: action.payload };
+    case "REFRESH_CART":
+      return { ...state, cart: action.payload };
+    case "REFRESH_COLLECTIONS":
+      return { ...state, collection: action.payload };
+    case "REFRESH_DISCOUNT":
+      return { ...state, discount: action.payload };
+    case "REFRESH_HISTORY":
+      return { ...state, history: action.payload };
+    case "REFRESH_ORDER":
+      return { ...state, order: action.payload };
     case "CREATE_REQUEST":
       return { ...state, loadingCreateReview: true };
     case "CREATE_SUCCESS":
@@ -15,19 +27,22 @@ export const cartReducer = (state, action) => {
     case "FETCH_FAIL":
       return { ...state, loading: false, error: action.payload };
     case "ADD_TO_CART":
-      
       return { ...state, cart: [...state.cart, { ...action.payload, qty: 1 }] };
+    case "ADD_TO_ORDER":
+      return {
+        ...state,
+        order: [...state.order, { ...action.payload }],
+      };
     case "REMOVE_FROM_CART":
       return {
         ...state,
-        cart: state.cart.filter((c) => c.value.id !== action.payload.value.id),
+        cart: state.cart.filter((c) => c.id !== action.payload.id),
       };
-    case "REMOVE_CART":
+    case "REMOVE_FROM_ORDER":
       return {
         ...state,
-        cart: state.cart.filter((c) => c.value.id !== action.payload.id),
+        order: state.order.filter((c) => c.id !== action.payload.id),
       };
-    
     case "CHANGE_CART_QTY":
       return {
         ...state,
@@ -36,35 +51,21 @@ export const cartReducer = (state, action) => {
         ),
       };
 
-    case "ADD_TO_CollectTAG":
+    case "ADD_TO_COllECTTAG":
       return {
         ...state,
         collection: [...state.collection, { ...action.payload }],
       };
-    case "REMOVE_FROM_CollectTAG":
+    case "REMOVE_FROM_COllECTTAG":
       return {
         ...state,
-        collection: state.collection.filter(
-          (c) => c.value.id !== action.payload.value.id
-        ),
+        collection: state.collection.filter((c) => c.id !== action.payload.id),
       };
-    case "REMOVE_CollectTAG":
-      const markid = () => {
-        if (state.collection.length >= 0 && action.payload.length >= 0) {
-          for (let j = 0; j < state.collection.length; j++) {
-            for (let i = 0; i < action.payload.length; i++) {
-              if (state.collection[j].value.id !== action.payload[i].value.id) {
-                return state.collection.filter(
-                  (c) => c.value.id !== action.payload[i].value.id
-                );
-              }
-            }
-          }
-        }
-      };
+
+    case "UPDATE_TO_ORDER":
       return {
         ...state,
-        ollection: markid(),
+        order: [...action.payload],
       };
 
     default:

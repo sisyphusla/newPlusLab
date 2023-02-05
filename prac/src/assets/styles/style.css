@@ -160,15 +160,15 @@ nav .profilePic:hover .mouth {
 nav .cartNumber {
   position: absolute;
   background-color: #e23965;
-  width: 22px;
-  height: 23px;
+  width: 17px;
+  height: 17px;
   color: #ffffff;
   border-radius: 20px;
-  font-size: 12pt;
+  font-size: 9pt;
   text-align: center;
   line-height: 18px;
-  top: -8px;
-  left: 2px;
+  top: -6px;
+  left: 4px;
   z-index: -1;
 }
 nav a {
@@ -545,7 +545,7 @@ ul li a button:hover {
 
 .divToYou {
   background-color: #1d1f27;
-  height: 500px;
+  height: 420px;
 }
 .divToYou .slick-dots {
   bottom: -80px;
@@ -606,6 +606,7 @@ ul li a button:hover {
 .divToYou .dClasstext {
   position: relative;
   padding: 30px;
+  width: 70%;
   color: #9d9faa;
 }
 .divToYou .dClasstext .score {
@@ -660,7 +661,7 @@ ul li a button:hover {
   transition: all 0.2s ease-out;
   padding: 0px 15px;
   display: flexbox;
-  width: 100px;
+  width: 120px;
   height: 40px;
   background-color: #e23965;
   color: #ffffff;
@@ -819,8 +820,12 @@ ul li a button:hover {
   color: #e23965;
   z-index: 2;
 }
-.dCard .dCardMark:hover {
-  path: #e23965;
+.dCard .dCardMark:hover svg {
+  fill: #e23965;
+}
+.dCard .dCardPersonCount {
+  position: absolute;
+  bottom: 30px;
 }
 .dCard .dCardTeacher {
   color: #1d1f27;
@@ -829,6 +834,8 @@ ul li a button:hover {
   line-height: 33px;
   /* identical to box height, or 206% */
   letter-spacing: 0.05em;
+  position: absolute;
+  bottom: 60px;
 }
 .dCard .dCardtext {
   padding: 10px;
@@ -841,7 +848,7 @@ ul li a button:hover {
 }
 .dCard .dCardPrice {
   display: flex;
-  position: relative;
+  position: absolute;
   font-weight: 600;
   font-size: 22px;
   justify-content: center;
@@ -849,14 +856,17 @@ ul li a button:hover {
   letter-spacing: 0.1em;
   color: #e23965;
   float: right;
-  position: relative;
-  top: -40px;
+  right: 20px;
+  bottom: 10px;
 }
 .dCard .dCardClock {
   align-items: baseline;
+  position: absolute;
+  bottom: 0px;
 }
 
-.dCardMore, .dCardLast {
+.dCardMore,
+.dCardLast {
   width: 100%;
   height: 100px;
   padding: 10px 0;
@@ -864,7 +874,8 @@ ul li a button:hover {
   align-items: center;
   justify-content: center;
 }
-.dCardMore button, .dCardLast button {
+.dCardMore button,
+.dCardLast button {
   background-color: #4967ff;
   padding: 10px 30px;
   font-weight: 600;
@@ -875,7 +886,8 @@ ul li a button:hover {
   color: #ffffff;
   border-radius: 24px;
 }
-.dCardMore button:hover, .dCardLast button:hover {
+.dCardMore button:hover,
+.dCardLast button:hover {
   background-color: #003dcb;
 }
 
@@ -886,149 +898,6 @@ ul li a button:hover {
 .dCardLast button:hover {
   background-color: #44464f;
   color: #ffffff;
-}
-
-.headerss {
-  height: 130px;
-}
-
-.dOrderHistoryContainer {
-  width: 70%;
-  padding-left: 6%;
-  padding-bottom: 100px;
-}
-.dOrderHistoryContainer .OrderHistorycompos {
-  display: flex;
-  flex-direction: column;
-  width: 1010px;
-  margin: 0 auto;
-}
-.dOrderHistoryContainer .OrderHistorycompos hr {
-  color: #6f717b;
-  width: 100%;
-}
-.dOrderHistoryContainer .OrderHistorycompos .tabletitle {
-  color: #9d9faa;
-  display: flex;
-  flex-direction: row;
-  position: relative;
-  font-size: 18px;
-  height: 20px;
-  text-align: center;
-  padding: 5px 0;
-}
-.dOrderHistoryContainer .OrderHistorycompos .tabletitle > div:nth-child(1) {
-  position: relative;
-  width: 167px;
-}
-.dOrderHistoryContainer .OrderHistorycompos .tabletitle > div:nth-child(2) {
-  position: relative;
-  width: 530px;
-}
-.dOrderHistoryContainer .OrderHistorycompos .tabletitle > div:nth-child(3),
-.dOrderHistoryContainer .OrderHistorycompos .tabletitle > div:nth-child(4) {
-  position: relative;
-  width: 160px;
-}
-.dOrderHistoryContainer .dOrderHistoryTitle {
-  padding-top: 30px;
-  padding-bottom: 30px;
-}
-.dOrderHistoryContainer .dOrderHistoryTitle .dOrderHistoryTitle {
-  font-weight: 700;
-  font-size: 30px;
-  padding: 5px 0;
-  border-bottom: 6px solid #e23965;
-  line-height: 48px;
-  letter-spacing: 0.15em;
-  color: #4967ff;
-}
-.dOrderHistoryContainer .dOrderHistoryTitle .dOrderHistoryTitle span svg path {
-  fill: #aa003b;
-}
-
-.dOrderHistoryList {
-  /* 網頁捲軸【滑過時】把手的顏色 */
-}
-.dOrderHistoryList::-webkit-scrollbar {
-  width: 5px;
-}
-.dOrderHistoryList::-webkit-scrollbar-track {
-  background: transparent;
-  width: 5px;
-}
-.dOrderHistoryList::-webkit-scrollbar-thumb {
-  background: #4967ff;
-  border-radius: 5px;
-}
-.dOrderHistoryList::-webkit-scrollbar-thumb:hover {
-  background: #003dcb;
-}
-.dOrderHistoryList li {
-  height: 100px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  display: flex;
-  flex-direction: row;
-  padding: 10px 0;
-  align-items: center;
-}
-.dOrderHistoryList li input {
-  margin: 30px;
-  width: 20px;
-}
-.dOrderHistoryList li img {
-  width: 167px;
-  height: 100%;
-  -o-object-fit: contain;
-     object-fit: contain;
-}
-.dOrderHistoryList li .dOrderHistoryListItem {
-  display: flex;
-  flex-direction: column;
-  padding: 5px 15px;
-  width: 500px;
-}
-.dOrderHistoryList li .dOrderHistoryListItem .dOrderHistoryTiltle {
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 1.5;
-  letter-spacing: 0.1em;
-  color: #4967ff;
-  transition: all 0.3s;
-}
-.dOrderHistoryList li .dOrderHistoryListItem .dOrderHistoryTiltle:hover {
-  text-decoration: underline;
-  text-underline-offset: 5px;
-}
-.dOrderHistoryList li .dOrderHistoryListItem .dOrderHistoryTeacher {
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 33px;
-  letter-spacing: 0.1em;
-  color: #ffffff;
-}
-.dOrderHistoryList li .dHistoryOldPrice {
-  width: 150px;
-  text-align: center;
-  padding: 40px 5px;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 33px;
-  letter-spacing: 0.1em;
-  color: #9d9faa;
-  text-decoration: line-through;
-}
-.dOrderHistoryList li .dHistorySpecailPrice {
-  width: 150px;
-  text-align: center;
-  padding: 40px 5px;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 33px;
-  letter-spacing: 0.1em;
-  color: #e23965;
 }
 
 @font-face {
@@ -1058,49 +927,152 @@ body {
 }
 
 .dCartContainer {
-  width: 70%;
+  width: 77%;
   padding-left: 6%;
 }
 .dCartContainer .cartcompos {
   display: flex;
   flex-direction: column;
-  width: 65vw;
+  width: 66vw;
   margin: 0 auto;
+  height: 400px;
 }
 .dCartContainer .cartcompos hr {
   color: #6f717b;
   width: 100%;
+  margin: 10px 0px;
 }
 .dCartContainer .cartcompos .tabletitle {
   color: #9d9faa;
-  display: flex;
-  flex-direction: row;
-  position: relative;
   font-size: 18px;
+  display: flex;
   height: 30px;
   text-align: center;
-  padding: 5px 0;
 }
-.dCartContainer .cartcompos .tabletitle > div:nth-child(1) {
+.dCartContainer .cartcompos .tabletitle > th:nth-child(1) {
   position: relative;
-  width: 100px;
+  width: 9.04%;
+  visibility: hidden;
 }
-.dCartContainer .cartcompos .tabletitle > div:nth-child(2) {
+.dCartContainer .cartcompos .tabletitle > th:nth-child(2) {
   position: relative;
-  width: 167px;
+  width: 17.18%;
 }
-.dCartContainer .cartcompos .tabletitle > div:nth-child(3) {
+.dCartContainer .cartcompos .tabletitle > th:nth-child(3) {
   position: relative;
-  width: 330px;
+  width: 31.01%;
 }
-.dCartContainer .cartcompos .tabletitle > div:nth-child(4),
-.dCartContainer .cartcompos .tabletitle > div:nth-child(5) {
+.dCartContainer .cartcompos .tabletitle > th:nth-child(4),
+.dCartContainer .cartcompos .tabletitle > th:nth-child(5) {
   position: relative;
-  width: 160px;
+  width: 16.46%;
 }
-.dCartContainer .cartcompos .tabletitle > div:nth-child(6) {
+.dCartContainer .cartcompos .tabletitle > th:nth-child(6) {
   position: relative;
-  width: 50px;
+  width: 9.12%;
+}
+.dCartContainer .cartcompos .dCartList {
+  height: 300px;
+  display: block;
+  flex-direction: column;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* 網頁捲軸【滑過時】把手的顏色 */
+}
+.dCartContainer .cartcompos .dCartList::-webkit-scrollbar {
+  width: 5px;
+}
+.dCartContainer .cartcompos .dCartList::-webkit-scrollbar-track {
+  background: transparent;
+  width: 5px;
+}
+.dCartContainer .cartcompos .dCartList::-webkit-scrollbar-thumb {
+  background: #4967ff;
+  border-radius: 5px;
+}
+.dCartContainer .cartcompos .dCartList::-webkit-scrollbar-thumb:hover {
+  background: #003dcb;
+}
+.dCartContainer .cartcompos .dCartList tr > td:nth-child(1) {
+  position: relative;
+  width: 8.34%;
+  text-align: center;
+}
+.dCartContainer .cartcompos .dCartList tr > td:nth-child(1) input {
+  margin: 30px;
+  width: 20px;
+}
+.dCartContainer .cartcompos .dCartList tr > td:nth-child(2) {
+  position: relative;
+  width: 17.27%;
+}
+.dCartContainer .cartcompos .dCartList tr > td:nth-child(2) img {
+  width: fit-contentf;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.dCartContainer .cartcompos .dCartList tr > td:nth-child(3) {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 14px 15px;
+}
+.dCartContainer .cartcompos .dCartList tr > td:nth-child(3) .dCartTiltle {
+  width: 100%;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  color: #4967ff;
+  transition: all 0.3s;
+}
+.dCartContainer .cartcompos .dCartList tr > td:nth-child(3) .dCartTiltle:hover {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+.dCartContainer .cartcompos .dCartList tr > td:nth-child(3) .dCartTeacher {
+  font-weight: 400;
+  font-size: 18px;
+  height: 30px;
+  line-height: 33px;
+  letter-spacing: 0.1em;
+  color: #ffffff;
+}
+.dCartContainer .cartcompos .dCartList tr > td:nth-child(4) {
+  position: relative;
+  width: 16.55%;
+  text-align: center;
+  padding: 40px 5px;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 33px;
+  letter-spacing: 0.1em;
+  color: #9d9faa;
+  text-decoration: line-through;
+}
+.dCartContainer .cartcompos .dCartList tr > td:nth-child(5) {
+  position: relative;
+  width: 16.55%;
+  text-align: center;
+  padding: 40px 5px;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 33px;
+  letter-spacing: 0.1em;
+  color: #e23965;
+}
+.dCartContainer .cartcompos .dCartList tr > td:nth-child(6) {
+  position: relative;
+  text-align: center;
+  width: 9.17%;
+}
+.dCartContainer .cartcompos .dCartList tr > td:nth-child(6) svg path {
+  fill: #aa003b;
+}
+.dCartContainer .cartcompos .dCartList tr > td:nth-child(6) svg path:hover {
+  fill: #e23965;
 }
 .dCartContainer .dcartPageTitle {
   padding-top: 30px;
@@ -1119,105 +1091,6 @@ body {
   fill: #aa003b;
 }
 
-.dCartList {
-  height: 500px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  /* 網頁捲軸【滑過時】把手的顏色 */
-}
-.dCartList::-webkit-scrollbar {
-  width: 5px;
-}
-.dCartList::-webkit-scrollbar-track {
-  background: transparent;
-  width: 5px;
-}
-.dCartList::-webkit-scrollbar-thumb {
-  background: #4967ff;
-  border-radius: 5px;
-}
-.dCartList::-webkit-scrollbar-thumb:hover {
-  background: #003dcb;
-}
-.dCartList li label {
-  height: 100px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  display: flex;
-  flex-direction: row;
-  padding: 10px 0;
-  align-items: center;
-}
-.dCartList li label input {
-  margin: 30px;
-  width: 20px;
-}
-.dCartList li label img {
-  width: 167px;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-.dCartList li label .dTrash {
-  padding: 0 30px;
-  float: right;
-  width: 50px;
-  cursor: pointer;
-}
-.dCartList li label .dTrash svg path {
-  fill: #aa003b;
-}
-.dCartList li label .dTrash svg path:hover {
-  fill: #e23965;
-}
-.dCartList li label .dCartitem {
-  display: flex;
-  flex-direction: column;
-  padding: 5px 15px;
-  width: 300px;
-}
-.dCartList li label .dCartitem .dCartTiltle {
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 1.5;
-  letter-spacing: 0.1em;
-  color: #4967ff;
-  transition: all 0.3s;
-}
-.dCartList li label .dCartitem .dCartTiltle:hover {
-  text-decoration: underline;
-  text-underline-offset: 5px;
-}
-.dCartList li label .dCartitem .dCartTeacher {
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 33px;
-  letter-spacing: 0.1em;
-  color: #ffffff;
-}
-.dCartList li label .dOldPrice {
-  width: 150px;
-  text-align: center;
-  padding: 40px 5px;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 33px;
-  letter-spacing: 0.1em;
-  color: #9d9faa;
-  text-decoration: line-through;
-}
-.dCartList li label .dSpecailPrice {
-  width: 150px;
-  text-align: center;
-  padding: 40px 5px;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 33px;
-  letter-spacing: 0.1em;
-  color: #e23965;
-}
-
 .checkoutorder {
   display: flexbox;
   position: absolute;
@@ -1225,7 +1098,7 @@ body {
   right: 30px;
   top: 200px;
   width: 280px;
-  height: 350px;
+  height: 370px;
   background-color: #44464f;
   font-weight: 500;
 }
@@ -1255,20 +1128,83 @@ body {
   display: flex;
 }
 .checkoutorder .sDiscount {
+  position: relative;
   font-size: 20px;
   line-height: 33px;
+  display: block;
   letter-spacing: 0.1em;
   color: #9d9faa;
-  padding: 10px;
+  padding: 10px 10px;
 }
-.checkoutorder .sDiscount input {
-  margin: 5px;
+.checkoutorder .sDiscount > span {
+  padding: 0 20px;
+}
+.checkoutorder .sDiscount .icodeitems {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  padding: 0 25px;
+  position: absolute;
+}
+.checkoutorder .sDiscount .icodeitems .iDiscountCode {
   background-color: #1d1f27;
-  border-radius: 10px;
+  border: 2px solid #9d9faa;
+  width: 100%;
+  height: 100%;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 5px;
+  position: relative;
 }
-.checkoutorder .sDiscount input[type=checkbox] {
-  width: 15px;
-  height: 15px;
+.checkoutorder .sDiscount .icodeitems .iCodeSubmit {
+  position: relative;
+  right: 25px;
+  width: 70px;
+  height: 37px;
+  background-color: #9d9faa;
+  border: 2px solid #9d9faa;
+  color: #ffffff;
+  font-size: large;
+  transition: all 0.3s ease;
+}
+.checkoutorder .sDiscount .icodeitems .iCodeSubmit:hover {
+  background-color: #44464f;
+  color: #ffffff;
+}
+.checkoutorder .sDiscount .icodeitems .discountGroup {
+  height: 150px;
+  overflow: hidden;
+  overflow-y: auto;
+  z-index: 3;
+}
+.checkoutorder .sDiscount .icodeitems .discountGroup .searchDiscount {
+  position: relative;
+  background-color: #6f717b;
+  border: 2px solid #9d9faa;
+  color: #1d1f27;
+  opacity: 0.9;
+  text-align: left;
+  padding: 3px 10px;
+  width: 100%;
+}
+.checkoutorder .sDiscount .icodeitems .discountGroup .searchDiscount:hover {
+  background-color: #9d9faa;
+  opacity: 1;
+  cursor: pointer;
+}
+.checkoutorder .sDiscount .icodeitems .discountGroup::-webkit-scrollbar {
+  width: 8px;
+}
+.checkoutorder .sDiscount .icodeitems .discountGroup::-webkit-scrollbar-track {
+  background: #8895ff;
+  width: 5px;
+}
+.checkoutorder .sDiscount .icodeitems .discountGroup::-webkit-scrollbar-thumb {
+  background: #4967ff;
+  border-radius: 8px;
+}
+.checkoutorder .sDiscount .icodeitems .discountGroup::-webkit-scrollbar-thumb:hover {
+  background: #003dcb;
 }
 .checkoutorder .sNoSpecial {
   font-weight: 700;
@@ -1277,43 +1213,23 @@ body {
   letter-spacing: 0.1em;
   color: #e23965;
 }
-.checkoutorder .icodeitems {
-  text-align: center;
-  display: flex;
-  padding: 0 20px;
-}
-.checkoutorder .icodeitems .iDiscountCode {
-  background-color: #1d1f27;
-  border: 2px solid #9d9faa;
-  width: 100%;
-  height: 100%;
-  color: #ffffff;
-  font-size: 20px;
-  padding: 5px;
-}
-.checkoutorder .icodeitems .iCodeSubmit {
-  width: 100px;
-  background-color: #9d9faa;
-  border: 2px solid #9d9faa;
-  color: #ffffff;
-  transition: all 0.3s ease;
-}
-.checkoutorder .icodeitems .iCodeSubmit:hover {
-  background-color: #44464f;
-  color: #ffffff;
-}
 .checkoutorder .dTotalPrice {
+  position: absolute;
+  right: 10px;
+  bottom: 80px;
   font-size: 30px;
   line-height: 33px;
   font-weight: 700;
-  text-align: right;
   letter-spacing: 0.1em;
   padding: 9px 20px 9px 0px;
   color: #e23965;
 }
 .checkoutorder .iorder {
+  position: absolute;
+  bottom: 30px;
   background-color: #4967ff;
-  padding: 10px 80px;
+  width: 190px;
+  padding: 10px 0px;
   border-radius: 24px;
   border: 1px solid #4967ff;
   font-weight: 600;
@@ -1321,10 +1237,19 @@ body {
   line-height: 22px;
   letter-spacing: 0.15em;
   color: #ffffff;
-  margin: 5px 35px;
+  margin: 5px 45px;
+  display: inline-flex;
+  justify-content: center;
 }
 .checkoutorder .iorder:hover {
   background-color: #003dcb;
+}
+.checkoutorder .notice {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  color: #4967ff;
 }
 
 .dCartNone {
@@ -1408,6 +1333,524 @@ body {
   position: absolute;
   opacity: 0.35;
   transition: all 0.8s;
+}
+
+@font-face {
+  font-family: "interRegular";
+  src: url(./font/Inter-Regular.ttf);
+}
+@font-face {
+  font-family: "interBold";
+  src: url(./font/Inter-Bold.ttf);
+}
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "intreRegular", "Noto Sans TC", sans-serif;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+body {
+  background-color: #1d1f27;
+}
+
+.headerss {
+  height: 130px;
+}
+
+.dCheckContainer {
+  width: 77%;
+  padding-left: 6%;
+  margin-bottom: 60px;
+}
+.dCheckContainer .checkcompos {
+  display: flex;
+  flex-direction: column;
+  width: 66vw;
+  margin: 0 auto;
+}
+.dCheckContainer .checkcompos hr {
+  color: #6f717b;
+  width: 100%;
+}
+.dCheckContainer .checkcompos .tabletitle {
+  color: #9d9faa;
+  font-size: 18px;
+  display: flex;
+  height: 30px;
+  text-align: center;
+}
+.dCheckContainer .checkcompos .tabletitle > th:nth-child(1) {
+  position: relative;
+  width: 17.28%;
+}
+.dCheckContainer .checkcompos .tabletitle > th:nth-child(2) {
+  position: relative;
+  width: 66.18%;
+}
+.dCheckContainer .checkcompos .tabletitle > th:nth-child(3) {
+  position: relative;
+  width: 16.46%;
+}
+.dCheckContainer .checkcompos .dCheckList {
+  height: 300px;
+  display: block;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 300px;
+  /* 網頁捲軸【滑過時】把手的顏色 */
+}
+.dCheckContainer .checkcompos .dCheckList::-webkit-scrollbar {
+  width: 5px;
+}
+.dCheckContainer .checkcompos .dCheckList::-webkit-scrollbar-track {
+  background: transparent;
+  width: 5px;
+}
+.dCheckContainer .checkcompos .dCheckList::-webkit-scrollbar-thumb {
+  background: #4967ff;
+  border-radius: 5px;
+}
+.dCheckContainer .checkcompos .dCheckList::-webkit-scrollbar-thumb:hover {
+  background: #003dcb;
+}
+.dCheckContainer .checkcompos .dCheckList tr > td:nth-child(1) {
+  position: relative;
+  width: 17.27%;
+}
+.dCheckContainer .checkcompos .dCheckList tr > td:nth-child(1) img {
+  width: fit-contentf;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.dCheckContainer .checkcompos .dCheckList tr > td:nth-child(2) {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 14px 15px;
+  margin: 15px 0px;
+}
+.dCheckContainer .checkcompos .dCheckList tr > td:nth-child(2) .dCheckTiltle {
+  width: 100%;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  color: #4967ff;
+  transition: all 0.3s;
+}
+.dCheckContainer .checkcompos .dCheckList tr > td:nth-child(2) .dCheckTiltle:hover {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+.dCheckContainer .checkcompos .dCheckList tr > td:nth-child(2) .dCartTeacher {
+  font-weight: 400;
+  font-size: 18px;
+  height: 30px;
+  line-height: 33px;
+  letter-spacing: 0.1em;
+  color: #ffffff;
+}
+.dCheckContainer .checkcompos .dCheckList tr > td:nth-child(3) {
+  position: relative;
+  width: 16.55%;
+  text-align: center;
+  padding: 40px 5px;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 33px;
+  letter-spacing: 0.1em;
+  color: #9d9faa;
+}
+
+.dCheckPageTitle {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.dCheckPageTitle .dCheckTitle {
+  font-weight: 700;
+  font-size: 30px;
+  padding: 5px 0;
+  border-bottom: 6px solid #e23965;
+  line-height: 48px;
+  letter-spacing: 0.15em;
+  color: #4967ff;
+}
+.dCheckPageTitle .dCheckTitle span svg path {
+  fill: #aa003b;
+}
+
+.checkoutorder {
+  display: flexbox;
+  position: absolute;
+  float: right;
+  right: 30px;
+  top: 200px;
+  width: 280px;
+  height: 370px;
+  background-color: #44464f;
+  font-weight: 500;
+}
+.checkoutorder .dOrderTitle {
+  font-size: 25px;
+  font-weight: 60px;
+  padding: 25px 30px;
+  letter-spacing: 0.2em;
+  color: #ffffff;
+}
+.checkoutorder .sSubtotaltitle {
+  font-size: 18px;
+  line-height: 48px;
+  letter-spacing: 0.15em;
+  color: #ffffff;
+  padding: 9px 0 9px 30px;
+}
+.checkoutorder .sSubtotal {
+  font-size: 26px;
+  line-height: 33px;
+  float: right;
+  padding: 9px 30px 9px 0px;
+  letter-spacing: 0.1em;
+  color: #9d9faa;
+}
+.checkoutorder .sSubtotal ::before {
+  display: flex;
+}
+.checkoutorder .sDiscount {
+  position: relative;
+  font-size: 20px;
+  line-height: 33px;
+  display: block;
+  letter-spacing: 0.1em;
+  color: #9d9faa;
+  padding: 10px 10px;
+}
+.checkoutorder .sDiscount > span {
+  padding: 0 20px;
+}
+.checkoutorder .sDiscount .icodeitems {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  padding: 0 25px;
+  position: absolute;
+}
+.checkoutorder .sDiscount .icodeitems .icheckDiscountCode {
+  background-color: #1d1f27;
+  border: 2px solid #9d9faa;
+  width: 100%;
+  height: 100%;
+  color: #9d9faa;
+  font-size: 20px;
+  padding: 5px;
+  position: relative;
+}
+.checkoutorder .sDiscount .icodeitems .iCodeSubmit {
+  position: absolute;
+  right: 25px;
+  width: 70px;
+  background-color: #9d9faa;
+  border: 2px solid #9d9faa;
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+.checkoutorder .sDiscount .icodeitems .iCodeSubmit:hover {
+  background-color: #44464f;
+  color: #ffffff;
+}
+.checkoutorder .sDiscount .icodeitems .discountGroup {
+  height: 150px;
+  overflow: hidden;
+  overflow-y: auto;
+  z-index: 3;
+}
+.checkoutorder .sDiscount .icodeitems .discountGroup .searchDiscount {
+  position: relative;
+  background-color: #6f717b;
+  border: 2px solid #9d9faa;
+  color: #1d1f27;
+  opacity: 0.9;
+  text-align: left;
+  padding: 3px 10px;
+  width: 100%;
+}
+.checkoutorder .sDiscount .icodeitems .discountGroup .searchDiscount:hover {
+  background-color: #9d9faa;
+  opacity: 1;
+  cursor: pointer;
+}
+.checkoutorder .sDiscount .icodeitems .discountGroup::-webkit-scrollbar {
+  width: 8px;
+}
+.checkoutorder .sDiscount .icodeitems .discountGroup::-webkit-scrollbar-track {
+  background: #8895ff;
+  width: 5px;
+}
+.checkoutorder .sDiscount .icodeitems .discountGroup::-webkit-scrollbar-thumb {
+  background: #4967ff;
+  border-radius: 8px;
+}
+.checkoutorder .sDiscount .icodeitems .discountGroup::-webkit-scrollbar-thumb:hover {
+  background: #003dcb;
+}
+.checkoutorder .sNoSpecial {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 33px;
+  letter-spacing: 0.1em;
+  color: #e23965;
+}
+.checkoutorder .dCheckTotalPrice {
+  position: absolute;
+  right: 10px;
+  top: 110px;
+  font-size: 30px;
+  line-height: 33px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 9px 20px 9px 0px;
+  color: #e23965;
+}
+.checkoutorder .iCheckorder {
+  position: relative;
+  bottom: -110px;
+  left: 6px;
+  background-color: #4967ff;
+  padding: 10px 40px;
+  border-radius: 24px;
+  margin: 5px 25px;
+  border: 1px solid #4967ff;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: 0.15em;
+  color: #ffffff;
+  display: inline-flex;
+  justify-content: center;
+}
+.checkoutorder .iCheckorder:hover {
+  background-color: #003dcb;
+}
+.checkoutorder .iCheckorder img {
+  margin-right: 5px;
+  display: inline;
+  width: 70px;
+}
+
+@font-face {
+  font-family: "interRegular";
+  src: url(./font/Inter-Regular.ttf);
+}
+@font-face {
+  font-family: "interBold";
+  src: url(./font/Inter-Bold.ttf);
+}
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "intreRegular", "Noto Sans TC", sans-serif;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+body {
+  background-color: #1d1f27;
+}
+
+.headerss {
+  height: 130px;
+}
+
+.dOrderHistoryContainer {
+  width: 90%;
+  padding-left: 6%;
+  padding-bottom: 100px;
+}
+.dOrderHistoryContainer .OrderHistorycompos {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 auto;
+}
+.dOrderHistoryContainer .OrderHistorycompos hr {
+  color: #6f717b;
+  width: 100%;
+}
+.dOrderHistoryContainer .OrderHistorycompos .tabletitle {
+  color: #9d9faa;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  font-size: 18px;
+  height: 35px;
+  text-align: center;
+  padding: 5px 0;
+}
+.dOrderHistoryContainer .OrderHistorycompos .tabletitle > th:nth-child(1) {
+  position: relative;
+  width: 17.27%;
+}
+.dOrderHistoryContainer .OrderHistorycompos .tabletitle > th:nth-child(2) {
+  position: relative;
+  width: 49.63%;
+}
+.dOrderHistoryContainer .OrderHistorycompos .tabletitle > th:nth-child(4),
+.dOrderHistoryContainer .OrderHistorycompos .tabletitle > th:nth-child(3) {
+  position: relative;
+  width: 16.55%;
+}
+.dOrderHistoryContainer .OrderHistorycompos .tabletitle > th:nth-child(6) {
+  position: relative;
+  width: 9.12%;
+}
+.dOrderHistoryContainer .OrderHistorycompos .dHistoryList {
+  display: block;
+  flex-direction: column;
+  width: 100%;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  color: #9d9faa;
+}
+.dOrderHistoryContainer .OrderHistorycompos .dHistoryList .historyId {
+  height: 40px;
+  background-color: #4967ff;
+  padding: 0 15px;
+  color: #ffffff;
+}
+.dOrderHistoryContainer .OrderHistorycompos .dHistoryList .historyId > td {
+  align-items: center;
+}
+.dOrderHistoryContainer .OrderHistorycompos .dHistoryList .historylist {
+  transition: all 0.3s;
+}
+.dOrderHistoryContainer .OrderHistorycompos .dHistoryList .historylist > td:nth-child(1) {
+  position: relative;
+  width: 17.27%;
+}
+.dOrderHistoryContainer .OrderHistorycompos .dHistoryList .historylist > td:nth-child(1) img {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin: 15px 0;
+}
+.dOrderHistoryContainer .OrderHistorycompos .dHistoryList .historylist > td:nth-child(2) {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 14px 15px;
+  margin: 28px 0;
+}
+.dOrderHistoryContainer .OrderHistorycompos .dHistoryList .historylist > td:nth-child(2) .dCartTiltle {
+  width: 100%;
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  color: #4967ff;
+  transition: all 0.3s;
+}
+.dOrderHistoryContainer .OrderHistorycompos .dHistoryList .historylist > td:nth-child(2) .dCartTiltle:hover {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+.dOrderHistoryContainer .OrderHistorycompos .dHistoryList .historylist > td:nth-child(2) .dCartTeacher {
+  font-weight: 400;
+  font-size: 20px;
+  height: 30px;
+  line-height: 33px;
+  letter-spacing: 0.1em;
+  color: #ffffff;
+}
+.dOrderHistoryContainer .OrderHistorycompos .dHistoryList .historylist > td:nth-child(3) {
+  position: relative;
+  width: 16.55%;
+  text-align: center;
+  padding: 40px 5px;
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 33px;
+  letter-spacing: 0.1em;
+  color: #9d9faa;
+}
+.dOrderHistoryContainer .OrderHistorycompos .dHistoryList .historylist > td:nth-child(4) {
+  position: relative;
+  width: 16.55%;
+  text-align: center;
+  padding: 40px 5px;
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 33px;
+  letter-spacing: 0.1em;
+  color: #e23965;
+}
+.dOrderHistoryContainer .dOrderHistoryTitle {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.dOrderHistoryContainer .dOrderHistoryTitle .dOrderHistoryTitle {
+  font-weight: 700;
+  font-size: 30px;
+  padding: 5px 0;
+  border-bottom: 6px solid #e23965;
+  line-height: 48px;
+  letter-spacing: 0.15em;
+  color: #4967ff;
+}
+.dOrderHistoryContainer .dOrderHistoryTitle .dOrderHistoryTitle span svg path {
+  fill: #aa003b;
+}
+
+.dHistoryList .dHistoryOldPrice {
+  width: 150px;
+  text-align: center;
+  padding: 40px 5px;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 33px;
+  letter-spacing: 0.1em;
+  color: #9d9faa;
+  text-decoration: line-through;
+}
+.dHistoryList .dHistorySpecailPrice {
+  width: 150px;
+  text-align: center;
+  padding: 40px 5px;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 33px;
+  letter-spacing: 0.1em;
+  color: #e23965;
+}
+.dHistoryList .totalprice {
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 33px;
+  letter-spacing: 0.1em;
+  color: #e23965;
+  text-align: end;
+}
+.dHistoryList .nodata {
+  height: 20px;
+}
+.dHistoryList .totallistdata {
+  height: 60px;
+}
+.dHistoryList .totallistdata > td:nth-child(1) {
+  width: 10%;
+}
+.dHistoryList .totallistdata > td:nth-child(2) {
+  width: 100%;
 }
 
 .head1 {

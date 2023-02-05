@@ -8,7 +8,7 @@ const CourseSchema = new Schema(
     url: { type: String, required: true },
     title: { type: String, required: true },
     text: { type: String, required: true },
-    star: { type: Number, default: 0 },
+    star: { type: Number, default: 0, min: 0, max: 5, required: true },
     ratecount: { type: Number, default: 0 },
     price: { type: Number, default: 0 },
     special: { type: Number, default: 0 },

@@ -2,6 +2,7 @@ const express = require('express')
 const md5 = require('blueimp-md5')
 const fs = require("fs");
 
+
 const UserModel = require('../models/UserModel')
 const ProductModel = require('../models/ProductModel')
 const RoleModel = require('../models/RoleModel')
@@ -356,6 +357,15 @@ function pageFilter(arr, pageNum, pageSize) {
 }
 
 require('./file-upload')(router)
+
+
+
+
+
+
+
+
+
 
 
 

@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import RecentClassChild from "./RecentClassChild";
 import axios from "axios";
+import instance from "../../api/axiosInstance";
 const RecentClass = () => {
  
   const [recentClass, setrecentClass] = useState([]); // 全部數據
@@ -79,8 +80,8 @@ const RecentClass = () => {
 useEffect(() => {
   let recentCoursreData = async () => {
     try {
-      await axios
-        .get("http://localhost:5000/recentClass")
+      await instance
+        .get("/course/recentClass")
         .then((res) => setrecentClass(res.data));
     } catch (error) {
       console.error(error);

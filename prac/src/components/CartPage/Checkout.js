@@ -1,44 +1,60 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { Link } from "react-router-dom";
+import instance from "../../api/axiosInstance";
 import { CartState } from "./CartContext";
+import { getError } from "./utils";
+import user from "../../utils/memoryUtils";
+import DiscountBar from "./discountBar";
+import Checkpage from "../../pages/checkpage/checkpage";
+import linePay from "./img/linepay.png";
+
+
 
 const Checkout = () => {
 
   const {
-    state: { cart },
+    state: { cart, order, discount},
     dispatch,
   } = CartState();
 
-  const [Total, setTotal] = useState();
-  const [Subtotal, setSubtotal] = useState();
+  const [Total, setTotal] = useState(0);
+  const [Subtotal, setSubtotal] = useState(0);
 
 
 useEffect(() => {
-  setSubtotal(
-    cart.reduce((acc, curr) => acc + Number(curr.value.special) * curr.qty, 0)
-  );
-  setTotal(
-    cart.reduce((acc, curr) => acc + Number(curr.value.special) * curr.qty, 0)
-  );
-}, [cart]);
+  setSubtotal(order.reduce((acc, curr) => acc + Number(curr.shoppingPrice) * 1 , 0));
+  setTotal(order.reduce(
+      (acc, curr) =>acc + Number(curr.shoppingPrice) * 1 * curr.discount,0));
+}, [order]);
 
   return (
     <div className="checkoutorder">
       <div className="dOrderTitle">訂單明細</div>
       <div>
         <span className="sSubtotaltitle">小計</span>
-        <span className="sSubtotal">NT ${Subtotal}</span>
+        <span className="sSubtotal">
+          NT ${Math.round(Subtotal).toLocaleString()}
+        </span>
       </div>
       <div className="sDiscount">
-        <input type="checkbox" />
-        我要使用折扣碼<span className="sNoSpecial">無法使用</span>
+        <span> 我要使用折扣碼</span>
+        <DiscountBar
+          placeholder={
+            discount.length !== 0 ? "請輸入折扣碼" : "無法使用折扣碼"
+          }
+          data={discount}
+          disabled={discount.length === 0 ? true : false}
+        />
       </div>
-      <div className="icodeitems">
-        <input className="iDiscountCode" type="text" />
-        <input className="iCodeSubmit" type="submit" value="確定" />
+      <div className="dTotalPrice">
+        NT$ {Math.round(Total).toLocaleString()}
       </div>
-      <div className="dTotalPrice">NT$ {Total}</div>
-      <input className="iorder" type="button" value="結帳" />
+      <Link to="/checkpage" className="aCheckorder">
+        <button className="iorder">
+          <span>結帳</span>
+        </button>
+      </Link>
+      <div className="notice">本平台只接受LinePay付款</div>
     </div>
   );
 };
