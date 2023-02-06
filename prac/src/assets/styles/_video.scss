@@ -180,12 +180,14 @@
               align-items: center;
               justify-content: center;
               transition: transform 3s linear;
+              cursor: pointer;
             }
             .title{
               display: flex;
               align-items: center;
               justify-content: center;
               transition: transform 3s linear;
+              cursor: pointer;
             }
           }
         }
@@ -193,6 +195,7 @@
           list-style-type: none;
           margin-bottom: 0%;
           background-color: $primaryLightest;
+          cursor: pointer;
           li{
             height: 89px;
             padding-left: 19.22%;
@@ -318,10 +321,14 @@
     }
 
     .introContainer{
-      width: 74%;
-      div{
-        img{
-          margin: 5vh 11.3%;
+      // width: 74%;
+      display: flex;
+      .introPic{
+        width: 50%;
+   
+        .img{
+          margin: 9vh 11.3%;
+          width: 100%;
         }
       }
       .introText{
@@ -438,12 +445,18 @@
             justify-content: space-between;
             .noteContentDel{
               display: flex;
-              align-self: flex-end;
+              // align-self: flex-end;
+              justify-content: space-between;
               gap: 10px;
+              span{
+                font-weight: 700;
+                font-size: 25px;
+              }
               button{
                 background-color: $primaryLightest;
                 border: none;
                 cursor: pointer;
+                display: block;
               }
             }
           }

@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 const InfoHead = () => {
+  const { id } = useParams();
   const [cousreName, setCousreName] = useState([]);
   useEffect(() => {
     axios.get('http://localhost:8800/courseadd')
       .then(res => {
-        // console.log(res.data[0].courseList[0]);
-        setCousreName(res.data[0].courseList[0].classname)
+        setCousreName(res.data.filter(item => item._id === id)[0].courseList[0].classname)
       })
       .catch(err => {
         console.log(err);

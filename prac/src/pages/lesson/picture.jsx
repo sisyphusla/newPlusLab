@@ -70,20 +70,20 @@ export default class PicturesLesson extends React.Component {
     if (file.status === 'done') {
       const result = file.response //{status:0,data:{name:'xxx.jpg,url:圖片地址}}
       if (result.status === 0) {
-        message.success('上傳影片成功')
+        message.success('上傳照片成功')
         const { name, url } = result.data
         file = fileList[fileList.length - 1]
         file.name = name
         file.url = url
       } else {
-        message.error('上傳影片失敗')
+        message.error('上傳照片失敗')
       }
     } else if (file.status === 'removed') {//刪除影片
       const result = await reqDeleteImg(file.name)
       if (result.status === 0) {
-        message.success('刪除影片成功')
+        message.success('刪除照片成功')
       } else {
-        message.error('刪除影片失敗')
+        message.error('刪除照片失敗')
       }
     }
 
@@ -105,7 +105,7 @@ export default class PicturesLesson extends React.Component {
         <Upload
           action="/api1/manage/img/upload"//上傳影片的街口地址
           name='image' // 街口請求的參數名
-          accept='video/*'//上傳影片的格式
+          accept='image/*'//上傳影片的格式
           listType="picture-card"
           fileList={fileList} //已上傳文件的列表
           onPreview={this.handlePreview}

@@ -18,7 +18,7 @@ router.post('/courseadd', (req, res) => {
     });
 });
 
-router.get('/courseadd', (req, res) => {
+router.get('/courseadd/', (req, res) => {
   CourseAdd.find({}, (err, courseList) => {
     if (err) {
       res.status(500).send(err);
@@ -27,6 +27,22 @@ router.get('/courseadd', (req, res) => {
     }
   });
 });
+
+//
+// router.post('/courseadd/id', (req, res) => {
+//   CourseAdd.find({})
+//     .exec((err, data) => {
+//       if (err) {
+//         res.status(500).send(err);
+
+//       } else {
+//         res.send(data);
+//       }
+//     });
+// });
+
+
+
 
 
 

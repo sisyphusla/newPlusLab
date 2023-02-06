@@ -1,11 +1,11 @@
 .courseAdd {
-  margin: 5vh 0;
+  margin: 1vh 0 5vh 0;
 }
 .courseAdd .addChapterArea {
   width: 40vw;
   border: 2px solid rgb(236, 236, 236);
   border-radius: 5px;
-  margin: 20px 0;
+  margin-bottom: 20px;
   padding: 10px 15px;
 }
 .courseAdd .chapterArea {
@@ -15,7 +15,6 @@
   padding: 10px 15px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
   width: 40vw;
 }
 .courseAdd .chapterArea .chapterTitle {
@@ -46,15 +45,23 @@
 }
 .courseAdd .chapterArea .subChapter .subChapterTitle {
   display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
-.courseAdd .chapterArea .subChapter .subChapterTitle .titleRename {
+.courseAdd .chapterArea .subChapter .subChapterTitle div {
+  display: flex;
+}
+.courseAdd .chapterArea .subChapter .subChapterTitle div span {
+  margin-right: auto;
+  font-size: 16px;
+}
+.courseAdd .chapterArea .subChapter .subChapterTitle div .titleRename {
   padding: 0 10px;
   border: none;
   background-color: transparent;
   cursor: pointer;
-  margin-left: auto;
 }
-.courseAdd .chapterArea .subChapter .subChapterTitle .titleCancel {
+.courseAdd .chapterArea .subChapter .subChapterTitle div .titleCancel {
   padding: 0 10px;
   border: none;
   background-color: transparent;
@@ -66,4 +73,12 @@
   border-radius: 5px;
   margin: 10px 0;
   padding: 10px 15px;
+}
+
+.courseText {
+  width: 40vw;
+  height: 20vh;
+  margin-bottom: 20px;
+  font-size: large;
+  padding: 3px;
 }/*# sourceMappingURL=courseadd.css.map */
