@@ -5,7 +5,7 @@ import LinkButton from '../../components/link-button'
 import { reqAddLesson } from '../../api'
 import { formateDate } from '../../utils/dateUtils'
 import storageUtils from '../../utils/storageUtils'
-// import PicturesLesson from './picture'
+import PicturesLesson from './picture'
 import Courseadd from './Courseadd'
 // import { BASE_IMG_URL } from '../../utils/constant'
 import axios from 'axios';
@@ -19,7 +19,7 @@ function LessonAdd(props) {
   const [courseVideo, setCourseVideo] = useState([]);
   const [article, setArticle] = useState(props.location.state || {})
   const [isUpdate, setIsUpdate] = useState(!!props.location.state)
-  // const lv = useRef()
+  const lv = useRef()
 
 
 
@@ -129,7 +129,7 @@ function LessonAdd(props) {
     <Card title={title}>
       <Form {...formItemLayout}>
         <Item>
-          <div style={{ fontWeight: 'bolder', fontSize: 15 }}>課程標題:</div>
+          <div style={{ fontWeight: 'bolder', fontSize: 18 }}>課程標題:</div>
           {getFieldDecorator('name', {
             initialValue: article.name,
             rules: [
@@ -143,7 +143,7 @@ function LessonAdd(props) {
           )}
         </Item>
         <Item>
-          <div style={{ fontWeight: 'bolder', fontSize: 15 }}>作者:</div>
+          <div style={{ fontWeight: 'bolder', fontSize: 18 }}>作者:</div>
           {getFieldDecorator('author', {
             initialValue: article.author,
             rules: [
@@ -155,10 +155,17 @@ function LessonAdd(props) {
             />
           )}
         </Item>
+        <div style={{ fontWeight: 'bolder', fontSize: 18 }}>上傳課程影片:</div>
         <Courseadd
           getChapterList={setChapterList}
           getSubChapterList={setSubChapterList}
           getCourseVideo={setCourseVideo}
+        />
+        <div style={{ fontWeight: 'bolder', fontSize: 18 }}>上傳課程封面:</div>
+        <PicturesLesson ref={lv} />
+        <div style={{ fontWeight: 'bolder', fontSize: 18 }}>上傳課程介紹:</div>
+        <textarea
+          className='courseText'
         />
         <Item>
           <Button type='primary' onClick={submit}>發表</Button>

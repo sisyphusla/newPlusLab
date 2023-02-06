@@ -166,28 +166,23 @@ const CourseAdd = ({ getChapterList, getSubChapterList, getCourseVideo }) => {
                 {editingSubChapterIndex[0] !== index || editingSubChapterIndex[1] !== subIndex ? (
                   <div
                     className='subChapterTitle'
-                  // onMouseEnter={() => setShowButtons(true)}
-                  // onMouseLeave={() => setShowButtons(false)}
                   >
-                    課程{subIndex + 1}：{subItem}
-                    {/* {showButtons && (
-                      <> */}
+                    <div>
+
+                      <span>課程{subIndex + 1}：{subItem}</span>
+                      <button className='titleRename' onClick={() => handleEditSubChapter(index, subIndex)}>
+                        <BsFillPencilFill />
+                      </button>
+                      <button className='titleCancel'>
+                        <BsFillTrashFill />
+                      </button>
+                    </div>
 
                     <input
                       type="file"
                       onChange={(e) => handleCourseVideo(index, subIndex, e)}
                       accept="video/mp4"
-                      name='file'
                     />
-
-                    <button className='titleRename' onClick={() => handleEditSubChapter(index, subIndex)}>
-                      <BsFillPencilFill />
-                    </button>
-                    <button className='titleCancel'>
-                      <BsFillTrashFill />
-                    </button>
-                    {/* </>
-                    )} */}
                   </div>
                 ) : (
                   <div>

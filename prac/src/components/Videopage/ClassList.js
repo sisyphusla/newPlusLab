@@ -1,24 +1,41 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { useParams, useHistory } from 'react-router-dom';
 import expand1 from './image/expand1.svg';
 import expand2 from './image/expand2.svg';
 import axios from 'axios';
 
+
 const ClassList = () => {
+  const { id } = useParams();
+  const history = useHistory();
+  const listRef = useRef(null);
   const [cousreName, setCousreName] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [courseID, setCourseID] = useState(true);
+  // console.log(id)
   useEffect(() => {
-    axios.get('http://localhost:8800/courseadd')
-      .then(res => {
-        console.log(res.data[0].courseList);
-        res.data[0].courseList.splice(0, 1);
-        setCousreName(res.data[0].courseList);
-        setIsLoading(false);
-      })
-      .catch(err => {
-        console.log(err);
-        setIsLoading(false);
-      });
+    try {
+      axios.get(`http://localhost:8800/courseadd/`)
+        .then(res => {
+          // console.log(res.data);
+          res.data[0].courseList.splice(0, 1);
+          const allCourse = res.data.filter(item => item._id === id)
+          setCousreName(allCourse[0].courseList);
+          setIsLoading(false);
+          setCourseID(allCourse[0]._id)
+          // console.log(allCourse[0]._id)
+        })
+        .catch(err => {
+          console.log(err);
+          setIsLoading(false);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+
+
   }, [isLoading]);
+
 
   const [expanded, setExpanded] = useState(new Array(cousreName.length).fill(false));
 
@@ -30,6 +47,12 @@ const ClassList = () => {
       return newExpanded;
     });
   };
+
+  const ccc = (listRef) => {
+    // console.log(listRef.target.innerText);
+    // console.log(id);
+    history.push(`/video/${courseID}/${listRef.target.innerText}`);
+  }
 
   return (
     <div className="classListContainer">
@@ -57,7 +80,7 @@ const ClassList = () => {
             {expanded[index] && (
               <ul >
                 {item.content.map((subitem) => (
-                  <li key={subitem}>{subitem}</li>
+                  <li key={subitem} ref={listRef} onClick={ccc}>{subitem}</li>
                 ))}
               </ul>
             )}

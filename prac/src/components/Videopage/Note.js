@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory, useLocation } from 'react-router-dom';
 import addNote from './image/addNote.svg';
 import trashcan from './image/trashcan.svg';
 import axios from 'axios';
@@ -8,8 +9,10 @@ const Note = ({ b, videoRefProps }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [showNoteBtn, setShowNoteBtn] = useState(true);
   const [showNoteBox, setShowNoteBox] = useState(false);
-
   const [videonote, setVideonote] = useState([]);
+  const [courseSubName, setCourseSubName] = useState('');
+  const history = useHistory();
+  const location = useLocation();
 
   useEffect(() => {
     axios.get('http://localhost:8800/')
@@ -21,11 +24,25 @@ const Note = ({ b, videoRefProps }) => {
           return (parseInt(bArrA[0]) * 60 + parseInt(bArrA[1])) - (parseInt(bArrB[0]) * 60 + parseInt(bArrB[1]));
         });
         setVideonote(videonoteCopy);
+        console.log(location)
       })
       .catch(err => {
         console.log(err);
       });
   }, []);
+
+  useEffect(() => {
+    const pathArray = history.location.pathname.split('/');
+    const lastPath = pathArray[pathArray.length - 1];
+    // console.log(lastPath);
+
+    setCourseSubName(lastPath)
+  }, [history.location.pathname]);
+
+  // const handleClick = () => {
+  //   history.push('/video/63dfcf700f158c1a4cccda74/%E9%81%B8%E8%82%A1SOP%E6%88%B0%E7%95%A5');
+  //   console.log('1' + history)
+  // };
 
   const handleNoteBtnClick = () => {
     setShowNoteBtn(false);
@@ -129,8 +146,9 @@ const Note = ({ b, videoRefProps }) => {
                 <div className='noteContent'>
                   <div
                     className='noteContentDel'
-                    onClick={() => handleDeleteNote(item._id)}>
-                    <button>
+                  >
+                    <span >{courseSubName}</span>
+                    <button onClick={() => handleDeleteNote(item._id)}>
                       <img src={trashcan} alt="" />
                     </button>
                   </div>
