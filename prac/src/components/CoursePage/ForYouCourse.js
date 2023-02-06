@@ -71,7 +71,7 @@ console.log(props)
    e.preventDefault();
  };
 
-
+  
   return (
     <div className="divToYou">
       {/* <div className="dBecause">因為你曾經瀏覽了「{State.seach[0].title}」</div> */}
