@@ -1,5 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
-import videoo from './image/zzz.mp4';
+import { useHistory } from 'react-router-dom';
+import videoo1 from './image/1.mp4';
+import videoo2 from './image/2.mp4';
 import play from './image/play.svg';
 import stop from './image/stop.svg';
 import fullScreen from './image/fullscreen.svg';
@@ -11,7 +13,7 @@ import voice from './image/voice.svg';
 
 
 const VideoInterface = ({ getCurrentTime, videoRefProps }) => {
-  const videoSelf = videoo;
+
   const videoContainerRef = useRef(null);
   const videoRef = useRef(null);
   const videoControlBarRef = useRef(null);
@@ -28,6 +30,26 @@ const VideoInterface = ({ getCurrentTime, videoRefProps }) => {
   const [speedBtn, setSpeedBtn] = useState(false)
   const [videoDurationTime, setVideoDurationTime] = useState(null);
   const [currentTime, setCurrentTime] = useState('00:00');
+  const [courseVideo, setCourseVideo] = useState(videoo1);
+  const videoSelf = courseVideo;
+  const history = useHistory();
+
+
+  useEffect(() => {
+    const pathArray = history.location.pathname.split('/');
+    const lastPath = pathArray[pathArray.length - 1];
+    // console.log(lastPath);
+
+    if (lastPath === "選股SOP戰略") {
+      setCourseVideo(videoo1)
+      console.log(lastPath);
+    } else if (lastPath === "選股SOP核心概念") {
+      setCourseVideo(videoo2)
+      console.log(lastPath);
+    }
+  }, [history.location.pathname]);
+
+
 
   useEffect(() => {
     videoRefProps.current = videoRef.current;
@@ -153,10 +175,10 @@ const VideoInterface = ({ getCurrentTime, videoRefProps }) => {
   };
   // 影片快轉與倒轉
   const videoReverse = () => {
-    videoRef.current.currentTime -= 15;
+    videoRef.current.currentTime -= 5;
   }
   const videoForward = () => {
-    videoRef.current.currentTime += 15;
+    videoRef.current.currentTime += 5;
   };
   // 全螢幕切換
   const videoFullScreen = () => {

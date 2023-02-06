@@ -1,12 +1,12 @@
 import React from "react";
-import pic from './image/test.png';
+import pic from './image/cover.png';
 
 const CourseIntro = () => {
 
   return (
     <div className="introContainer">
       <div className="introPic">
-        <img src={pic} alt="" />
+        <img src={pic} alt="" className="img" />
       </div>
       <div className="introText">
         <pre>

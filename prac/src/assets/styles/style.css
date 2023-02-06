@@ -3316,17 +3316,20 @@ body {
   align-items: center;
   justify-content: center;
   transition: transform 3s linear;
+  cursor: pointer;
 }
 .allV .classListContainer .classListBody .classListChapter .titleContainer .title {
   display: flex;
   align-items: center;
   justify-content: center;
   transition: transform 3s linear;
+  cursor: pointer;
 }
 .allV .classListContainer .classListBody ul {
   list-style-type: none;
   margin-bottom: 0%;
   background-color: #6f717b;
+  cursor: pointer;
 }
 .allV .classListContainer .classListBody ul li {
   height: 89px;
@@ -3428,10 +3431,14 @@ body {
   color: #4967ff;
 }
 .infoContainer .introContainer {
-  width: 74%;
+  display: flex;
 }
-.infoContainer .introContainer div img {
-  margin: 5vh 11.3%;
+.infoContainer .introContainer .introPic {
+  width: 50%;
+}
+.infoContainer .introContainer .introPic .img {
+  margin: 9vh 11.3%;
+  width: 100%;
 }
 .infoContainer .introContainer .introText {
   margin: 5vh 11.3%;
@@ -3545,13 +3552,18 @@ body {
 }
 .infoContainer .noteContainer .noteList .noteBox .noteContent .noteContentDel {
   display: flex;
-  align-self: flex-end;
+  justify-content: space-between;
   gap: 10px;
+}
+.infoContainer .noteContainer .noteList .noteBox .noteContent .noteContentDel span {
+  font-weight: 700;
+  font-size: 25px;
 }
 .infoContainer .noteContainer .noteList .noteBox .noteContent .noteContentDel button {
   background-color: #6f717b;
   border: none;
   cursor: pointer;
+  display: block;
 }
 .infoContainer .commentContainer .commentRating {
   width: 76%;
