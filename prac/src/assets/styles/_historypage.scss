@@ -69,25 +69,24 @@ body {
 
       > th:nth-child(1) {
         position: relative;
-        width: 17.27%;
+        width: 16.92%;
       }
       > th:nth-child(2) {
         position: relative;
-        width: 49.63%;
+        width: 48.6%;
       }
-      > th:nth-child(4),
       > th:nth-child(3) {
         position: relative;
-        width: 16.55%;
+        width: 16.2%;
       }
-      > th:nth-child(6) {
+      > th:nth-child(4) {
         position: relative;
-        width: 9.12%;
+        width: 16.3%;
       }
     }
     .dHistoryList {
       display: block;
-      flex-direction: column;
+height: 600px;
       width: 100%;
       font: {
         weight: 700;
@@ -96,8 +95,25 @@ body {
       line-height: 1.5;
       letter-spacing: 0.1em;
       color: $primaryLightestest;
+           &::-webkit-scrollbar {
+        width: 5px;
+      }
+      &::-webkit-scrollbar-track {
+        background: transparent;
+        width: 5px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: $blue;
+        border-radius: 5px;
+        &:hover {
+          background: $blueDarker;
+        }
+      }
+   
 
       .historyId {
+        width: 100%;
         height: 40px;
         background-color: $blue;
         padding: 0 15px;
@@ -107,15 +123,16 @@ body {
         }
       }
       .historylist {
+      
         transition: all 0.3s;
         > td:nth-child(1) {
           position: relative;
           width: 17.27%;
           img {
-            width: fit-content;
+           width: 230px;
             height: 100%;
             object-fit: cover;
-            margin: 15px 0;
+            margin: 10px 0;
           }
         }
         > td:nth-child(2) {
@@ -206,8 +223,11 @@ body {
   }
 }
 .dHistoryList {
+      width: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
   .dHistoryOldPrice {
-    width: 150px;
+
     text-align: center;
     padding: 40px 5px;
     font: {
