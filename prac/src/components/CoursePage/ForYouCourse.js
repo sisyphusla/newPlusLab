@@ -17,7 +17,7 @@ const ForYouCourse = (props) => {
    
 const [ForYouData, setForYouData] = useState([]);
  
-
+console.log(props)
   const settings = {
     className: "center",
     centerMode: true,
@@ -30,7 +30,7 @@ const [ForYouData, setForYouData] = useState([]);
   
   };
   const {
-    state: { cart, collection },
+    state: { cart, collection, mycourse },
     dispatch,
   } = CartState();
 
@@ -50,7 +50,7 @@ const [ForYouData, setForYouData] = useState([]);
   
    const FetchData = async () => {
      try {
-       const result = await instance.post("/cart/cart", {
+       const result = await instance.post("/cart/cartforyou", {
          user: user.user._id,
          id: props.value.id,
          Course: props.value._id,
@@ -71,7 +71,7 @@ const [ForYouData, setForYouData] = useState([]);
    e.preventDefault();
  };
 
-
+  
   return (
     <div className="divToYou">
       {/* <div className="dBecause">因為你曾經瀏覽了「{State.seach[0].title}」</div> */}
@@ -137,15 +137,19 @@ const [ForYouData, setForYouData] = useState([]);
                   </div>
                   <div className="dClassPrice">
                     <span>
-                      限時專屬價 NT${" "}
-                      {Number(
-                        parseFloat(t.special).toFixed(3)
-                      ).toLocaleString()}{" "}
+                      限時專屬價 NT$ {Math.round(t.special).toLocaleString()}{" "}
                     </span>
 
                     <button
                       className="dClassPriceBtn"
-                      onClick={handleAddToCart}
+                      onClick={(e) => {
+                        handleAddToCart(e);
+                      }}
+                      style={{
+                        display: mycourse.some((v) => v.id === t.id)
+                          ? "none"
+                          : "",
+                      }}
                     >
                       加入購物車
                     </button>

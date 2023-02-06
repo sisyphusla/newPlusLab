@@ -155,12 +155,11 @@ router
       // API 位址
       const url = `${LINEPAY_SITE}/${LINEPAY_VERSION}${uri}`;
       const linePayRes = await axios.post(url, linePayBody, { headers });
-        payResult = linePayRes?.data;
+      payResult = linePayRes?.data;
       // 請求成功...
       if (linePayRes?.data?.returnCode === "0000") {
         res.redirect(`http://localhost:3000/orderHistorypage`);
         payResult = linePayRes?.data;
-       
       } else {
         res.status(400).send({
           message: linePayRes,
@@ -209,57 +208,53 @@ router.post("/updateHistory", (req, res) => {
     if (err) {
       res.status(500).send(err);
     } else {
-     res.end();
+      res.end();
     }
   });
 });
 
-router
-  .post("/deletediecountitem", (req, res) => {
-    const { discountCode, user } = req.body;
-    DiscountModel.deleteOne({ user: user, discountCode: discountCode }).exec(
-      (err, data) => {
-        if (err) {
-          res.status(500).send(err);
-        } else {
-          console.log(data);
-          // res.send(history);
-        }
-      }
-    );
-  });
-
-
-  router.post("/deletecartitem", (req, res) => {
-    const {  user } = req.body;
-    console.log(req.body);
-    CartModel.deleteMany({user: user}).exec(
-      (err, data) => {
-        if (err) {
-          res.status(500).send(err);
-        } else {
-          console.log(data);
-          // res.send(history);
-        }
-      }
-    );
-  });
-
-  router.post("/deleteOrderitem", (req, res) => {
-    const { user } = req.body;
-    OrderModel.deleteMany({ user: user }).exec((err, data) => {
+router.post("/deletediecountitem", (req, res) => {
+  const { discountCode, user } = req.body;
+  DiscountModel.deleteOne({ user: user, discountCode: discountCode }).exec(
+    (err, data) => {
       if (err) {
         res.status(500).send(err);
       } else {
         console.log(data);
         // res.send(history);
       }
-    });
+    }
+  );
+});
+
+router.post("/deletecartitem", (req, res) => {
+  const { user, order } = req.body;
+  order.forEach((item) => {
+    CartModel.deleteOne({ user: user, Course: item.Course }).exec(
+      (err, data) => {
+        if (err) {
+          res.status(500).send(err);
+        } else {
+         res.send(data);
+         res.end();
+          // res.send(history);
+        }
+      }
+    );
   });
+});
 
-
-
-
+router.post("/deleteOrderitem", (req, res) => {
+  const { user } = req.body;
+  OrderModel.deleteMany({ user: user }).exec((err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.end();
+      // res.send(history);
+    }
+  });
+});
 
 // router.post("/payResultData", (req, res) => {
 //  let payData = payResult;

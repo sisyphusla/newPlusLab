@@ -46,7 +46,18 @@ router.post("/cart", (req, res) => {
      }
    });
 })
-
+router.post("/cartforyou", (req, res) => {
+  courseOfCart=req.body;
+ CartModel.updateOne({ user: req.body.user, id: req.body.id }, courseOfCart, {
+   upsert: true,
+ }).exec((err, data) => {
+     if (err) {
+       res.status(500).send(err);
+     } else {
+       res.send(courseOfCart);
+     }
+   });
+})
 
 router.post("/delCart", (req, res) => {
   courseOfCart = req.body;

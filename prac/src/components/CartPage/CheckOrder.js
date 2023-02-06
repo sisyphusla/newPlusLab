@@ -121,6 +121,7 @@ const CheckOrder = () => {
        try {
          const result = await instance.post(`/orderCourse/deletecartitem`, {
            user: user.user._id,
+           order: order,
          });
        console.log(result);
        } catch (err) {
@@ -132,6 +133,7 @@ const CheckOrder = () => {
       try {
         const result = await instance.post(`/orderCourse/deleteOrderitem`, {
           user: user.user._id,
+      
         });
         console.log(result);
       } catch (err) {

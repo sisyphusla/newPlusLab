@@ -17,7 +17,7 @@ const MarkMod = () => {
   const settings = {
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 4,
     slidesToScroll: 1,
   };
 
@@ -25,9 +25,9 @@ const MarkMod = () => {
     return (
       <ul
         className="dCollectlist"
-        style={{ display: collection.length > 3 ? "" : "flex" }}
+        style={{ display: collection.length > 4 ? "" : "flex" }}
       >
-        {collection.length > 3 ? (
+        {collection.length > 4 ? (
           <Slider {...settings}>
             {collection.map((r) => {
               return <Mark value={r} key={r.id} />;
@@ -35,7 +35,12 @@ const MarkMod = () => {
           </Slider>
         ) : (
           collection.map((v) => {
-            return <Mark value={v} key={v.id} />;
+            return (
+              <Mark
+                value={v}
+                key={v.id}
+              />
+            );
           })
         )}
       </ul>

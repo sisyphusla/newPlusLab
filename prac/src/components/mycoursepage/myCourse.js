@@ -10,27 +10,37 @@ import axios from "axios";
 import { CartState } from "../CartPage/CartContext";
 import instance from "../../api/axiosInstance";
 import MyCoursemod from "./myCoursemod";
+import user from "../../utils/memoryUtils";
+import { getError } from "../CartPage/utils";
 
 const MyCourse = () => {
   const {
-    state: { cart, Courselist },
+    state: { Courselist },
     dispatch,
   } = CartState();
   const [list, setList] = useState([]); // 全部數據
   const [page, setPage] = useState(1); //  第一次展示 第一頁數據
-
   useEffect(() => {
-    let CoursreData = async () => {
+    const historyTransData = async () => {
       try {
-        await instance
-          .get("/course/allCourses")
-          .then((res) => setList(res.data));
-      } catch (error) {
-        console.error(error);
+        const result = await instance.post("/history/transDatas", {
+          user: user.user._id,
+        });
+
+        //
+
+        setList(result.data);
+
+      } catch (err) {
+        dispatch({ type: "FETCH_FAIL", payload: getError(err) });
       }
     };
-    CoursreData();
+    historyTransData();
   }, []);
+
+
+
+
 
   const getNextPage = () => {
     setPage((preState) => preState + 1);
@@ -70,7 +80,13 @@ const MyCourse = () => {
           </button>
         </div>
       ) : (
-        <div className="dCardLast"> <button>課程已達最後分頁</button></div>)}</Fragment>);
+        <div className="dCardLast">
+          {" "}
+          <button>課程已達最後分頁</button>
+        </div>
+      )}
+    </Fragment>
+  );
 };
 
 export default MyCourse;

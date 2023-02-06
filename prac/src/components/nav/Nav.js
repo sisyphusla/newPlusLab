@@ -146,7 +146,7 @@ const Nav = () => {
       <Link to="/Coursepage" onClick={colorCourse} id={`${idCourse}`}>
         課程列表
       </Link>
-      <Link to="/video" onClick={colorMycourse} id={`${idMycourse}`}>
+      <Link to="/mycourse" onClick={colorMycourse} id={`${idMycourse}`}>
         我的課程
       </Link>
       <Link to="/" onClick={colorMyCollection} id={`${idmyCollection}`}>

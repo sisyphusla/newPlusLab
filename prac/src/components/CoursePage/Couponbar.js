@@ -139,6 +139,8 @@ const couponInit = [
           </Link>
         </div>
       );
+    }else{
+      return
     }
   }
 

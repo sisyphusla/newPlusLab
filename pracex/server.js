@@ -36,12 +36,10 @@ app.use("/history", historyRouter);
 const fs = require("fs");
 
 // 通過mongoose連接數據庫
-mongoose
-  .connect("mongodb://127.0.0.1:27017/server_db1", {
+mongoose.connect("mongodb://127.0.0.1:27017/server_db1", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-  })
-  .then(() => {
+  }).then(() => {
     console.log("連接數據庫成功!!!");
     // 只有當連上數據庫才去啟動服務器
     app.listen("5000", () => {
