@@ -929,6 +929,7 @@ body {
 .dCartContainer {
   width: 77%;
   padding-left: 6%;
+  height: 700px;
 }
 .dCartContainer .cartcompos {
   display: flex;
@@ -972,7 +973,7 @@ body {
   width: 9.12%;
 }
 .dCartContainer .cartcompos .dCartList {
-  height: 300px;
+  height: 500px;
   display: block;
   flex-direction: column;
   width: 100%;
@@ -1289,6 +1290,9 @@ body {
   justify-content: center;
   list-style-type: none;
   height: 400px;
+  flex-wrap: wrap;
+  -moz-column-gap: 40px;
+       column-gap: 40px;
 }
 .dCollectlist .slick-dots {
   bottom: -80px;
@@ -1329,7 +1333,7 @@ body {
 }
 .dCollectlist .slick-next:before {
   content: url(../../components/CoursePage/img/toright.svg);
-  right: -70px;
+  right: -30px;
   top: -10px;
   position: absolute;
   opacity: 0.35;
@@ -1670,7 +1674,7 @@ body {
 }
 
 .dOrderHistoryContainer {
-  width: 90%;
+  width: 78%;
   padding-left: 6%;
   padding-bottom: 100px;
 }
@@ -1696,7 +1700,7 @@ body {
 }
 .dOrderHistoryContainer .OrderHistorycompos .tabletitle > th:nth-child(1) {
   position: relative;
-  width: 16.92%;
+  width: 17.34%;
 }
 .dOrderHistoryContainer .OrderHistorycompos .tabletitle > th:nth-child(2) {
   position: relative;
@@ -1708,7 +1712,7 @@ body {
 }
 .dOrderHistoryContainer .OrderHistorycompos .tabletitle > th:nth-child(4) {
   position: relative;
-  width: 16.3%;
+  width: 16.55%;
 }
 .dOrderHistoryContainer .OrderHistorycompos .dHistoryList {
   display: block;
@@ -1749,7 +1753,7 @@ body {
 }
 .dOrderHistoryContainer .OrderHistorycompos .dHistoryList .historylist > td:nth-child(1) {
   position: relative;
-  width: 17.27%;
+  width: 16.92%;
 }
 .dOrderHistoryContainer .OrderHistorycompos .dHistoryList .historylist > td:nth-child(1) img {
   width: 230px;

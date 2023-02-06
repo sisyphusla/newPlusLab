@@ -16,7 +16,7 @@ import StarScore from "./StarScore";
 
 const SelectCourseChild = (props) => {
   const {
-    state: { cart, collection },
+    state: { cart, collection, mycourse },
     dispatch,
   } = CartState();
 
@@ -135,8 +135,11 @@ const SelectCourseChild = (props) => {
     e.preventDefault();
   };
 
+let cartitemdispay=(mycourse.some((v)=>v.id===props.value.id))
+
+
   return (
-    <Link to={`/video/${props.value.title}`}>
+    <Link to={`/video/${props.value.id}`}>
       <li
         className="dCard"
         id={props.value.id}
@@ -155,6 +158,7 @@ const SelectCourseChild = (props) => {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               onClick={handleDelCart}
+              style={{ display: cartitemdispay ? "none" : "" }}
             >
               <path
                 d="M7.2 19.2C5.88 19.2 4.812 20.28 4.812 21.6C4.812 22.92 5.88 24 7.2 24C8.52 24 9.6 22.92 9.6 21.6C9.6 20.28 8.52 19.2 7.2 19.2ZM0 0V2.4H2.4L6.72 11.508L5.1 14.448C4.908 14.784 4.8 15.18 4.8 15.6C4.8 16.92 5.88 18 7.2 18H21.6V15.6H7.704C7.536 15.6 7.404 15.468 7.404 15.3L7.44 15.156L8.52 13.2H17.46C18.36 13.2 19.152 12.708 19.56 11.964L23.856 4.176C23.952 4.008 24 3.804 24 3.6C24 2.94 23.46 2.4 22.8 2.4H5.052L3.924 0H0ZM19.2 19.2C17.88 19.2 16.812 20.28 16.812 21.6C16.812 22.92 17.88 24 19.2 24C20.52 24 21.6 22.92 21.6 21.6C21.6 20.28 20.52 19.2 19.2 19.2Z"
@@ -169,6 +173,7 @@ const SelectCourseChild = (props) => {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               onClick={handleAddToCart}
+              style={{ display: cartitemdispay ? "none" : "" }}
             >
               <path
                 d="M7.2 19.2C5.88 19.2 4.812 20.28 4.812 21.6C4.812 22.92 5.88 24 7.2 24C8.52 24 9.6 22.92 9.6 21.6C9.6 20.28 8.52 19.2 7.2 19.2ZM0 0V2.4H2.4L6.72 11.508L5.1 14.448C4.908 14.784 4.8 15.18 4.8 15.6C4.8 16.92 5.88 18 7.2 18H21.6V15.6H7.704C7.536 15.6 7.404 15.468 7.404 15.3L7.44 15.156L8.52 13.2H17.46C18.36 13.2 19.152 12.708 19.56 11.964L23.856 4.176C23.952 4.008 24 3.804 24 3.6C24 2.94 23.46 2.4 22.8 2.4H5.052L3.924 0H0ZM19.2 19.2C17.88 19.2 16.812 20.28 16.812 21.6C16.812 22.92 17.88 24 19.2 24C20.52 24 21.6 22.92 21.6 21.6C21.6 20.28 20.52 19.2 19.2 19.2Z"
@@ -267,8 +272,7 @@ const SelectCourseChild = (props) => {
             {props.value.videLength} 小時
           </div>
           <div className="dCardPrice">
-            NT${" "}
-            {Number( props.value.special).toLocaleString()}
+            NT$ {Number(props.value.special).toLocaleString()}
           </div>
         </div>
       </li>

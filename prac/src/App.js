@@ -1,20 +1,19 @@
-import React, { Component } from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import Login from './pages/login'
-import Admin from './pages/admin'
-import Register from './pages/register'
-import DashBoard from './pages/dashboard/DashBoard'
-import VideoPage from './pages/videopage/VideoPage'
-import Homepage from './pages/homepage/Homepage'
-import Coursepage from './pages/coursepage/Coursepage'
-import OrderHistoryPage from './pages/orderhistory/OrderHistoryPage'
-import Cartpage from './pages/cartpage/Cartpage'
+import React, { Component } from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Login from "./pages/login";
+import Admin from "./pages/admin";
+import Register from "./pages/register";
+import DashBoard from "./pages/dashboard/DashBoard";
+import VideoPage from "./pages/videopage/VideoPage";
+import Homepage from "./pages/homepage/Homepage";
+import Coursepage from "./pages/coursepage/Coursepage";
+import OrderHistoryPage from "./pages/orderhistory/OrderHistoryPage";
+import Cartpage from "./pages/cartpage/Cartpage";
 import Checkpage from "./pages/checkpage/checkpage";
-import Profile from './pages/profile/profile'
-import './assets/styles/style.css'
-import Context from './components/CartPage/CartContext'
-import MyCoursepage from './pages/mycourse/mycoursepage'
-
+import Profile from "./pages/profile/profile";
+import "./assets/styles/style.css";
+import Context from "./components/CartPage/CartContext";
+import MyCoursepage from "./pages/mycourse/mycoursepage";
 
 export default class App extends Component {
   render() {

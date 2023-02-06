@@ -43,7 +43,7 @@ body {
 }
 
 .dOrderHistoryContainer {
-  width: 90%;
+  width: 78%;
   padding-left: 6%;
   padding-bottom: 100px;
 
@@ -69,7 +69,7 @@ body {
 
       > th:nth-child(1) {
         position: relative;
-        width: 16.92%;
+        width: 17.34%;
       }
       > th:nth-child(2) {
         position: relative;
@@ -81,12 +81,12 @@ body {
       }
       > th:nth-child(4) {
         position: relative;
-        width: 16.3%;
+        width: 16.55%;
       }
     }
     .dHistoryList {
       display: block;
-height: 600px;
+      height: 600px;
       width: 100%;
       font: {
         weight: 700;
@@ -127,7 +127,7 @@ height: 600px;
         transition: all 0.3s;
         > td:nth-child(1) {
           position: relative;
-          width: 17.27%;
+          width: 16.92%;
           img {
            width: 230px;
             height: 100%;
@@ -137,7 +137,7 @@ height: 600px;
         }
         > td:nth-child(2) {
           position: relative;
-          //  width: 34.13% ;
+          //  width: 36.1% ;
           display: flex;
           flex-direction: column;
           padding: 14px 15px;

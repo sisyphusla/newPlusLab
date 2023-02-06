@@ -59,7 +59,7 @@ const SelectCourse = () => {
            } */}
           {list.length !== 0 ? (
             <SelectCoursemod
-              data={list.slice(0, page * 12)}
+              data={list.slice(0, page * 10)}
               handleNextPage={getNextPage}
               curPage={page}
             />
@@ -67,7 +67,7 @@ const SelectCourse = () => {
         </ul>
       </div>
 
-      {list.slice(0, page * 12).length !== list.length ? (
+      {list.slice(0, page * 10).length !== list.length ? (
         <div className="dCardMore">
           <button onClick={getNextPage}>
             查看下一頁精彩課程

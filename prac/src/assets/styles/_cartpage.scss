@@ -45,6 +45,8 @@ body {
 .dCartContainer {
   width: 77%;
   padding-left: 6%;
+  height: 700px;
+
 
   .cartcompos {
     display: flex;
@@ -90,7 +92,7 @@ body {
       }
     }
     .dCartList {
-      height: 300px;
+      height: 500px;
       display: block;
       flex-direction: column;
       width: 100%;
@@ -448,6 +450,8 @@ body {
   justify-content: center;
   list-style-type: none;
   height: 400px;
+  flex-wrap: wrap;
+  column-gap: 40px;
 
   .slick-dots {
     bottom: -80px;
@@ -493,7 +497,7 @@ body {
 
   .slick-next:before {
     content: url(../../components/CoursePage/img/toright.svg);
-    right: -70px;
+    right: -30px;
     top: -10px;
     position: absolute;
     opacity: 0.35;

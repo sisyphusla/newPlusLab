@@ -10,6 +10,8 @@ export const cartReducer = (state, action) => {
       return { ...state, collection: action.payload };
     case "REFRESH_DISCOUNT":
       return { ...state, discount: action.payload };
+    case "REFRESH_MYCOURSE":
+      return { ...state, mycourse: action.payload };
     case "REFRESH_HISTORY":
       return { ...state, history: action.payload };
     case "REFRESH_ORDER":

@@ -79,20 +79,50 @@ const Context = ({ children }) => {
     discount();
   }, []);
 
-    useEffect(() => {
-      const history = async () => {
-        try {
-          const result = await instance.post("/history",{
-            user:user.user._id
-          });
-          
-          dispatch({ type: "REFRESH_HISTORY", payload: result.data });
-        } catch (err) {
-          dispatch({ type: "FETCH_FAIL", payload: getError(err) });
-        }
-      };
-      history();
-    }, []);
+  useEffect(() => {
+    const history = async () => {
+      try {
+        const result = await instance.post("/history", {
+          user: user.user._id,
+        });
+
+        dispatch({ type: "REFRESH_HISTORY", payload: result.data });
+      } catch (err) {
+        dispatch({ type: "FETCH_FAIL", payload: getError(err) });
+      }
+    };
+    history();
+  }, []);
+
+  useEffect(() => {
+    const history = async () => {
+      try {
+        const result = await instance.post("/history", {
+          user: user.user._id,
+        });
+
+        dispatch({ type: "REFRESH_HISTORY", payload: result.data });
+      } catch (err) {
+        dispatch({ type: "FETCH_FAIL", payload: getError(err) });
+      }
+    };
+    history();
+  }, []);
+
+  useEffect(() => {
+    const historyTransData = async () => {
+      try {
+        const result = await instance.post("/history/transData", {
+          user: user.user._id,
+        });
+
+        dispatch({ type: "REFRESH_MYCOURSE", payload: result.data });
+      } catch (err) {
+        dispatch({ type: "FETCH_FAIL", payload: getError(err) });
+      }
+    };
+    historyTransData();
+  }, []);
 
   const [state, dispatch] = useReducer(cartReducer, {
     Courselist: [],
@@ -101,7 +131,7 @@ const Context = ({ children }) => {
     collection: [],
     discount: [],
     history: [],
-    mycourse:[],
+    mycourse: [],
     loading: true,
     error: "",
   });
