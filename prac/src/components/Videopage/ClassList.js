@@ -3,6 +3,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import expand1 from './image/expand1.svg';
 import expand2 from './image/expand2.svg';
 import axios from 'axios';
+import instance from '../../api/axiosInstance';
 
 
 const ClassList = () => {
@@ -15,17 +16,18 @@ const ClassList = () => {
   // console.log(id)
   useEffect(() => {
     try {
-      axios.get(`http://localhost:8800/courseadd/`)
-        .then(res => {
+      instance
+        .get(`/courseadd`)
+        .then((res) => {
           // console.log(res.data);
           res.data[0].courseList.splice(0, 1);
-          const allCourse = res.data.filter(item => item._id === id)
+          const allCourse = res.data.filter((item) => item._id === id);
           setCousreName(allCourse[0].courseList);
           setIsLoading(false);
-          setCourseID(allCourse[0]._id)
+          setCourseID(allCourse[0]._id);
           // console.log(allCourse[0]._id)
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
           setIsLoading(false);
         });

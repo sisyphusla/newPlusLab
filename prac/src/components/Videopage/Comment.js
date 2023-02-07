@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FaStar } from "react-icons/fa";
 import trashcan from './image/trashcan.svg';
-import axios from 'axios';
+import instance from '../../api/axiosInstance';
 
 const colors = {
   orange: "#FFBA5A",
@@ -18,12 +18,13 @@ const Comment = () => {
   const stars = Array(5).fill(0)
 
   useEffect(() => {
-    axios.get('http://localhost:8800/comment')
-      .then(res => {
+    instance
+      .get("/comment")
+      .then((res) => {
         setVideoComment(res.data);
         console.log(videoComment);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }, []);
@@ -43,9 +44,12 @@ const Comment = () => {
   const handleSaveCommentBtnClick = async () => {
     setIsLoading(true);
     try {
-      await axios.post('http://localhost:8800/comment', { currentValue, comment });
+      await instance.post("/comment", {
+        currentValue,
+        comment,
+      });
       setComment('');
-      axios.get('http://localhost:8800/comment')
+      instance.get('/comment')
         .then(res => {
           setVideoComment(res.data);
         })
@@ -59,9 +63,9 @@ const Comment = () => {
   }
   const handleDeleteComment = async (id) => {
     try {
-      await axios.delete(`http://localhost:8800/comment/${id}`);
+      await instance.delete(`/comment/${id}`);
       setVideoComment(videoComment.filter(comment => comment._id !== id));
-      axios.get('http://localhost:8800/comment')
+      instance.get('/comment')
         .then(res => {
           setVideoComment(res.data);
           console.log(videoComment);

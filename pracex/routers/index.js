@@ -1,7 +1,7 @@
 const express = require('express')
 const md5 = require('blueimp-md5')
 const fs = require("fs");
-
+const multer = require("multer");
 
 const UserModel = require('../models/UserModel')
 const ProductModel = require('../models/ProductModel')
@@ -9,9 +9,25 @@ const RoleModel = require('../models/RoleModel')
 // const CartModel = require("../models/CartModel");
 const StockModel = require('../models/StockModel')
 const LessonModel = require('../models/LessonModel')
+const CourseAdd = require("../models/courseaddschema");
+const Video = require("../models/videonoteschema");
+const Comment = require("../models/videocommentschema");
 
 
 const router = express.Router()
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "public");
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + "-" + file.originalname);
+  },
+});
+
+const upload = multer({ storage }).array("video");
+
+
 
   //登入
 router.post('/login', (req, res) => {
@@ -360,12 +376,139 @@ require('./file-upload')(router)
 
 
 
+//routers\courseadd.js
+//影片page
+
+router.post('/courseadd', (req, res) => {
+  const courseList = new CourseAdd({
+    courseList: req.body.courseList,
+  });
+  courseList.save()
+    .then(() => {
+      console.log(req.body.courseList);
+      res.send('收到課程列表');
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
+router.get('/courseadd/', (req, res) => {
+  CourseAdd.find({}, (err, courseList) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.json(courseList);
+    }
+  });
+});
+
+//
+// router.post('/courseadd/id', (req, res) => {
+//   CourseAdd.find({})
+//     .exec((err, data) => {
+//       if (err) {
+//         res.status(500).send(err);
+
+//       } else {
+//         res.send(data);
+//       }
+//     });
+// });
 
 
+//coursevideo
+
+router.use(express.static("public"));
+
+router.post("/coursevideo", (req, res) => {
+  upload(req, res, (err) => {
+    if (err) {
+      return res.status(500).json(err);
+    }
+
+    return res.status(200).send(req.files);
+  });
+});
+
+//video
+
+router.post("/", (req, res) => {
+  const video = new Video({
+    note: req.body.note,
+    b: req.body.b,
+  });
+  video
+    .save()
+    .then(() => {
+      console.log(req.body.note);
+      console.log(req.body.b);
+      res.send("收到訊息");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+router.get("/", (req, res) => {
+  Video.find({}, (err, videonote) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.json(videonote);
+    }
+  });
+});
+
+router.delete("/:id", (req, res) => {
+  Video.findByIdAndDelete(req.params.id)
+    .then(() => {
+      res.send("刪除成功");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
 
+//videocomment
 
+router.post("/comment", (req, res) => {
+  const comment = new Comment({
+    currentValue: req.body.currentValue,
+    comment: req.body.comment,
+  });
+  comment
+    .save()
+    .then(() => {
+      console.log(req.body.currentValue);
+      console.log(req.body.comment);
+      res.send("收到評論");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
+router.get("/comment", (req, res) => {
+  Comment.find({}, (err, videocomment) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.json(videocomment);
+    }
+  });
+});
+
+router.delete("/comment/:id", (req, res) => {
+  Comment.findByIdAndDelete(req.params.id)
+    .then(() => {
+      res.send("刪除成功");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
 
 

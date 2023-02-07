@@ -9,6 +9,7 @@ import PicturesLesson from './picture'
 import Courseadd from './Courseadd'
 // import { BASE_IMG_URL } from '../../utils/constant'
 import axios from 'axios';
+import instance from '../../api/axiosInstance'
 
 const { Item } = Form;
 
@@ -25,7 +26,7 @@ function LessonAdd(props) {
 
   const sendCourseListToBackend = async (courseList) => {
     try {
-      const result = await axios.post('http://localhost:8800/courseadd', { courseList });
+      const result = await instance.post('/courseadd', { courseList });
       if (result.status === 200) {
         message.success('傳送資料到後端成功');
       } else {
@@ -60,7 +61,7 @@ function LessonAdd(props) {
         });
       });
 
-      const res = await axios.post('http://localhost:8800/coursevideo', formData);
+      const res = await instance.post('/coursevideo', formData);
       console.log(res.data);
     } catch (error) {
       console.error(error);
