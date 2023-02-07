@@ -3,6 +3,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import addNote from './image/addNote.svg';
 import trashcan from './image/trashcan.svg';
 import axios from 'axios';
+import instance from "../../api/axiosInstance";
 
 const Note = ({ b, videoRefProps }) => {
   const [note, setNote] = useState("");
@@ -15,7 +16,7 @@ const Note = ({ b, videoRefProps }) => {
   const location = useLocation();
 
   useEffect(() => {
-    axios.get('http://localhost:8800/')
+    instance.get('/')
       .then(res => {
         let videonoteCopy = [...res.data];
         videonoteCopy.sort((a, b) => {
@@ -57,10 +58,10 @@ const Note = ({ b, videoRefProps }) => {
   const handleSaveBtnClick = async () => {
     setIsLoading(true);
     try {
-      await axios.post('http://localhost:8800/', { note, b });
+      await instance.post('/', { note, b });
       setShowNoteBox(false);
       setShowNoteBtn(true);
-      axios.get('http://localhost:8800/')
+      instance.get('/')
         .then(res => {
           let videonoteCopy = [...res.data];
           videonoteCopy.sort((a, b) => {
@@ -81,9 +82,9 @@ const Note = ({ b, videoRefProps }) => {
 
   const handleDeleteNote = async (id) => {
     try {
-      await axios.delete(`http://localhost:8800/${id}`);
+      await instance.delete(`/${id}`);
       setVideonote(videonote.filter(note => note._id !== id));
-      axios.get('http://localhost:8800/')
+      instance.get('/')
         .then(res => {
           let videonoteCopy = [...res.data];
           videonoteCopy.sort((a, b) => {
